@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Materi Kelas - Kafekoding</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        --text: #0a0e27;
+        --text-light: #4b5563;
+        --border: #e5e7eb;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e0f2fe 100%);
+        min-height: 100vh;
+        font-family: inherit;
+      }
+
+      #app {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      navbar {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        padding: 20px 40px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid rgba(10, 14, 39, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #0a0e27;
+      }
+
+      .logo a {
+        text-decoration: none;
+        color: #0a0e27;
+        cursor: pointer;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .nav-menu a:hover {
+        color: #0a0e27;
+      }
+
+      .nav-menu a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #0a0e27;
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      .materi-container {
+        flex: 1;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 20px;
+        width: 100%;
+      }
+
+      .back-button {
+        display: inline-block;
+        margin-bottom: 30px;
+        padding: 10px 20px;
+        background: #f3f4f6;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--text);
+        transition: all 0.3s ease;
+      }
+
+      .back-button:hover {
+        background: #e5e7eb;
+      }
+
+      .materi-header {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .materi-header h1 {
+        font-size: 2.5em;
+        color: var(--text);
+        margin-bottom: 10px;
+      }
+
+      .materi-header p {
+        color: var(--text-light);
+        font-size: 1.1em;
+      }
+
+      .materi-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .materi-item {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 4px solid #0a0e27;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .materi-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .materi-item-number {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: #0a0e27;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .materi-item-title {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+
+      .materi-item-desc {
+        color: var(--text-light);
+        font-size: 0.95em;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 768px) {
+        navbar {
+          flex-direction: column;
+          gap: 15px;
+          padding: 15px 20px;
+        }
+
+        .nav-menu {
+          gap: 15px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .materi-header {
+          padding: 20px;
+        }
+
+        .materi-header h1 {
+          font-size: 1.8em;
+        }
+
+        .materi-item {
+          padding: 20px;
+        }
+
+        .materi-item-title {
+          font-size: 1.1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/materi.js"></script>
+  </body>
+</html>

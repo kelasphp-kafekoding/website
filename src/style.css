@@ -1,0 +1,619 @@
+/* style.css (fixed & improved) */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* warna & variabel */
+  --primary: #ffffff;
+  --secondary: #3b82f6;
+  --accent: #8b5cf6;
+  --text: #0a0e27;
+  --text-light: #4b5563;
+  --border: #e5e7eb;
+
+  /* tipografi dasar */
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --max-width: 1200px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e0f2fe 100%);
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* App shell */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  z-index: 2;
+}
+
+navbar {
+  position: relative;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 6px 24px rgba(10, 14, 39, 0.06);
+  border-bottom: 1px solid rgba(10, 14, 39, 0.06);
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.logo-img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logo-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  gap: 4px;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2.5px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -8px);
+}
+
+/* Navigation */
+.nav-menu {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-menu li {
+  width: auto;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  transition: all 0.25s ease;
+  position: relative;
+  padding: 6px 0;
+  display: inline-block;
+}
+
+.nav-menu a:hover {
+  color: #0a0e27;
+  transform: translateY(-2px);
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--text);
+  transition: width 0.25s ease;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* Welcome / Hero Section */
+.welcome-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 90px);
+  overflow: hidden;
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* responsive heading using clamp */
+.welcome-content h1 {
+  font-size: clamp(2rem, 5vw + 1rem, 4.5rem);
+  line-height: 1.02;
+  color: var(--text);
+  margin-bottom: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  animation: slideIn 0.8s ease-out both;
+}
+
+.welcome-content p {
+  font-size: clamp(1rem, 1.2vw + 0.8rem, 1.25rem);
+  color: var(--text-light);
+  margin-bottom: 36px;
+  max-width: 780px;
+  animation: fadeIn 1s ease-out 0.15s both;
+}
+
+/* CTA */
+.welcome-content button {
+  background: var(--text);
+  color: var(--primary);
+  border: none;
+  padding: 14px 36px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 10px 30px rgba(10, 14, 39, 0.18);
+  animation: scaleIn 0.9s ease-out 0.25s both;
+}
+
+.welcome-content button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(10, 14, 39, 0.25);
+  background: #111423;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Kelas section (cards) */
+.kelas-section {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, rgba(248,250,252,0.6) 0%, rgba(241,245,249,0.6) 100%);
+}
+
+.kelas-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.kelas-section h2 {
+  font-size: 2.2rem;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.kelas-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.kelas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.kelas-card {
+  background: var(--primary);
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 6px 22px rgba(10, 14, 39, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-top: 4px solid var(--text);
+  cursor: pointer;
+}
+
+.kelas-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 50px rgba(10, 14, 39, 0.12);
+}
+
+/* badges */
+.level-badge {
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* small text */
+.durasi, .kelas-desc, .topik-text {
+  color: #6b7280;
+}
+
+/* CTA card button */
+.btn-daftar {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--text);
+  color: var(--primary);
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.btn-daftar:hover {
+  transform: translateY(-3px);
+  background: #111423;
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .floating-icon {
+    height: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  navbar {
+    position: relative;
+    padding: 12px 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .logo-container {
+    gap: 8px;
+    order: 2;
+  }
+
+  .logo-img {
+    height: 38px;
+  }
+
+  .logo-title {
+    font-size: 0.95rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.6rem;
+  }
+
+  .hamburger {
+    display: flex;
+    order: 1;
+  }
+
+  .nav-menu {
+    order: 3;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 0 0 0;
+    margin-left: 0;
+    border-top: 1px solid rgba(10, 14, 39, 0.06);
+    background: transparent;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-menu a {
+    font-size: 0.9rem;
+    padding: 10px 8px;
+    display: block;
+  }
+
+  .nav-menu a:hover {
+    background: rgba(10, 14, 39, 0.05);
+    border-radius: 6px;
+  }
+
+  .nav-menu a::after {
+    display: none;
+  }
+
+  .welcome-section {
+    padding: 40px 14px;
+    min-height: auto;
+  }
+
+  .welcome-content h1 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .welcome-content p {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+  }
+
+  .welcome-content button {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+
+  .floating-icon {
+    height: 30px;
+  }
+
+  .floating-icon:nth-child(n) {
+    animation-duration: 6s !important;
+  }
+
+  .kelas-section {
+    padding: 40px 12px;
+  }
+
+  .kelas-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  #app {
+    margin-left: 0;
+  }
+
+  navbar {
+    width: 70vw;
+    max-width: 250px;
+    padding: 20px 15px;
+    gap: 30px;
+  }
+
+  .logo-container {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .logo-img {
+    height: 35px;
+  }
+
+  .logo-title {
+    font-size: 0.95rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.6rem;
+  }
+
+  .hamburger {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+  }
+
+  .nav-menu {
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .nav-menu a {
+    font-size: 0.85rem;
+    display: block;
+    padding: 10px 10px;
+  }
+
+  .welcome-section {
+    padding: 30px 12px;
+    padding-top: 60px;
+    min-height: 70vh;
+  }
+
+  .welcome-content h1 {
+    font-size: clamp(1.3rem, 5vw, 2.5rem);
+    margin-bottom: 12px;
+  }
+
+  .welcome-content p {
+    font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+    margin-bottom: 24px;
+  }
+
+  .welcome-content button {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+
+  .floating-icon {
+    height: 25px;
+  }
+
+  .icons-showcase {
+    margin-top: 30px;
+  }
+
+  .kelas-section {
+    padding: 30px 10px;
+  }
+
+  .kelas-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .kelas-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .kelas-card {
+    padding: 16px;
+  }
+}
+
+/* -----------------------------
+   particles container (tsparticles)
+   -----------------------------
+   - pointer-events: none -> allow clicks through particles
+   - z-index: -1 -> behind page content, but navbar/.welcome have higher z-index
+*/
+#tsparticles {
+  position: fixed;
+  inset: 0;            /* shorthand for top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* very important so UI elements stay clickable */
+  z-index: -2;          /* keep behind everything (navbar uses z-index:3, hero z-index:1) */
+}
+
+/* Icons showcase */
+.icons-showcase {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.floating-icon {
+  position: absolute;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  pointer-events: auto;
+  filter: drop-shadow(0 4px 12px rgba(10, 14, 39, 0.1));
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-icon:hover {
+  filter: drop-shadow(0 8px 24px rgba(10, 14, 39, 0.2));
+  transform: scale(1.2);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-20px) translateX(15px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-10px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-20px) translateX(-20px);
+    opacity: 0.8;
+  }
+}
+
+.floating-icon:nth-child(1) { left: 5%; top: 20%; animation-duration: 8s; }
+.floating-icon:nth-child(2) { left: 15%; top: 60%; animation-duration: 9s; }
+.floating-icon:nth-child(3) { left: 25%; top: 40%; animation-duration: 7s; }
+.floating-icon:nth-child(4) { left: 40%; top: 10%; animation-duration: 10s; }
+.floating-icon:nth-child(5) { left: 55%; top: 50%; animation-duration: 8s; }
+.floating-icon:nth-child(6) { left: 70%; top: 30%; animation-duration: 9s; }
+.floating-icon:nth-child(7) { left: 80%; top: 60%; animation-duration: 7s; }
+.floating-icon:nth-child(8) { left: 90%; top: 20%; animation-duration: 10s; }
+.floating-icon:nth-child(9) { left: 10%; top: 40%; animation-duration: 9s; }
+.floating-icon:nth-child(10) { left: 30%; top: 70%; animation-duration: 8s; }
+.floating-icon:nth-child(11) { left: 50%; top: 30%; animation-duration: 10s; }
+.floating-icon:nth-child(12) { left: 65%; top: 10%; animation-duration: 7s; }
+.floating-icon:nth-child(13) { left: 75%; top: 50%; animation-duration: 9s; }
+.floating-icon:nth-child(14) { left: 85%; top: 40%; animation-duration: 8s; }
+.floating-icon:nth-child(15) { left: 20%; top: 15%; animation-duration: 10s; }
+.floating-icon:nth-child(16) { left: 60%; top: 65%; animation-duration: 7s; }
+
+/* small accessibility / utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
