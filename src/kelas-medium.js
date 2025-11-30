@@ -1,3 +1,5 @@
+import { initHamburger } from './hamburger.js'
+
 const app = document.querySelector('#app')
 
 const MEDIUM_USERNAME = 'rifaldo'
@@ -69,12 +71,23 @@ const formatDate = (dateString) => {
 const renderLoading = () => {
   app.innerHTML = `
     <navbar>
-      <div class="logo"><a href="/">☕ Kafekoding</a></div>
-      <ul class="nav-menu">
+      <div class="logo-container">
+        <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
+        <div class="logo-text">
+          <div class="logo-title">Kafekoding</div>
+          <div class="logo-subtitle">Kelas PHP</div>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
         <li><a href="/">Home</a></li>
-        <li><a href="/kelas.html">Kelas</a></li>
-        <li><a href="/">Tentang</a></li>
-        <li><a href="/">Kontak</a></li>
+        <li><a href="/materi.html">Materi</a></li>
+        <li><a href="/tentang.html">Tentang</a></li>
+        <li><a href="/kontak.html">Kontak</a></li>
       </ul>
     </navbar>
 
@@ -84,17 +97,29 @@ const renderLoading = () => {
       <div class="loading">⏳ Memuat artikel dari Medium...</div>
     </div>
   `
+  initHamburger()
 }
 
 const renderError = (error) => {
   app.innerHTML = `
     <navbar>
-      <div class="logo"><a href="/">☕ Kafekoding</a></div>
-      <ul class="nav-menu">
+      <div class="logo-container">
+        <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
+        <div class="logo-text">
+          <div class="logo-title">Kafekoding</div>
+          <div class="logo-subtitle">Kelas PHP</div>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
         <li><a href="/">Home</a></li>
-        <li><a href="/kelas.html">Kelas</a></li>
-        <li><a href="/">Tentang</a></li>
-        <li><a href="/">Kontak</a></li>
+        <li><a href="/materi.html">Materi</a></li>
+        <li><a href="/tentang.html">Tentang</a></li>
+        <li><a href="/kontak.html">Kontak</a></li>
       </ul>
     </navbar>
 
@@ -104,17 +129,29 @@ const renderError = (error) => {
       <div class="error">❌ ${error}</div>
     </div>
   `
+  initHamburger()
 }
 
 const renderArticles = (articles) => {
   app.innerHTML = `
     <navbar>
-      <div class="logo"><a href="/">☕ Kafekoding</a></div>
-      <ul class="nav-menu">
+      <div class="logo-container">
+        <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
+        <div class="logo-text">
+          <div class="logo-title">Kafekoding</div>
+          <div class="logo-subtitle">Kelas PHP</div>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
         <li><a href="/">Home</a></li>
-        <li><a href="/kelas.html">Kelas</a></li>
-        <li><a href="/">Tentang</a></li>
-        <li><a href="/">Kontak</a></li>
+        <li><a href="/materi.html">Materi</a></li>
+        <li><a href="/tentang.html">Tentang</a></li>
+        <li><a href="/kontak.html">Kontak</a></li>
       </ul>
     </navbar>
 
@@ -140,6 +177,7 @@ const renderArticles = (articles) => {
       </div>
     </div>
   `
+  initHamburger()
 }
 
 async function fetchMediumArticles() {
