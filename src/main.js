@@ -30,7 +30,7 @@ app.innerHTML = `
     <div class="welcome-content">
       <h1>Selamat Datang di Kafekoding</h1>
       <p>Belajar PHP dengan cara yang menyenangkan dan interaktif</p>
-      <button onclick="window.location.href='/kelas.html'">Lihat Kelas</button>
+      <button onclick="window.location.href='/materi.html'">Lihat Materi</button>
     </div>
     
     <div class="icons-showcase" id="icons-container"></div>
