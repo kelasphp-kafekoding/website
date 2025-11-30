@@ -1,6 +1,17 @@
 import './style.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { welcomeSection } from './sections/welcomeSection.js'
+import { showcaseSection } from './sections/showcaseSection.js'
+import { testimonialSection } from './sections/testimonialSection.js'
 
 console.log('Main.js loaded');
+
+AOS.init({
+  duration: 1000,
+  once: true,
+  offset: 100
+});
 
 const app = document.querySelector('#app')
 console.log('App element:', app);
@@ -28,12 +39,58 @@ app.innerHTML = `
 
   <section class="welcome-section" id="home">
     <div class="welcome-content">
-      <h1>Selamat Datang di Kafekoding</h1>
-      <p>Belajar PHP dengan cara yang menyenangkan dan interaktif</p>
-      <button onclick="window.location.href='/materi.html'">Lihat Materi</button>
+      <h1 data-aos="fade-up">Selamat Datang di Kafekoding</h1>
+      <h2 class="welcome-subtitle" data-aos="fade-up" data-aos-delay="50">Kelas PHP</h2>
+      <p data-aos="fade-up" data-aos-delay="100">Belajar PHP dengan cara yang menyenangkan dan interaktif</p>
+      <button data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='/materi.html'">Lihat Materi</button>
     </div>
     
     <div class="icons-showcase" id="icons-container"></div>
+  </section>
+
+  <section class="showcase-section">
+    <div class="showcase-container">
+      <h2>Showcase Proyek Peserta</h2>
+      <p class="showcase-subtitle">Karya-karya menakjubkan dari peserta Kelas PHP</p>
+      <div class="showcase-grid" id="showcase-grid"></div>
+    </div>
+  </section>
+
+  <section class="comments-section">
+    <div class="comments-container">
+      <h2>Apa Kata Mereka <span id="comments-count">(0)</span></h2>
+      <p class="comments-subtitle">Dengarkan pengalaman dan testimonial dari komunitas</p>
+      
+      <div class="comments-wrapper">
+        <div>
+          <div class="comments-list" id="comments-list">
+            <div class="loading-spinner">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+        
+        <div class="comment-form-wrapper">
+          <h3>Tulis Pendapatmu</h3>
+          <form id="comment-form" class="comment-form">
+            <div class="form-group">
+              <input type="text" id="comment-name" placeholder="Nama Lengkap" required />
+            </div>
+            <div class="form-group">
+              <input type="text" id="comment-status" placeholder="Status (Mahasiswa, Freelancer, dll)" required />
+            </div>
+            <div class="form-group">
+              <textarea id="comment-message" placeholder="Tulis pesan Anda (1-2 kalimat)" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Kirim Pendapat</button>
+            <div id="form-message" class="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
 
 `
@@ -53,31 +110,8 @@ navMenu.querySelectorAll('a').forEach(link => {
   });
 });
 
-const icons = [
-  { src: '/icons/php.svg', alt: 'PHP' },
-  { src: '/icons/laravel.svg', alt: 'Laravel' },
-  { src: '/icons/mysql-icon-light.svg', alt: 'MySQL' },
-  { src: '/icons/html5.svg', alt: 'HTML5' },
-  { src: '/icons/css_old.svg', alt: 'CSS' },
-  { src: '/icons/bootstrap.svg', alt: 'Bootstrap' },
-  { src: '/icons/nginx.svg', alt: 'Nginx' },
-  { src: '/icons/chrome.svg', alt: 'Chrome' },
-  { src: '/icons/mariadb.svg', alt: 'MariaDB' },
-  { src: '/icons/stackoverflow_wordmark.svg', alt: 'Stack Overflow' },
-  { src: '/icons/powershell.svg', alt: 'PowerShell' },
-  { src: '/icons/kk.png', alt: 'kafekoding' }
-
-];
-
-const container = document.getElementById('icons-container');
-icons.forEach((icon, index) => {
-  const img = document.createElement('img');
-  img.src = icon.src;
-  img.alt = icon.alt;
-  img.className = 'floating-icon';
-  img.style.animationDelay = `${index * 0.1}s`;
-  container.appendChild(img);
-});
+welcomeSection();
+showcaseSection();
 
 console.log('Attempting to load tsParticles from window...');
 
@@ -143,3 +177,5 @@ if (window.tsParticles) {
     }
   })();
 }
+
+testimonialSection();
