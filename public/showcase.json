@@ -1,0 +1,96 @@
+{
+  "showcase": [
+    {
+      "id": "proj1",
+      "judul": "Sistem Manajemen Kelas Online",
+      "deks": "Platform pembelajaran online dengan fitur assignment, quiz, dan progress tracking untuk guru dan siswa.",
+      "gambar": "https://via.placeholder.com/300x200?text=Sistem+Kelas+Online",
+      "namaPeserta": "Rizky Mahesa",
+      "tech": ["PHP", "Laravel", "MySQL", "Bootstrap"],
+      "github": "https://github.com",
+      "project": "https://example.com"
+    },
+    {
+      "id": "proj2",
+      "judul": "E-Commerce Toko Buku",
+      "deks": "Aplikasi penjualan buku online dengan keranjang belanja, checkout, dan sistem pembayaran terintegrasi.",
+      "gambar": "https://via.placeholder.com/300x200?text=E-Commerce+Buku",
+      "namaPeserta": "Dewi Aulia",
+      "tech": ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+      "github": "https://github.com",
+      "project": "https://example.com"
+    },
+    {
+      "id": "proj3",
+      "judul": "Blog Platform Komunitas",
+      "deks": "Platform blogging dengan fitur tags, categories, comments, dan social sharing untuk berbagi artikel.",
+      "gambar": "https://via.placeholder.com/300x200?text=Blog+Platform",
+      "namaPeserta": "Budi Santoso",
+      "tech": ["PHP", "Laravel", "PostgreSQL", "Tailwind CSS"],
+      "github": "https://github.com",
+      "project": "https://example.com"
+    },
+    {
+      "id": "proj4",
+      "judul": "Dashboard Analytics Bisnis",
+      "deks": "Dashboard real-time untuk monitoring penjualan, traffic, dan performa bisnis dengan chart interaktif.",
+      "gambar": "https://via.placeholder.com/300x200?text=Dashboard+Analytics",
+      "namaPeserta": "Siti Nurhaliza",
+      "tech": ["PHP", "MySQL", "Chart.js", "Bootstrap"],
+      "github": "https://github.com",
+      "project": "https://example.com"
+    },
+    {
+      "id": "proj5",
+      "judul": "Aplikasi Todo List Kolaboratif",
+      "deks": "Aplikasi todo dengan fitur tim, real-time collaboration, reminders, dan progress analytics.",
+      "gambar": "https://via.placeholder.com/300x200?text=Todo+Kolaboratif",
+      "namaPeserta": "Ahmad Wijaya",
+      "tech": ["PHP", "MySQL", "Vue.js", "Websocket"],
+      "github": "https://github.com",
+      "project": "https://example.com"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "k7x2mQ9p",
+      "name": "Rizky Mahesa",
+      "status": "Mahasiswa Universitas Negeri Makassar",
+      "message": "Showcase ini keren, banyak karya kreatif dari teman-teman! Inspiratif banget melihat progres komunitas.",
+      "date": "2025-11-30",
+      "color": "#a3bffa"
+    },
+    {
+      "id": "wN8tRj4L",
+      "name": "Dewi Aulia",
+      "status": "Siswa SMK 4 Bandung",
+      "message": "Websitenya membantu banget buat lihat progres komunitas dan belajar dari karya orang lain.",
+      "date": "2025-11-30",
+      "color": "#fcd34d"
+    },
+    {
+      "id": "vB3sY6nM",
+      "name": "Budi Santoso",
+      "status": "Peserta Bootcamp Kelas Web Dev",
+      "message": "Platform ini sangat memotivasi! Senang bisa berbagi karya dan mendapat feedback dari komunitas.",
+      "date": "2025-11-30",
+      "color": "#c7d2fe"
+    },
+    {
+      "id": "pZ9fG2hK",
+      "name": "Siti Nurhaliza",
+      "status": "Freelancer Frontend Developer",
+      "message": "Tempat yang sempurna untuk showcase portfolio dan networking dengan developer lainnya.",
+      "date": "2025-11-30",
+      "color": "#fecaca"
+    },
+    {
+      "id": "jQ5dP8wX",
+      "name": "Ahmad Wijaya",
+      "status": "Alumni Komunitas KELASPHP",
+      "message": "Bangga melihat komunitas terus berkembang dengan showcase seperti ini. Sukses selalu untuk semuanya!",
+      "date": "2025-11-30",
+      "color": "#d1fae5"
+    }
+  ]
+}
