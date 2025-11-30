@@ -1,3 +1,4 @@
+const API_URL = 'https://script.google.com/macros/s/AKfycbyIwhn0QcwmnQfswCH6cEkLNQD85cL-1R2MdZPDRdJ2LKM-F2FExbORAy7lMPXcyvUM/exec';
 const LOCAL_STORAGE_KEY = 'kelas_php_comments_local';
 
 let cachedComentarData = null;
@@ -33,42 +34,99 @@ export const comentarService = {
     }
 
     try {
-      console.log('Loading comments from showcase.json...');
+      console.log('Trying to load from Google Apps Script:', API_URL);
       
-      const response = await fetch('/showcase.json');
+      const response = await fetch(API_URL, { 
+        method: 'GET',
+        mode: 'cors'
+      });
+      console.log('GET Response status:', response.status, response.ok);
+      
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      
       const data = await response.json();
-      const showcaseComments = data.testimonials || [];
-      const localComments = getLocalComments();
+      console.log('GET Response data:', data);
       
-      const allComments = [...showcaseComments, ...localComments];
-      cachedComentarData = allComments;
-      cacheTimestamp = now;
+      if (data.comentar && Array.isArray(data.comentar)) {
+        const localComments = getLocalComments();
+        const allComments = [...data.comentar, ...localComments];
+        cachedComentarData = allComments;
+        cacheTimestamp = now;
+        console.log('✓ Loaded', allComments.length, 'comments from API + local');
+        return { comentar: allComments };
+      } else {
+        throw new Error('Invalid response format');
+      }
+    } catch (apiErr) {
+      console.error('✗ Error loading from API:', apiErr);
+      console.log('Fallback to showcase.json + localStorage...');
       
-      console.log('✓ Loaded', allComments.length, 'comments (showcase + local)');
-      return { comentar: allComments };
-    } catch (err) {
-      console.error('✗ Error loading comments:', err);
-      const localComments = getLocalComments();
-      return { comentar: localComments };
+      try {
+        const response = await fetch('/showcase.json');
+        const data = await response.json();
+        const showcaseComments = data.testimonials || [];
+        const localComments = getLocalComments();
+        
+        const allComments = [...showcaseComments, ...localComments];
+        cachedComentarData = allComments;
+        cacheTimestamp = now;
+        
+        console.log('✓ Loaded', allComments.length, 'comments from fallback');
+        return { comentar: allComments };
+      } catch (fallbackErr) {
+        console.error('✗ Fallback failed:', fallbackErr);
+        const localComments = getLocalComments();
+        return { comentar: localComments };
+      }
     }
   },
 
   addComentar: async (newComment) => {
     try {
-      console.log('Saving comment to localStorage:', newComment);
+      console.log('Trying to post to Google Apps Script:', newComment);
       
-      const localComments = getLocalComments();
-      localComments.push(newComment);
-      saveLocalComments(localComments);
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(newComment),
+        mode: 'cors'
+      });
       
-      cachedComentarData = null;
-      cacheTimestamp = 0;
+      console.log('POST Response status:', response.status, response.ok);
       
-      console.log('✓ Comment saved successfully');
-      return { success: true, data: newComment };
-    } catch (err) {
-      console.error('✗ Error saving comment:', err);
-      throw new Error('Gagal menyimpan komentar. ' + err.message);
+      if (response.ok) {
+        const data = await response.json();
+        console.log('POST Response data:', data);
+        
+        if (data.status === 200) {
+          cachedComentarData = null;
+          cacheTimestamp = 0;
+          console.log('✓ Comment posted to API successfully');
+          return { success: true, data: newComment, source: 'api' };
+        }
+      }
+      
+      throw new Error('API response not OK');
+    } catch (apiErr) {
+      console.error('✗ Error posting to API:', apiErr);
+      console.log('Falling back to localStorage...');
+      
+      try {
+        const localComments = getLocalComments();
+        localComments.push(newComment);
+        saveLocalComments(localComments);
+        
+        cachedComentarData = null;
+        cacheTimestamp = 0;
+        
+        console.log('✓ Comment saved to localStorage');
+        return { success: true, data: newComment, source: 'localStorage' };
+      } catch (localErr) {
+        console.error('✗ Error saving to localStorage:', localErr);
+        throw new Error('Gagal menyimpan komentar. ' + localErr.message);
+      }
     }
   },
 
