@@ -271,12 +271,22 @@ const renderKelas = () => {
 
   app.innerHTML = `
     <navbar>
-      <div class="logo"><a href="/">☕ Kafekoding</a></div>
-      <ul class="nav-menu">
+      <div class="logo-container">
+        <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
+        <div class="logo-text">
+          <div class="logo-title">Kafekoding</div>
+          <div class="logo-subtitle">Kelas PHP</div>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
         <li><a href="/">Home</a></li>
-        <li><a href="/#kelas">Kelas</a></li>
-        <li><a href="/">Tentang</a></li>
-        <li><a href="/">Kontak</a></li>
+        <li><a href="/tentang.html">Tentang</a></li>
+        <li><a href="/kontak.html">Kontak</a></li>
       </ul>
     </navbar>
 
@@ -322,3 +332,18 @@ const renderKelas = () => {
 }
 
 renderKelas()
+
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
+
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+    hamburger.classList.remove('active');
+  });
+});
