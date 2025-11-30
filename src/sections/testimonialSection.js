@@ -114,7 +114,9 @@ function renderComments(page = 1) {
 async function loadComments() {
   try {
     const response = await comentarService.getComentar();
-    allComments = response.comentar.reverse();
+    allComments = response.comentar.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
     console.log('✓ Loaded', allComments.length, 'comments');
     currentPage = 1;
     renderComments(currentPage);
@@ -157,29 +159,39 @@ function setupCommentForm() {
       color: randomColor
     };
     
-    formMessage.textContent = 'Mengirim...';
-    formMessage.className = 'form-message sending';
+    Swal.fire({
+      title: 'Mengirim Komentar',
+      html: 'Mohon tunggu... <br><small style="color: #999;">Jangan tutup browser dulu</small>',
+      icon: 'info',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      didOpen: (modal) => {
+        Swal.showLoading();
+      }
+    });
     
     try {
       await comentarService.addComentar(newComment);
       
-      formMessage.textContent = 'Pendapat Anda berhasil dikirim! Terima kasih! 🎉';
-      formMessage.className = 'form-message success';
-      form.reset();
-      
-      setTimeout(() => {
-        loadComments();
-      }, 1200);
+      Swal.fire({
+        title: 'Berhasil!',
+        text: 'Pendapat Anda berhasil dikirim! Terima kasih! 🎉',
+        icon: 'success',
+        timer: 2000,
+        timerProgressBar: true,
+        willClose: () => {
+          form.reset();
+          loadComments();
+        }
+      });
     } catch (err) {
       console.error('✗ Error posting comment:', err);
-      formMessage.textContent = 'Gagal mengirim. ' + err.message;
-      formMessage.className = 'form-message error';
+      Swal.fire({
+        title: 'Gagal!',
+        text: 'Gagal mengirim: ' + err.message,
+        icon: 'error'
+      });
     }
-    
-    setTimeout(() => {
-      formMessage.textContent = '';
-      formMessage.className = 'form-message';
-    }, 4000);
   });
 }
 
