@@ -147,6 +147,16 @@ function setupCommentForm() {
       return;
     }
     
+    const recaptchaResponse = grecaptcha.getResponse();
+    if (!recaptchaResponse) {
+      Swal.fire({
+        title: 'Verifikasi Diperlukan',
+        text: 'Silakan selesaikan reCAPTCHA terlebih dahulu',
+        icon: 'warning'
+      });
+      return;
+    }
+    
     const colors = ['#a3bffa', '#fcd34d', '#c7d2fe', '#fecaca', '#d1fae5', '#fda29b', '#e0e7ff', '#fef08a'];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     
@@ -156,7 +166,8 @@ function setupCommentForm() {
       status: status || 'Member',
       message: message,
       date: getJakartaTimestamp(),
-      color: randomColor
+      color: randomColor,
+      recaptchaToken: recaptchaResponse
     };
     
     Swal.fire({
@@ -181,6 +192,7 @@ function setupCommentForm() {
         timerProgressBar: true,
         willClose: () => {
           form.reset();
+          grecaptcha.reset();
           loadComments();
         }
       });

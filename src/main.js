@@ -77,14 +77,18 @@ app.innerHTML = `
           <h3>Tulis Pendapatmu</h3>
           <form id="comment-form" class="comment-form">
             <div class="form-group">
-              <input type="text" id="comment-name" placeholder="Nama Lengkap" required />
+              <label for="comment-name">Nama Lengkap</label>
+              <input type="text" id="comment-name" placeholder="Masukkan nama Anda" required />
             </div>
             <div class="form-group">
-              <input type="text" id="comment-status" placeholder="Status (Mahasiswa, Freelancer, dll)" required />
+              <label for="comment-status">Status</label>
+              <input type="text" id="comment-status" placeholder="Mahasiswa, Freelancer, dll" required />
             </div>
             <div class="form-group">
+              <label for="comment-message">Pendapat Anda</label>
               <textarea id="comment-message" placeholder="Tulis pesan Anda (1-2 kalimat)" required></textarea>
             </div>
+            <div class="form-group g-recaptcha" data-sitekey="6LcD5xwsAAAAACCknilZ9y8BuprHx8w2xlmpkLOV"></div>
             <button type="submit" class="btn-submit">Kirim Pendapat</button>
             <div id="form-message" class="form-message"></div>
           </form>
