@@ -1,8 +1,27 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbzThe-3DFXoXxJheSntYi5xYi-R6UG83BPq1pmRKJNO8Dt9AkIlPhljAZsxJF2JZEXrrg/exec';
+const LOCAL_STORAGE_KEY = 'kelas_php_comments_local';
 
 let cachedComentarData = null;
 let cacheTimestamp = 0;
 const CACHE_DURATION = 10000;
+
+function getLocalComments() {
+  try {
+    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch (err) {
+    console.error('Error reading localStorage:', err);
+    return [];
+  }
+}
+
+function saveLocalComments(comments) {
+  try {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(comments));
+    console.log('✓ Comments saved to localStorage');
+  } catch (err) {
+    console.error('Error saving to localStorage:', err);
+  }
+}
 
 export const comentarService = {
   getComentar: async () => {
@@ -14,77 +33,42 @@ export const comentarService = {
     }
 
     try {
-      console.log('Loading comments from API:', API_URL);
+      console.log('Loading comments from showcase.json...');
       
-      const response = await fetch(API_URL, { method: 'GET' });
-      console.log('GET Response status:', response.status, response.ok);
-      
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      
+      const response = await fetch('/showcase.json');
       const data = await response.json();
-      console.log('GET Response data:', data);
+      const showcaseComments = data.testimonials || [];
+      const localComments = getLocalComments();
       
-      if (data.comentar && Array.isArray(data.comentar)) {
-        cachedComentarData = data.comentar;
-        cacheTimestamp = now;
-        console.log('✓ Loaded', cachedComentarData.length, 'comments from API');
-        return { comentar: cachedComentarData };
-      } else {
-        throw new Error('Invalid response format');
-      }
+      const allComments = [...showcaseComments, ...localComments];
+      cachedComentarData = allComments;
+      cacheTimestamp = now;
+      
+      console.log('✓ Loaded', allComments.length, 'comments (showcase + local)');
+      return { comentar: allComments };
     } catch (err) {
-      console.error('✗ Error loading from API:', err);
-      console.log('Fallback to showcase.json...');
-      
-      try {
-        const response = await fetch('/showcase.json');
-        const data = await response.json();
-        const fallbackComments = data.testimonials || [];
-        
-        cachedComentarData = fallbackComments;
-        cacheTimestamp = now;
-        console.log('✓ Loaded', fallbackComments.length, 'comments from fallback');
-        
-        return { comentar: fallbackComments };
-      } catch (fallbackErr) {
-        console.error('✗ Fallback failed:', fallbackErr);
-        return { comentar: [] };
-      }
+      console.error('✗ Error loading comments:', err);
+      const localComments = getLocalComments();
+      return { comentar: localComments };
     }
   },
 
   addComentar: async (newComment) => {
     try {
-      console.log('Posting comment:', newComment);
+      console.log('Saving comment to localStorage:', newComment);
       
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
-        body: JSON.stringify(newComment)
-      });
+      const localComments = getLocalComments();
+      localComments.push(newComment);
+      saveLocalComments(localComments);
       
-      console.log('POST Response status:', response.status, response.ok);
-      console.log('POST Response headers:', {
-        'Access-Control-Allow-Origin': response.headers.get('Access-Control-Allow-Origin'),
-        'Content-Type': response.headers.get('Content-Type')
-      });
+      cachedComentarData = null;
+      cacheTimestamp = 0;
       
-      const data = await response.json();
-      console.log('POST Response data:', data);
-      
-      if (response.ok || data.status === 200) {
-        cachedComentarData = null;
-        cacheTimestamp = 0;
-        console.log('✓ Comment posted successfully and cache cleared');
-        return { success: true, data: newComment };
-      } else {
-        throw new Error(data.message || `Server error: ${data.status}`);
-      }
+      console.log('✓ Comment saved successfully');
+      return { success: true, data: newComment };
     } catch (err) {
-      console.error('✗ Error posting comment:', err);
-      throw err;
+      console.error('✗ Error saving comment:', err);
+      throw new Error('Gagal menyimpan komentar. ' + err.message);
     }
   },
 
