@@ -21,8 +21,8 @@ app.innerHTML = `
     </button>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="/">Home</a></li>
-      <li><a href="public/tentang.html">Tentang</a></li>
-      <li><a href="public/kontak.html">Kontak</a></li>
+      <li><a href="/tentang.html">Tentang</a></li>
+      <li><a href="/kontak.html">Kontak</a></li>
     </ul>
   </navbar>
 
@@ -30,7 +30,7 @@ app.innerHTML = `
     <div class="welcome-content">
       <h1>Selamat Datang di Kafekoding</h1>
       <p>Belajar PHP dengan cara yang menyenangkan dan interaktif</p>
-      <button onclick="window.location.href='public/kelas.html'">Lihat Kelas</button>
+      <button onclick="window.location.href='/kelas.html'">Lihat Kelas</button>
     </div>
     
     <div class="icons-showcase" id="icons-container"></div>
