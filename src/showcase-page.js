@@ -5,8 +5,16 @@ const app = document.querySelector('#app')
 
 const loadShowcase = async () => {
   try {
+    console.log('Fetching showcase data from /showcase.json')
     const response = await fetch('/showcase.json')
+    console.log('Response status:', response.status)
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    
     const data = await response.json()
+    console.log('Showcase data loaded:', data.showcase?.length, 'projects')
     
     return data.showcase || []
   } catch (error) {
