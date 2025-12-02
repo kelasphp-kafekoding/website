@@ -5,7 +5,7 @@ const app = document.querySelector('#app')
 
 const loadShowcase = async () => {
   try {
-    const response = await fetch('/public/showcase.json')
+    const response = await fetch('/showcase.json')
     const data = await response.json()
     
     return data.showcase || []
