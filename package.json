@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "highlight.js": "^11.11.1",
+    "marked": "^17.0.1",
     "tsparticles": "^3.9.1",
     "tsparticles-engine": "^2.12.0"
   }

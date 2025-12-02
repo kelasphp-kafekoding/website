@@ -1,0 +1,13 @@
+{
+  "materi": [
+    {
+      "id": 1,
+      "title": "Pengenalan PHP",
+      "description": "Pelajari dasar-dasar PHP, instalasi, dan sintaks dasar untuk memulai perjalanan web development Anda.",
+      "file": "contoh-materi.md",
+      "thumbnail": "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=400&h=250&fit=crop",
+      "author": "Kafekoding",
+      "date": "2025-12-01"
+    }
+  ]
+}
