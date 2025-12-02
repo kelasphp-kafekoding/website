@@ -2,6 +2,7 @@
   "materi": [
     {
       "id": 1,
+      "slug": "pengenalan-php",
       "title": "Pengenalan PHP",
       "description": "Pelajari dasar-dasar PHP, instalasi, dan sintaks dasar untuk memulai perjalanan web development Anda.",
       "file": "contoh-materi.md",

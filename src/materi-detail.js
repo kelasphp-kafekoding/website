@@ -28,6 +28,22 @@ marked.setOptions({
   gfm: true
 })
 
+const loadMateriData = async (slug) => {
+  try {
+    const response = await fetch('/materi-list.json')
+    if (!response.ok) throw new Error('Materi list not found')
+    
+    const data = await response.json()
+    const materi = data.materi.find(m => m.slug === slug || m.id === parseInt(slug))
+    
+    if (!materi) throw new Error('Materi not found')
+    return materi
+  } catch (error) {
+    console.error('Error loading materi data:', error)
+    return null
+  }
+}
+
 const loadMarkdown = async (filename) => {
   try {
     const response = await fetch(`/materi/${filename}`)
@@ -41,12 +57,18 @@ const loadMarkdown = async (filename) => {
 }
 
 const renderMateriDetail = async () => {
-  // Get filename from URL parameter
+  // Get slug from URL parameter (support both 'm' and old 'file' for backward compatibility)
   const urlParams = new URLSearchParams(window.location.search)
-  const filename = urlParams.get('file') || 'contoh-materi.md'
-  const title = urlParams.get('title') || 'Materi'
+  const slug = urlParams.get('m') || urlParams.get('slug') || '1'
 
-  const content = await loadMarkdown(filename)
+  const materiData = await loadMateriData(slug)
+  
+  if (!materiData) {
+    app.innerHTML = '<div style="text-align: center; padding: 100px 20px;"><h1>Materi tidak ditemukan</h1><p><a href="/materi.html">Kembali ke daftar materi</a></p></div>'
+    return
+  }
+
+  const content = await loadMarkdown(materiData.file)
 
   app.innerHTML = `
     <navbar>
