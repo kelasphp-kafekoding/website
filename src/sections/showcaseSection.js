@@ -2,7 +2,7 @@ export const showcaseSection = async () => {
   const showcaseGrid = document.getElementById('showcase-grid');
   
   try {
-    const response = await fetch('/public/showcase.json');
+    const response = await fetch('/showcase.json');
     const data = await response.json();
     
     if (data.showcase && data.showcase.length > 0) {
