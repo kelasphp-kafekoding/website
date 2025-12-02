@@ -6,7 +6,60 @@
       "title": "Pengenalan PHP",
       "description": "Pelajari dasar-dasar PHP, instalasi, dan sintaks dasar untuk memulai perjalanan web development Anda.",
       "file": "contoh-materi.md",
-      "thumbnail": "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=400&h=250&fit=crop",
+      "author": "Kafekoding",
+      "date": "2025-12-01"
+    },
+    {
+      "id": 2,
+      "slug": "setup-environment",
+      "title": "Setup Environment PHP",
+      "description": "Panduan lengkap instalasi dan konfigurasi environment PHP untuk development.",
+      "file": "setup-environment.md",
+      "author": "Kafekoding",
+      "date": "2025-12-01"
+    },
+    {
+      "id": 3,
+      "slug": "sintaks-dasar",
+      "title": "Sintaks Dasar PHP",
+      "description": "Pelajari sintaks dasar PHP termasuk variabel, tipe data, dan struktur kode.",
+      "file": "sintaks-dasar.md",
+      "author": "Kafekoding",
+      "date": "2025-12-01"
+    },
+    {
+      "id": 4,
+      "slug": "operator-php",
+      "title": "Operator di PHP",
+      "description": "Memahami berbagai jenis operator dalam PHP untuk manipulasi data.",
+      "file": "operator-php.md",
+      "author": "Kafekoding",
+      "date": "2025-12-01"
+    },
+    {
+      "id": 5,
+      "slug": "control-flow",
+      "title": "Control Flow PHP",
+      "description": "Pelajari struktur kontrol seperti if-else, switch, dan perulangan di PHP.",
+      "file": "control-flow.md",
+      "author": "Kafekoding",
+      "date": "2025-12-01"
+    },
+    {
+      "id": 6,
+      "slug": "array-function",
+      "title": "Array dan Function",
+      "description": "Menguasai penggunaan array dan pembuatan function di PHP.",
+      "file": "array-function.md",
+      "author": "Kafekoding",
+      "date": "2025-12-01"
+    },
+    {
+      "id": 7,
+      "slug": "form-bootstrap",
+      "title": "Form dengan Bootstrap",
+      "description": "Membuat form yang menarik dan responsif menggunakan Bootstrap.",
+      "file": "form-bootstrap.md",
       "author": "Kafekoding",
       "date": "2025-12-01"
     }
