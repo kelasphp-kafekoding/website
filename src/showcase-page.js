@@ -15,8 +15,6 @@ const loadShowcase = async () => {
   }
 }
 
-<<<<<<< HEAD
-=======
 const renderProjects = (projects) => {
   const showcaseGrid = document.getElementById('showcase-grid')
   
@@ -47,7 +45,6 @@ const renderProjects = (projects) => {
   }
 }
 
->>>>>>> showcase
 const renderShowcase = async () => {
   const projects = await loadShowcase()
   
@@ -80,31 +77,6 @@ const renderShowcase = async () => {
         <h1 class="showcase-page-title">Showcase Proyek Peserta</h1>
         <p class="showcase-page-subtitle">Karya-karya menakjubkan dari peserta Kelas PHP Kafekoding</p>
         
-<<<<<<< HEAD
-        <div class="showcase-grid">
-          ${projects.length > 0 ? projects.map(project => `
-            <div class="showcase-card">
-              <img src="${project.gambar}" alt="${project.judul}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-              <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--text);">${project.judul}</h3>
-              <p style="color: var(--text-light); margin-bottom: 16px; line-height: 1.6;">${project.deks}</p>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
-                ${project.tech.map(tech => `<span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600;">${tech}</span>`).join('')}
-              </div>
-              <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;"><i class="fa-solid fa-user" style="margin-right: 6px;"></i>${project.namaPeserta}</p>
-              <div style="display: flex; gap: 12px;">
-                <a href="${project.github}" target="_blank" style="color: var(--secondary); text-decoration: none; font-weight: 600;">GitHub →</a>
-                <a href="${project.project}" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">Live Demo →</a>
-              </div>
-            </div>
-          `).join('') : `
-            <div class="coming-soon">
-              <div class="coming-soon-icon">🚀</div>
-              <h3>Coming Soon</h3>
-              <p>Showcase proyek dari peserta akan segera ditampilkan di sini</p>
-            </div>
-          `}
-        </div>
-=======
         <div class="search-container" style="max-width: 600px; margin: 0 auto 40px; position: relative;">
           <input 
             type="text" 
@@ -116,7 +88,6 @@ const renderShowcase = async () => {
         </div>
         
         <div class="showcase-grid" id="showcase-grid"></div>
->>>>>>> showcase
       </div>
     </section>
 
@@ -170,8 +141,6 @@ const renderShowcase = async () => {
   `
   
   initHamburger()
-<<<<<<< HEAD
-=======
   
   // Render semua proyek
   renderProjects(projects)
@@ -201,7 +170,6 @@ const renderShowcase = async () => {
   searchInput.addEventListener('blur', (e) => {
     e.target.style.borderColor = '#e5e7eb'
   })
->>>>>>> showcase
 }
 
 renderShowcase()
