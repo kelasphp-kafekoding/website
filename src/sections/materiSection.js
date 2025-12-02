@@ -40,7 +40,7 @@ export const materiSection = async () => {
       )
       
       materiGrid.innerHTML = materiWithImages.map(materi => `
-        <div class="materi-card" onclick="window.location.href='/materi-detail.html?m=${materi.slug}'">
+        <div class="materi-card" onclick="window.location.href='/materi/${materi.slug}'">
           <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 12px; margin-bottom: 16px; overflow: hidden;">
             <img src="${materi.thumbnail}" alt="${materi.title}" style="width: 100%; height: 100%; object-fit: cover;">
           </div>

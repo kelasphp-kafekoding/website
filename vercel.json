@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/materi/:slug",
+      "destination": "/materi-detail.html?m=:slug"
+    }
+  ],
   "headers": [
     {
       "source": "/showcase.json",

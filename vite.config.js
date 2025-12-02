@@ -11,5 +11,16 @@ export default defineConfig({
         materiDetail: resolve(__dirname, 'materi-detail.html'),
       }
     }
+  },
+  server: {
+    proxy: {
+      '^/materi/[^/]+$': {
+        target: 'http://localhost:5173',
+        rewrite: (path) => {
+          const slug = path.split('/').pop()
+          return `/materi-detail.html?m=${slug}`
+        }
+      }
+    }
   }
 })
