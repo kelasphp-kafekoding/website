@@ -2,7 +2,6 @@ import './style.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { welcomeSection } from './sections/welcomeSection.js'
-import { materiSection } from './sections/materiSection.js'
 import { showcaseSection } from './sections/showcaseSection.js'
 import { testimonialSection } from './sections/testimonialSection.js'
 
@@ -33,7 +32,7 @@ app.innerHTML = `
     </button>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="#home">Home</a></li>
-      <li><a href="#materi">Materi</a></li>
+      <li><a href="/materi.html">Materi</a></li>
       <li><a href="#showcase">Showcase</a></li>
       <li><a href="#gallery">Galeri</a></li>
       <li><a href="#comments">Testimoni</a></li>
@@ -51,14 +50,6 @@ app.innerHTML = `
     </div>
     
     <div class="icons-showcase" id="icons-container"></div>
-  </section>
-
-  <section class="materi-section" id="materi">
-    <div class="materi-container">
-      <h2>Materi Pembelajaran</h2>
-      <p class="materi-subtitle">Pelajari PHP dari dasar hingga mahir dengan materi terstruktur</p>
-      <div class="materi-grid" id="materi-grid"></div>
-    </div>
   </section>
 
   <section class="showcase-section" id="showcase">
@@ -182,7 +173,7 @@ app.innerHTML = `
           <h4>Menu</h4>
           <ul>
             <li><a href="/#home">Home</a></li>
-            <li><a href="/#materi">Materi</a></li>
+            <li><a href="/materi.html">Materi</a></li>
             <li><a href="/#showcase">Showcase</a></li>
             <li><a href="/#gallery">Galeri</a></li>
             <li><a href="/#comments">Testimoni</a></li>
@@ -301,7 +292,6 @@ const initGallery = () => {
 }
 
 welcomeSection();
-materiSection();
 showcaseSection();
 initGallery();
 
