@@ -31,7 +31,10 @@ app.innerHTML = `
       <span></span>
     </button>
     <ul class="nav-menu" id="nav-menu">
-      <li><a href="/">Home</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#showcase">Showcase</a></li>
+      <li><a href="#gallery">Galeri</a></li>
+      <li><a href="#comments">Testimoni</a></li>
       <li><a href="/tentang.html">Tentang</a></li>
       <li><a href="/kontak.html">Kontak</a></li>
     </ul>
@@ -48,7 +51,7 @@ app.innerHTML = `
     <div class="icons-showcase" id="icons-container"></div>
   </section>
 
-  <section class="showcase-section">
+  <section class="showcase-section" id="showcase">
     <div class="showcase-container">
       <h2>Showcase Proyek Peserta</h2>
       <p class="showcase-subtitle">Karya-karya menakjubkan dari peserta Kelas PHP</p>
@@ -56,7 +59,61 @@ app.innerHTML = `
     </div>
   </section>
 
-  <section class="comments-section">
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-container">
+      <h2>Galeri Kelas PHP</h2>
+      <p class="gallery-subtitle">Dokumentasi kegiatan dan momen belajar bersama di Kelas PHP Kafekoding</p>
+      
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-item" data-index="0">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="Diskusi Kelompok">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Diskusi Kelompok</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-index="1">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop" alt="Coding Session">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Coding Session</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-index="2">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop" alt="Workshop PHP">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Workshop PHP</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-index="3">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop" alt="Presentasi Project">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Presentasi Project</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-index="4">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Team Collaboration">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Team Collaboration</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-index="5">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop" alt="Sertifikat Kelulusan">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Sertifikat Kelulusan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <span class="lightbox-prev">&#10094;</span>
+    <span class="lightbox-next">&#10095;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <section class="comments-section" id="comments">
     <div class="comments-container">
       <h2>Apa Kata Mereka <span id="comments-count">(0)</span></h2>
       <p class="comments-subtitle">Dengarkan pengalaman dan testimonial dari komunitas</p>
@@ -114,18 +171,18 @@ app.innerHTML = `
         <div class="footer-column">
           <h4>Menu</h4>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/tentang.html">Tentang</a></li>
-            <li><a href="/kontak.html">Kontak</a></li>
+            <li><a href="/#home">Home</a></li>
+            <li><a href="/#showcase">Showcase</a></li>
+            <li><a href="/#gallery">Galeri</a></li>
+            <li><a href="/#comments">Testimoni</a></li>
           </ul>
         </div>
         
         <div class="footer-column">
-          <h4>Kelas</h4>
+          <h4>Lainnya</h4>
           <ul>
-            <li><a href="/materi.html">Materi PHP</a></li>
-            <li><a href="#showcase">Showcase</a></li>
-            <li><a href="#comments">Testimonial</a></li>
+            <li><a href="/tentang.html">Tentang</a></li>
+            <li><a href="/kontak.html">Kontak</a></li>
           </ul>
         </div>
         
@@ -156,14 +213,85 @@ hamburger.addEventListener('click', () => {
 });
 
 navMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    
+    // Jika link adalah anchor (dimulai dengan #), gunakan smooth scroll
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    
     navMenu.classList.remove('active');
     hamburger.classList.remove('active');
   });
 });
 
+const initGallery = () => {
+  const galleryItems = document.querySelectorAll('.gallery-item')
+  const lightbox = document.getElementById('lightbox')
+  const lightboxImg = document.getElementById('lightbox-img')
+  const lightboxCaption = document.getElementById('lightbox-caption')
+  const closeBtn = document.querySelector('.lightbox-close')
+  const prevBtn = document.querySelector('.lightbox-prev')
+  const nextBtn = document.querySelector('.lightbox-next')
+  
+  if (!galleryItems.length) return
+  
+  let currentIndex = 0
+  const images = Array.from(galleryItems).map(item => ({
+    src: item.querySelector('img').src,
+    caption: item.querySelector('.gallery-caption').textContent
+  }))
+
+  const showImage = (index) => {
+    currentIndex = index
+    lightboxImg.src = images[index].src
+    lightboxCaption.textContent = images[index].caption
+    lightbox.style.display = 'flex'
+  }
+
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', () => showImage(index))
+  })
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none'
+  })
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length
+    showImage(currentIndex)
+  })
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length
+    showImage(currentIndex)
+  })
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = 'none'
+    }
+  })
+
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.style.display === 'flex') {
+      if (e.key === 'Escape') lightbox.style.display = 'none'
+      if (e.key === 'ArrowLeft') prevBtn.click()
+      if (e.key === 'ArrowRight') nextBtn.click()
+    }
+  })
+}
+
 welcomeSection();
 showcaseSection();
+initGallery();
 
 console.log('Attempting to load tsParticles from window...');
 

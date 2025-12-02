@@ -8,6 +8,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         materi: resolve(__dirname, 'materi.html'),
         kelas: resolve(__dirname, 'kelas.html'),
+        showcase: resolve(__dirname, 'showcase.html'),
       }
     }
   }
