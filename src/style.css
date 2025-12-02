@@ -1805,3 +1805,69 @@ navbar {
     margin-bottom: 30px;
   }
 }
+
+
+/* Materi Section */
+.materi-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e0f2fe 100%);
+}
+
+.materi-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.materi-container h2 {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.materi-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1.15rem;
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.materi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.materi-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-top: 4px solid #3b82f6;
+}
+
+.materi-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+}
+
+@media (max-width: 768px) {
+  .materi-section {
+    padding: 60px 20px;
+  }
+
+  .materi-container h2 {
+    font-size: 2rem;
+  }
+
+  .materi-grid {
+    grid-template-columns: 1fr;
+  }
+}

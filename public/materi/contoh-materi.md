@@ -1,5 +1,7 @@
 # Pengenalan PHP
 
+![PHP Programming](https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=800&h=400&fit=crop)
+
 ## Apa itu PHP?
 
 PHP (Hypertext Preprocessor) adalah bahasa pemrograman server-side yang populer untuk pengembangan web. PHP dapat digunakan untuk membuat website dinamis dan interaktif.

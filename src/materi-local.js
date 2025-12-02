@@ -126,6 +126,20 @@ const renderMateri = (materiList) => {
   initHamburger()
 }
 
+const extractImageFromMarkdown = async (filename) => {
+  try {
+    const response = await fetch(`/materi/${filename}`)
+    if (!response.ok) return null
+    
+    const markdown = await response.text()
+    const imgRegex = /!\[.*?\]\((.*?)\)/
+    const match = markdown.match(imgRegex)
+    return match ? match[1] : null
+  } catch (error) {
+    return null
+  }
+}
+
 async function loadMateri() {
   renderLoading()
 
@@ -143,7 +157,18 @@ async function loadMateri() {
       return
     }
 
-    renderMateri(data.materi)
+    // Extract images from markdown files
+    const materiWithImages = await Promise.all(
+      data.materi.map(async (materi) => {
+        const imageFromMd = await extractImageFromMarkdown(materi.file)
+        return {
+          ...materi,
+          thumbnail: imageFromMd || materi.thumbnail || 'https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=400&h=250&fit=crop'
+        }
+      })
+    )
+
+    renderMateri(materiWithImages)
   } catch (error) {
     renderError(`Error: ${error.message}`)
   }
