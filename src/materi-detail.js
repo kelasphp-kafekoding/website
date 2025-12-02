@@ -86,6 +86,7 @@ const renderMateriDetail = async () => {
       </button>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="/#home">Home</a></li>
+        <li><a href="/materi.html">Materi</a></li>
         <li><a href="/#showcase">Showcase</a></li>
         <li><a href="/#gallery">Galeri</a></li>
         <li><a href="/#comments">Testimoni</a></li>
@@ -124,6 +125,7 @@ const renderMateriDetail = async () => {
             <h4>Menu</h4>
             <ul>
               <li><a href="/#home">Home</a></li>
+              <li><a href="/materi.html">Materi</a></li>
               <li><a href="/#showcase">Showcase</a></li>
               <li><a href="/#gallery">Galeri</a></li>
               <li><a href="/#comments">Testimoni</a></li>
