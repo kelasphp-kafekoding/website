@@ -1,5 +1,6 @@
-import { initHamburger } from './hamburger.js'
+import './style.css'
 import './pages.css'
+import { initHamburger } from './hamburger.js'
 
 const app = document.querySelector('#app')
 
