@@ -6,7 +6,7 @@
       "title": "Pengenalan PHP",
       "description": "Pelajari dasar-dasar PHP, instalasi, dan sintaks dasar untuk memulai perjalanan web development Anda.",
       "file": "contoh-materi.md",
-      "author": "Kafekoding",
+      "author": "M. Rifaldo Saputra",
       "date": "2025-12-01"
     },
     {
@@ -15,7 +15,7 @@
       "title": "Setup Environment PHP",
       "description": "Panduan lengkap instalasi dan konfigurasi environment PHP untuk development.",
       "file": "setup-environment.md",
-      "author": "Kafekoding",
+      "author": "M. Rifaldo Saputra",
       "date": "2025-12-01"
     },
     {
@@ -24,7 +24,7 @@
       "title": "Sintaks Dasar PHP",
       "description": "Pelajari sintaks dasar PHP termasuk variabel, tipe data, dan struktur kode.",
       "file": "sintaks-dasar.md",
-      "author": "Kafekoding",
+      "author": "M. Rifaldo Saputra",
       "date": "2025-12-01"
     },
     {
@@ -33,7 +33,7 @@
       "title": "Operator di PHP",
       "description": "Memahami berbagai jenis operator dalam PHP untuk manipulasi data.",
       "file": "operator-php.md",
-      "author": "Kafekoding",
+      "author": "M. Rifaldo Saputra",
       "date": "2025-12-01"
     },
     {
@@ -42,7 +42,7 @@
       "title": "Control Flow PHP",
       "description": "Pelajari struktur kontrol seperti if-else, switch, dan perulangan di PHP.",
       "file": "control-flow.md",
-      "author": "Kafekoding",
+      "author": "M. Rifaldo Saputra",
       "date": "2025-12-01"
     },
     {
@@ -51,7 +51,7 @@
       "title": "Array dan Function",
       "description": "Menguasai penggunaan array dan pembuatan function di PHP.",
       "file": "array-function.md",
-      "author": "Kafekoding",
+      "author": "M. Rifaldo Saputra",
       "date": "2025-12-01"
     },
     {
@@ -60,7 +60,7 @@
       "title": "Form dengan Bootstrap",
       "description": "Membuat form yang menarik dan responsif menggunakan Bootstrap.",
       "file": "form-bootstrap.md",
-      "author": "Kafekoding",
+      "author": "M. Rifaldo Saputra",
       "date": "2025-12-01"
     }
   ]

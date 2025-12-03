@@ -62,6 +62,9 @@ const renderMateriDetail = async () => {
   const urlParams = new URLSearchParams(window.location.search)
   const slug = urlParams.get('m') || urlParams.get('slug') || '1'
 
+  const response = await fetch('/materi-list.json')
+  const data = await response.json()
+  
   const materiData = await loadMateriData(slug)
   
   if (!materiData) {
@@ -70,19 +73,38 @@ const renderMateriDetail = async () => {
   }
 
   const content = await loadMarkdown(materiData.file)
+  
+  // Find current materi index
+  const currentIndex = data.materi.findIndex(m => m.slug === materiData.slug)
+  const previousMateri = currentIndex > 0 ? data.materi[currentIndex - 1] : null
+  const nextMateri = currentIndex < data.materi.length - 1 ? data.materi[currentIndex + 1] : null
 
   app.innerHTML = `
     ${renderNavbar()}
 
     <section class="materi-detail-section">
       <div class="materi-detail-container">
-        <button class="back-button" onclick="window.history.back()">
-          <i class="fa-solid fa-arrow-left"></i> Kembali
+        <button class="back-button" onclick="window.location.href='/materi.html'">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar
         </button>
         
         <article class="markdown-content">
           ${content}
         </article>
+
+        <div class="materi-navigation">
+          ${previousMateri ? `
+            <a href="/materi-detail.html?m=${previousMateri.slug}" class="nav-button nav-prev">
+              <i class="fa-solid fa-chevron-left"></i> ${previousMateri.title}
+            </a>
+          ` : `<div class="nav-button-placeholder"></div>`}
+          
+          ${nextMateri ? `
+            <a href="/materi-detail.html?m=${nextMateri.slug}" class="nav-button nav-next">
+              ${nextMateri.title} <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          ` : `<div class="nav-button-placeholder"></div>`}
+        </div>
       </div>
     </section>
 

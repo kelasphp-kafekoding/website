@@ -46,7 +46,7 @@ const renderMateri = (materiList) => {
 
       <div class="kelas-grid">
         ${materiList.map(materi => `
-          <div class="card" onclick="window.location.href='/materi-detail.html?m=${materi.slug}'">
+          <div class="card">
             <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 8px; margin-bottom: 15px; overflow: hidden;">
               <img src="${materi.thumbnail}" alt="${materi.title}" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
@@ -57,6 +57,7 @@ const renderMateri = (materiList) => {
               <span class="card-author">${materi.author}</span>
               <span class="card-date">${formatDate(materi.date)}</span>
             </div>
+            <button class="card-button" onclick="window.location.href='/materi-detail.html?m=${materi.slug}'">Baca Materi</button>
           </div>
         `).join('')}
       </div>
