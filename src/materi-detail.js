@@ -2,6 +2,7 @@ import './style.css'
 import './pages.css'
 import { marked } from 'marked'
 import { initHamburger } from './hamburger.js'
+import { renderNavbar } from './components/navbar.js'
 import hljs from 'highlight.js/lib/core'
 import php from 'highlight.js/lib/languages/php'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -71,29 +72,7 @@ const renderMateriDetail = async () => {
   const content = await loadMarkdown(materiData.file)
 
   app.innerHTML = `
-    <navbar>
-      <div class="logo-container" onclick="window.location.href='/'">
-        <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
-        <div class="logo-text">
-          <div class="logo-title">Kafekoding</div>
-          <div class="logo-subtitle">Kelas PHP</div>
-        </div>
-      </div>
-      <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="/#home">Home</a></li>
-        <li><a href="/materi.html">Materi</a></li>
-        <li><a href="/#showcase">Showcase</a></li>
-        <li><a href="/#gallery">Galeri</a></li>
-        <li><a href="/#comments">Testimoni</a></li>
-        <li><a href="/tentang.html">Tentang</a></li>
-        <li><a href="/kontak.html">Kontak</a></li>
-      </ul>
-    </navbar>
+    ${renderNavbar()}
 
     <section class="materi-detail-section">
       <div class="materi-detail-container">

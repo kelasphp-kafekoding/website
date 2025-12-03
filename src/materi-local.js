@@ -1,6 +1,7 @@
 import './style.css'
 import './pages.css'
 import { initHamburger } from './hamburger.js'
+import { renderNavbar } from './components/navbar.js'
 
 const app = document.querySelector('#app')
 
@@ -11,29 +12,7 @@ const formatDate = (dateString) => {
 
 const renderLoading = () => {
   app.innerHTML = `
-    <navbar>
-      <div class="logo-container" onclick="window.location.href='/'">
-        <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
-        <div class="logo-text">
-          <div class="logo-title">Kafekoding</div>
-          <div class="logo-subtitle">Kelas PHP</div>
-        </div>
-      </div>
-      <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="/#home">Home</a></li>
-        <li><a href="/materi.html">Materi</a></li>
-        <li><a href="/#showcase">Showcase</a></li>
-        <li><a href="/#gallery">Galeri</a></li>
-        <li><a href="/#comments">Testimoni</a></li>
-        <li><a href="/tentang.html">Tentang</a></li>
-        <li><a href="/kontak.html">Kontak</a></li>
-      </ul>
-    </navbar>
+    ${renderNavbar()}
 
     <div class="container">
       <h1>Materi Kelas PHP</h1>
@@ -46,29 +25,7 @@ const renderLoading = () => {
 
 const renderError = (error) => {
   app.innerHTML = `
-    <navbar>
-      <div class="logo-container" onclick="window.location.href='/'">
-        <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
-        <div class="logo-text">
-          <div class="logo-title">Kafekoding</div>
-          <div class="logo-subtitle">Kelas PHP</div>
-        </div>
-      </div>
-      <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="/#home">Home</a></li>
-        <li><a href="/materi.html">Materi</a></li>
-        <li><a href="/#showcase">Showcase</a></li>
-        <li><a href="/#gallery">Galeri</a></li>
-        <li><a href="/#comments">Testimoni</a></li>
-        <li><a href="/tentang.html">Tentang</a></li>
-        <li><a href="/kontak.html">Kontak</a></li>
-      </ul>
-    </navbar>
+    ${renderNavbar()}
 
     <div class="container">
       <h1>Materi Kelas PHP</h1>
@@ -81,29 +38,7 @@ const renderError = (error) => {
 
 const renderMateri = (materiList) => {
   app.innerHTML = `
-    <navbar>
-      <div class="logo-container" onclick="window.location.href='/'">
-        <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
-        <div class="logo-text">
-          <div class="logo-title">Kafekoding</div>
-          <div class="logo-subtitle">Kelas PHP</div>
-        </div>
-      </div>
-      <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="/#home">Home</a></li>
-        <li><a href="/materi.html">Materi</a></li>
-        <li><a href="/#showcase">Showcase</a></li>
-        <li><a href="/#gallery">Galeri</a></li>
-        <li><a href="/#comments">Testimoni</a></li>
-        <li><a href="/tentang.html">Tentang</a></li>
-        <li><a href="/kontak.html">Kontak</a></li>
-      </ul>
-    </navbar>
+    ${renderNavbar()}
 
     <div class="container">
       <h1>Materi Kelas PHP</h1>
