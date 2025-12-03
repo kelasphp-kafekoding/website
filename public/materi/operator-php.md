@@ -292,55 +292,6 @@ echo $a ?? $b ?? $c ?? "Default"; // Kafekoding
 ?>
 ```
 
-## 9. Operator Spaceship
-
-Membandingkan dua nilai dan mengembalikan -1, 0, atau 1.
-
-```php
-<?php
-// Sintaks: $a <=> $b
-// Return: -1 jika $a < $b, 0 jika $a == $b, 1 jika $a > $b
-
-echo 1 <=> 2;  // -1
-echo 2 <=> 2;  // 0
-echo 3 <=> 2;  // 1
-
-// Contoh praktis: sorting
-$numbers = [3, 1, 4, 1, 5, 9, 2, 6];
-usort($numbers, function($a, $b) {
-    return $a <=> $b;
-});
-print_r($numbers); // [1, 1, 2, 3, 4, 5, 6, 9]
-?>
-```
-
-## Prioritas Operator
-
-Operator memiliki prioritas eksekusi:
-
-1. `()` - Parentheses (tertinggi)
-2. `**` - Pangkat
-3. `++`, `--` - Increment/Decrement
-4. `*`, `/`, `%` - Perkalian, Pembagian, Modulus
-5. `+`, `-` - Penjumlahan, Pengurangan
-6. `<`, `<=`, `>`, `>=` - Perbandingan
-7. `==`, `!=`, `===`, `!==` - Kesamaan
-8. `&&` - AND
-9. `||` - OR
-10. `=`, `+=`, `-=`, dll - Assignment (terendah)
-
-### Contoh:
-
-```php
-<?php
-$hasil = 2 + 3 * 4;
-echo $hasil; // 14 (bukan 20, karena * lebih prioritas)
-
-$hasil = (2 + 3) * 4;
-echo $hasil; // 20 (parentheses lebih prioritas)
-?>
-```
-
 ## Latihan
 
 ```php
