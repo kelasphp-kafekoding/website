@@ -28,12 +28,13 @@ npm run dev
 
 ## Kontribusi
 
+Ingin berkontribusi? Lihat **[CONTRIBUTOR.md](./CONTRIBUTOR.md)** untuk panduan lengkap.
+
+Quick start:
 1. Fork repository
-2. Clone: `git clone https://github.com/username-kamu/website.git`
-3. Branch: `git checkout -b Rifaldo_Saputra_metamedia`
-4. Commit: `git add . && git commit -m "Deskripsi"`
-5. Push: `git push origin Rifaldo_Saputra_metamedia`
-6. Pull Request
+2. Clone & buat branch: `git checkout -b Nama_Sekolah`
+3. Buat perubahan & commit
+4. Push & buat Pull Request
 
 **Catatan:** Hanya proyek dari anggota Kelas PHP Kafekoding yang ditampilkan.
 
