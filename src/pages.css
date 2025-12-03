@@ -24,7 +24,7 @@ body {
 }
 
 navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -38,6 +38,10 @@ navbar {
   align-items: center;
   box-shadow: 0 2px 12px rgba(10, 14, 39, 0.08);
   border-bottom: 1px solid rgba(10, 14, 39, 0.06);
+}
+
+#app {
+  padding-top: 70px;
 }
 
 .logo-container {
@@ -438,7 +442,7 @@ h1 {
 
 @media (max-width: 768px) {
   navbar {
-    position: sticky;
+    position: fixed;
     top: 0;
     padding: 12px 16px;
   }
