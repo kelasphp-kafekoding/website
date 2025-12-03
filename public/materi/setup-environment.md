@@ -2,6 +2,12 @@
 
 ![Setup Environment](https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=400&fit=crop)
 
+## 📺 Video Tutorial
+
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/NmSRDM_A8LA?rel=0&modestbranding=1&fs=0&disablekb=1" title="Setup Environment PHP" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Apa yang Dibutuhkan?
 
 Untuk mulai belajar PHP, Anda membutuhkan beberapa tools berikut:
@@ -55,18 +61,7 @@ XAMPP adalah paket all-in-one yang berisi Apache, MySQL, dan PHP.
    - Contoh: `C:\xampp\htdocs\belajar\index.php`
    - Akses di browser: `http://localhost/belajar/index.php`
 
-### Opsi 2: Laragon (Modern & Cepat)
-
-Laragon adalah alternatif XAMPP yang lebih modern dan cepat.
-
-#### Langkah Instalasi Laragon:
-
-1. Download dari [https://laragon.org](https://laragon.org)
-2. Install dengan default settings
-3. Start All
-4. File PHP disimpan di: `C:\laragon\www\`
-
-### Opsi 3: Install Manual (Linux/Mac)
+### Opsi 2: Install Manual (Linux/Mac)
 
 #### Ubuntu/Debian:
 ```bash
@@ -85,7 +80,7 @@ brew services start php
 brew services start mysql
 ```
 
-### Opsi 4: PHP Built-in Server (Untuk Development)
+### Opsi 3: PHP Built-in Server (Untuk Development)
 
 PHP memiliki web server bawaan yang bisa digunakan untuk development:
 
@@ -132,7 +127,6 @@ File konfigurasi PHP berada di `php.ini`. Beberapa setting penting:
 
 ### Lokasi php.ini:
 - XAMPP: `C:\xampp\php\php.ini`
-- Laragon: `C:\laragon\bin\php\php-8.x\php.ini`
 - Linux: `/etc/php/8.x/apache2/php.ini`
 
 ### Setting yang Sering Diubah:
@@ -155,25 +149,6 @@ date.timezone = Asia/Jakarta
 
 Setelah mengubah `php.ini`, restart Apache.
 
-## Tools Tambahan
-
-### 1. Composer
-Package manager untuk PHP. Install dari [getcomposer.org](https://getcomposer.org)
-
-```bash
-composer --version
-```
-
-### 2. Git
-Version control system. Install dari [git-scm.com](https://git-scm.com)
-
-```bash
-git --version
-```
-
-### 3. Postman
-Untuk testing API. Download dari [postman.com](https://www.postman.com)
-
 ## Troubleshooting
 
 ### Apache tidak bisa start
@@ -193,6 +168,6 @@ Untuk testing API. Download dari [postman.com](https://www.postman.com)
 Setelah setup environment selesai, Anda siap untuk mulai belajar PHP! Pastikan semua tools sudah terinstall dengan baik sebelum melanjutkan ke materi berikutnya.
 
 **Recommended Setup untuk Pemula:**
-- XAMPP atau Laragon
+- XAMPP
 - VS Code dengan extension PHP Intelephense
 - Browser modern (Chrome/Firefox)
