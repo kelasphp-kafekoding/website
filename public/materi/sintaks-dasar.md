@@ -12,6 +12,168 @@ File PHP harus diawali dengan tag `<?php` dan diakhiri dengan `?>` (opsional jik
 ?>
 ```
 
+## ⚠️ Aturan Penting dalam PHP
+
+### 1. Setiap Statement Harus Diakhiri Titik Koma (;)
+
+```php
+<?php
+// ✅ BENAR
+echo "Hello World";
+$nama = "Kafekoding";
+
+// ❌ SALAH - Tidak ada titik koma
+echo "Hello World"
+$nama = "Kafekoding"
+?>
+```
+
+### 2. PHP Case-Sensitive untuk Variabel
+
+```php
+<?php
+$nama = "Kafekoding";
+$Nama = "Kafe";
+$NAMA = "Koding";
+
+echo $nama;  // Kafekoding
+echo $Nama;  // Kafe
+echo $NAMA;  // Koding
+// Ketiga variabel ini BERBEDA!
+?>
+```
+
+### 3. PHP TIDAK Case-Sensitive untuk Function dan Class
+
+```php
+<?php
+// Semua ini SAMA
+ECHO "Hello";
+Echo "Hello";
+echo "Hello";
+
+// Function juga tidak case-sensitive
+STRLEN("test");
+strlen("test");
+StrLen("test");
+?>
+```
+
+### 4. Variabel Harus Diawali dengan $
+
+```php
+<?php
+// ✅ BENAR
+$nama = "Kafekoding";
+$_kota = "Padang";
+$tahun2025 = 2025;
+
+// ❌ SALAH
+nama = "Kafekoding";      // Tidak ada $
+$2tahun = 2025;           // Tidak boleh diawali angka
+$nama-kelas = "PHP";      // Tidak boleh pakai dash (-)
+$nama kelas = "PHP";      // Tidak boleh ada spasi
+?>
+```
+
+### 5. String Harus Dalam Tanda Kutip
+
+```php
+<?php
+// ✅ BENAR
+$nama = "Kafekoding";     // Double quote
+$kota = 'Padang';         // Single quote
+
+// ❌ SALAH
+$nama = Kafekoding;       // Tanpa kutip akan error
+?>
+```
+
+### 6. Perbedaan Single Quote (') dan Double Quote (")
+
+```php
+<?php
+$nama = "Kafekoding";
+
+// Double quote - variabel di-parse
+echo "Halo $nama";        // Output: Halo Kafekoding
+
+// Single quote - variabel TIDAK di-parse
+echo 'Halo $nama';        // Output: Halo $nama
+?>
+```
+
+### 7. Tidak Boleh Ada Spasi dalam Nama Variabel
+
+```php
+<?php
+// ✅ BENAR
+$namaLengkap = "Kafekoding";
+$nama_lengkap = "Kafekoding";
+$namalengkap = "Kafekoding";
+
+// ❌ SALAH
+$nama lengkap = "Kafekoding";  // Ada spasi
+?>
+```
+
+### 8. Hati-hati dengan Tanda Kutip dalam String
+
+```php
+<?php
+// ✅ BENAR - Escape dengan backslash
+$pesan = "Dia berkata \"Halo\"";
+$pesan2 = 'It\'s a beautiful day';
+
+// ✅ BENAR - Gunakan kutip berbeda
+$pesan3 = "It's a beautiful day";
+$pesan4 = 'Dia berkata "Halo"';
+
+// ❌ SALAH
+$pesan5 = "Dia berkata "Halo"";  // Error: kutip tidak di-escape
+?>
+```
+
+### 9. Perhatikan Penulisan Tag PHP
+
+```php
+// ✅ BENAR
+<?php
+echo "Hello";
+?>
+
+// ❌ SALAH
+<php
+echo "Hello";
+?>
+
+// ❌ SALAH
+<?
+echo "Hello";
+?>
+// Tag pendek <? tidak direkomendasikan
+```
+
+### 10. Jangan Lupa Closing Tag untuk File Mixed (HTML + PHP)
+
+```php
+<!-- ✅ BENAR untuk file mixed -->
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+echo "Hello";
+?>
+<p>HTML content</p>
+</body>
+</html>
+
+<!-- ✅ BENAR untuk file PHP only (tanpa closing tag) -->
+<?php
+echo "Hello";
+// Tidak perlu ?>
+```
+
 ## Hello Kafekoding!
 
 Mari kita buat program pertama untuk menampilkan "Hello Kafekoding!":
@@ -61,7 +223,7 @@ Variabel di PHP diawali dengan tanda `$` dan bersifat case-sensitive.
 // Variabel yang valid
 $nama = "Kafekoding";
 $umur = 5;
-$_alamat = "Jakarta";
+$_alamat = "padang";
 $nama2 = "Kafe";
 
 // Variabel yang tidak valid
@@ -75,20 +237,23 @@ $nama2 = "Kafe";
 ```php
 <?php
 $nama = "Kafekoding";
-$tahun = 2020;
-$slogan = "Belajar PHP dengan Menyenangkan";
+$kota = "Padang";
+$tahunDidirikan = 2013;
+$slogan = "Kami memilih turun tangan";
 
 echo "Selamat datang di $nama!<br>";
-echo "Didirikan tahun $tahun<br>";
-echo $slogan;
+echo "Lokasi: $kota<br>";
+echo "Didirikan: $tahunDidirikan<br>";
+echo "Slogan: $slogan";
 ?>
 ```
 
 Output:
 ```
 Selamat datang di Kafekoding!
-Didirikan tahun 2020
-Belajar PHP dengan Menyenangkan
+Lokasi: Padang
+Didirikan: 2013
+Slogan: Kami memilih turun tangan
 ```
 
 ## Tipe Data
@@ -149,30 +314,7 @@ if ($aktif) {
 ?>
 ```
 
-### 5. Array (Kumpulan Data)
-
-```php
-<?php
-// Array indexed
-$buah = array("Apel", "Jeruk", "Mangga");
-// atau
-$buah = ["Apel", "Jeruk", "Mangga"];
-
-echo $buah[0]; // Apel
-echo $buah[1]; // Jeruk
-
-// Array associative
-$siswa = [
-    "nama" => "Budi",
-    "umur" => 20,
-    "kelas" => "PHP"
-];
-
-echo $siswa["nama"]; // Budi
-?>
-```
-
-### 6. NULL
+### 5. NULL
 
 ```php
 <?php
@@ -230,27 +372,6 @@ var_dump($bool); // bool(true)
 ?>
 ```
 
-## Konstanta
-
-Konstanta adalah variabel yang nilainya tidak bisa diubah.
-
-```php
-<?php
-// Cara 1: menggunakan define()
-define("NAMA_SITUS", "Kafekoding");
-define("TAHUN", 2020);
-
-echo NAMA_SITUS; // Kafekoding
-echo TAHUN; // 2020
-
-// Cara 2: menggunakan const
-const PI = 3.14159;
-const VERSI = "1.0.0";
-
-echo PI; // 3.14159
-?>
-```
-
 ## Output
 
 ### 1. echo
@@ -274,18 +395,7 @@ print "Nilai: " . 100;
 ?>
 ```
 
-### 3. print_r()
-Menampilkan informasi variabel (bagus untuk array):
-
-```php
-<?php
-$buah = ["Apel", "Jeruk", "Mangga"];
-print_r($buah);
-// Output: Array ( [0] => Apel [1] => Jeruk [2] => Mangga )
-?>
-```
-
-### 4. var_dump()
+### 3. var_dump()
 Menampilkan tipe data dan nilai:
 
 ```php
@@ -296,51 +406,49 @@ var_dump($nama);
 ?>
 ```
 
-## Contoh Program Lengkap
+## Contoh Program Lengkap: Biodata Sederhana
 
 ```php
 <?php
-// Deklarasi variabel
-$namaKelas = "Kelas PHP Kafekoding";
-$jumlahPeserta = 50;
-$hargaKelas = 150000.00;
-$tersedia = true;
+echo "BIODATA DIRI <br><br>";
 
-// Menampilkan informasi
-echo "<h1>$namaKelas</h1>";
-echo "<p>Jumlah Peserta: $jumlahPeserta orang</p>";
-echo "<p>Harga: Rp " . number_format($hargaKelas, 0, ',', '.') . "</p>";
+$nama = "M. Rifaldo Saputra";
+$umur = 20;
+$asal = "Padang";
+$hobi = "Ngoding";
 
-if ($tersedia) {
-    echo "<p style='color: green;'>Status: Tersedia</p>";
-} else {
-    echo "<p style='color: red;'>Status: Penuh</p>";
-}
-
-// Array materi
-$materi = [
-    "Pengenalan PHP",
-    "Sintaks Dasar",
-    "Control Flow",
-    "Function",
-    "Database"
-];
-
-echo "<h3>Materi yang Dipelajari:</h3>";
-echo "<ul>";
-foreach ($materi as $item) {
-    echo "<li>$item</li>";
-}
-echo "</ul>";
+echo "Nama : $nama <br>";
+echo "Umur : $umur tahun <br>";
+echo "Asal : $asal <br>";
+echo "Hobi : $hobi";
 ?>
 ```
+
+**Output yang dihasilkan:**
+```
+BIODATA DIRI
+
+Nama : M. RIfaldo Saputra
+Umur : 20 tahun
+Asal : Padang
+Hobi : Ngoding
+```
+
+### Penjelasan Kode:
+1. `echo "BIODATA DIRI <br><br>";` - Menampilkan judul dengan 2 baris kosong
+2. `$nama = "M. Rifaldo Saputra";` - Menyimpan nama dalam variabel
+3. `$umur = 20;` - Menyimpan umur (tipe data integer)
+4. `$asal = "Padang";` - Menyimpan asal kota
+5. `$hobi = "Ngoding";` - Menyimpan hobi
+6. `echo "Nama : $nama <br>";` - Menampilkan nama dengan variabel di dalam string
+7. Tag `<br>` digunakan untuk membuat baris baru di HTML
 
 ## Kesimpulan
 
 Anda telah mempelajari sintaks dasar PHP meliputi:
 - Struktur dasar PHP
 - Variabel dan tipe data
-- Konstanta
+- Konversi tipe data
 - Cara menampilkan output
 
 Selanjutnya kita akan belajar tentang operator di PHP!
