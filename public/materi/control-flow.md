@@ -1,167 +1,256 @@
-# Control Flow PHP
+# Control Flow dalam PHP
 
-![Control Flow](https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=400&fit=crop)
+![Control Flow](../assets/images/materi/control-flow.png)
 
 ## Apa itu Control Flow?
 
-Control Flow adalah cara mengontrol alur eksekusi program. Ada dua jenis utama:
-1. **Percabangan** (Conditional) - if, else, switch
-2. **Perulangan** (Loop) - for, while, do-while, foreach
+**Control flow** dalam PHP adalah _cara program menentukan urutan langkah yang harus dijalankan_, apakah harus lanjut, berhenti, memilih jalur tertentu, atau mengulang langkah yang sama. Program tidak selalu berjalan lurus dari atas ke bawah, kadang harus mengecek kondisi dulu sebelum memutuskan langkah berikutnya.
 
-## Percabangan (Conditional Statements)
+### Analogi
 
-### 1. IF Statement
+Bayangkan ada **polisi lalu lintas** di sebuah persimpangan. Dia melihat situasi jalan: apakah ramai, sepi, atau ada kendaraan dari arah tertentu. Berdasarkan kondisi itu, polisi memutuskan:
+- kendaraan **boleh maju**
+- **berhenti dulu**
+- **belok ke kanan**
+- atau **putar balik**
 
-Menjalankan kode jika kondisi bernilai true.
+Nah, **PHP pun seperti itu** — sebelum menjalankan baris kode tertentu, dia "melihat situasi" (kondisi), lalu memilih jalur mana yang harus dilalui oleh program.
+
+Jadi, **control flow** adalah mekanisme yang membuat program tidak berjalan lurus seperti membaca paragraf, tetapi **menyesuaikan alurnya sesuai kondisi yang terjadi** pada saat program berjalan. Control flow = _mesin pengambil keputusan_ di dalam PHP.
+
+---
+
+## 1. Pencabangan (Conditional Statements)
+
+Pencabangan adalah fitur dalam PHP yang membuat program **memilih satu jalur kode** berdasarkan kondisi tertentu. Ibarat polisi lalu lintas di pertigaan, PHP melihat situasi dulu baru menentukan apakah harus **jalan**, **berhenti**, atau **ambil jalur lain**.
+
+### a. IF
+
+`if` adalah kondisi utama. PHP hanya menjalankan kode di dalam `if` **jika kondisi bernilai true**.
+
+**Analogi:** Polisi bilang: _"Kalau jalan sepi, silakan maju."_ Kalau tidak sepi, ya tidak maju.
+
+Secara konsep, `if` bekerja seperti berikut:
+- **Ada sebuah variabel** → berisi suatu nilai.
+- **Ada kondisi yang dicek** → misalnya apakah nilai tersebut lebih besar dari angka tertentu.
+- Jika kondisi itu benar → **kode di dalam `{}` akan dieksekusi**.
+- Jika kondisi salah → kode tersebut **dilewati**.
+
+**Gambar Ilustrasi:**
+
+![IF Statement](../assets/images/materi/if-statement.png)
+
+**Contoh:**
 
 ```php
 <?php
-$umur = 20;
-
-if ($umur >= 17) {
-    echo "Anda sudah dewasa";
+$angka = 5;
+if ($angka > 5) {
+    echo "Angka lebih besar dari 5";
 }
+// Tidak ada output, karena $angka = 5, bukan > 5
 ?>
 ```
 
-### 2. IF-ELSE Statement
+### b. ELSE
 
-Menjalankan kode berbeda untuk kondisi true dan false.
+Setelah memahami bagaimana `if` bekerja untuk mengecek suatu kondisi, langkah berikutnya adalah mengenal `else`.
+
+Dengan kata lain:
+- `if` → dijalankan **jika kondisi benar**
+- `else` → dijalankan **jika kondisi pada if salah**
+
+Ini membuat alur program lebih lengkap, karena apapun hasil pengecekannya, PHP tetap tahu perintah mana yang harus dijalankan.
+
+**Gambar Ilustrasi:**
+
+![ELSE Statement](../assets/images/materi/else-statement.jpeg)
+
+**Contoh:**
 
 ```php
 <?php
-$nilai = 75;
-
-if ($nilai >= 75) {
-    echo "Lulus";
+$angka = 5;
+if ($angka > 5) {
+    echo "Angka lebih besar dari 5";
 } else {
-    echo "Tidak Lulus";
+    echo "Angka lebih kecil dari atau sama dengan 5";
 }
+// Output: Angka lebih kecil dari atau sama dengan 5
 ?>
 ```
 
-### 3. IF-ELSEIF-ELSE Statement
+### c. ELSE IF
 
-Mengecek multiple kondisi.
+`else if` digunakan ketika kita ingin menambahkan **pilihan kondisi lain** selain kondisi utama pada `if`.
+
+Dengan `else if`, program bisa membuat keputusan yang lebih spesifik, tidak hanya benar atau salah, tetapi juga **kondisi tambahan di tengah-tengah**.
+
+**Penting:** `else if` harus berada **di antara `if` dan `else`**. Tidak boleh berada di bawah `else` karena `else` adalah bagian penutup.
+
+**Struktur yang benar:**
+
+```php
+if (kondisi1) {
+    // kode
+} else if (kondisi2) {
+    // kode
+} else {
+    // kode
+}
+```
+
+**Struktur yang salah:**
+
+```php
+if (...) { }
+else { }
+else if (...) { }  // ❌ Tidak boleh — PHP error
+```
+
+**Contoh:**
 
 ```php
 <?php
-$nilai = 85;
-
-if ($nilai >= 90) {
-    echo "Grade: A";
-} elseif ($nilai >= 80) {
-    echo "Grade: B";
-} elseif ($nilai >= 70) {
-    echo "Grade: C";
-} elseif ($nilai >= 60) {
-    echo "Grade: D";
+$angka = 5;
+if ($angka > 5) {
+    echo "Angka lebih besar dari 5";
+} else if ($angka == 5) {
+    echo "Angka sama dengan 5";
 } else {
-    echo "Grade: E";
+    echo "Angka lebih kecil dari 5";
 }
+// Output: Angka sama dengan 5
 ?>
 ```
 
-### 4. Nested IF
+**Penjelasan alurnya:**
+1. PHP cek kondisi pertama: `$angka > 5` → **false**
+2. Lalu cek kondisi kedua: `$angka == 5` → **true**, maka blok ini dijalankan.
+3. Karena sudah menemukan kondisi yang benar, PHP tidak mengecek else selanjutnya.
 
-IF di dalam IF.
+**Intinya:**
+- `if` → kondisi utama
+- `else if` → kondisi tambahan
+- `else` → kondisi terakhir ketika semua kondisi gagal
+- `else if` **wajib berada di antara** `if` dan `else`
+
+### d. SWITCH
+
+Selain menggunakan `if`, `else if`, dan `else`, PHP juga menyediakan cara lain untuk menangani banyak kondisi, yaitu `switch`.
+
+`switch` digunakan ketika kita ingin **memeriksa satu variabel** terhadap **banyak kemungkinan nilai**.
+
+Secara konsep, `switch` mirip seperti polisi yang mengarahkan kendaraan berdasarkan jenisnya:
+- Kalau motor → jalur kiri
+- Kalau mobil → jalur kanan
+- Kalau truk → jalur lurus
+- Selain itu → jalur umum
+
+Dengan `switch`, kode lebih rapi dan mudah dibaca saat kondisi yang diperiksa **bentuknya satu variabel dengan beberapa nilai berbeda**.
+
+**Struktur Dasar:**
 
 ```php
-<?php
-$umur = 20;
-$punyaKTP = true;
-
-if ($umur >= 17) {
-    if ($punyaKTP) {
-        echo "Boleh membuat SIM";
-    } else {
-        echo "Buat KTP dulu";
-    }
-} else {
-    echo "Umur belum cukup";
+switch ($variabel) {
+    case nilai1:
+        // kode
+        break;
+    case nilai2:
+        // kode
+        break;
+    default:
+        // kode jika tidak ada yang cocok
 }
-?>
 ```
 
-### 5. SWITCH Statement
+Penjelasan:
+- **case** → seperti "jika nilainya sama dengan …"
+- **break** → untuk menghentikan pemeriksaan agar tidak lanjut ke case lain
+- **default** → mirip `else`, dijalankan jika tidak ada case yang cocok
 
-Alternatif untuk multiple if-elseif, lebih rapi untuk banyak kondisi.
+**Contoh:**
 
 ```php
 <?php
 $hari = "Senin";
-
 switch ($hari) {
     case "Senin":
         echo "Hari pertama kerja";
         break;
-    case "Selasa":
-    case "Rabu":
-    case "Kamis":
-        echo "Hari kerja biasa";
-        break;
-    case "Jumat":
-        echo "Hari terakhir kerja";
-        break;
     case "Sabtu":
+        echo "Libur setengah hari";
+        break;
     case "Minggu":
         echo "Hari libur";
         break;
     default:
-        echo "Hari tidak valid";
+        echo "Hari biasa";
 }
+// Output: Hari pertama kerja
 ?>
 ```
 
-**Penting:** Jangan lupa `break` untuk menghentikan eksekusi!
+**Cara kerjanya:**
+1. PHP membaca nilai `$hari`
+2. Mencocokkannya dengan setiap **case**
+3. Ketika menemukan case yang cocok, PHP menjalankan aksi tersebut
+4. `break` menghentikan proses agar tidak lanjut ke case lain
+5. Jika tidak ada yang cocok, PHP menjalankan bagian **default**
 
-### Contoh Praktis: Sistem Diskon
+**Kapan pakai switch?**
 
-```php
-<?php
-$totalBelanja = 500000;
-$member = true;
+Gunakan `switch` ketika:
+- Kamu mengecek **satu variabel** dengan **beberapa kemungkinan nilai**
+- Kondisinya **tidak kompleks**, hanya membandingkan kesamaan nilai
+- Kamu ingin tampilan kode lebih rapi daripada banyak `else if`
 
-if ($member) {
-    if ($totalBelanja >= 1000000) {
-        $diskon = 20;
-    } elseif ($totalBelanja >= 500000) {
-        $diskon = 15;
-    } else {
-        $diskon = 10;
-    }
-} else {
-    if ($totalBelanja >= 1000000) {
-        $diskon = 10;
-    } elseif ($totalBelanja >= 500000) {
-        $diskon = 5;
-    } else {
-        $diskon = 0;
-    }
-}
+---
 
-$potongan = $totalBelanja * ($diskon / 100);
-$bayar = $totalBelanja - $potongan;
+## 2. Perulangan (Loop)
 
-echo "Total Belanja: Rp " . number_format($totalBelanja, 0, ',', '.') . "<br>";
-echo "Diskon: $diskon%<br>";
-echo "Potongan: Rp " . number_format($potongan, 0, ',', '.') . "<br>";
-echo "Total Bayar: Rp " . number_format($bayar, 0, ',', '.') . "<br>";
-?>
-```
+Berbeda dengan percabangan yang hanya memilih satu jalur eksekusi, perulangan digunakan untuk menjalankan kode yang sama secara berulang, baik dengan jumlah yang sudah ditentukan maupun selama kondisi tertentu masih terpenuhi.
 
-## Perulangan (Loop)
+**Jenis-jenis Perulangan pada PHP:**
 
-### 1. FOR Loop
+![Jenis Perulangan](../assets/images/materi/jenis-perulangan.png)
 
-Digunakan ketika jumlah iterasi sudah diketahui.
+### a. FOR Loop
+
+Perulangan `for` adalah metode paling terstruktur untuk membuat loop ketika kita sudah mengetahui jumlah iterasi yang dibutuhkan.
+
+**Gambar Ilustrasi FOR Loop:**
+
+![FOR Loop](../assets/images/materi/for-loop.png)
+
+**Struktur dasar `for` terdiri dari tiga bagian utama:**
+1. **Inisialisasi** - Mendefinisikan nilai awal variabel penghitung
+2. **Kondisi** - Menentukan kapan perulangan harus berhenti
+3. **Increment/Decrement** - Mengatur perubahan nilai pada setiap iterasi
 
 **Sintaks:**
+
 ```php
 for (inisialisasi; kondisi; increment) {
     // kode yang diulang
 }
 ```
+
+**Penjelasan:**
+
+**1. Inisialisasi** (contoh: `$i = 2`)
+- Bagian pertama dari `for` adalah tempat kita mendefinisikan **nilai awal** dari variabel penghitung (counter).
+- Inisialisasi hanya dijalankan **sekali** di awal sebelum loop dimulai.
+
+**2. Kondisi** (contoh: `$i < 10`)
+- Kondisi inilah yang menentukan apakah perulangan **boleh dilanjutkan** atau harus **berhenti**.
+- Jika kondisi **true**, maka blok kode di dalam `{ ... }` akan dijalankan.
+- Jika kondisi **false**, loop akan berhenti.
+
+**3. Increment/Decrement** (contoh: `$i += 2`)
+- Bagian ketiga adalah perubahan nilai variabel setiap kali satu siklus perulangan selesai.
+- Ini memastikan loop **maju** menuju kondisi berhenti.
+- Jika bagian ini tidak ada atau salah, loop bisa menjadi **infinite loop** (tidak pernah selesai).
 
 **Contoh:**
 
@@ -187,16 +276,45 @@ for ($i = 10; $i >= 1; $i--) {
 ?>
 ```
 
-### 2. WHILE Loop
+### b. WHILE Loop
 
-Digunakan ketika jumlah iterasi tidak diketahui, bergantung pada kondisi.
+Kalau pada `for` kita sudah menentukan **mulai – syarat – langkah**, maka pada **while**, fokus utamanya hanya **kondisi**.
+
+Loop akan terus berjalan **selama kondisi bernilai true**.
+
+**Gambar Ilustrasi WHILE Loop:**
+
+![WHILE Loop](../assets/images/materi/while-loop.png)
 
 **Sintaks:**
+
 ```php
 while (kondisi) {
     // kode yang diulang
 }
 ```
+
+**Penjelasan:**
+
+**1. Inisialisasi**
+```php
+$i = 1;
+```
+Kita tentukan **angka mulai**. Dalam contoh ini, `$i` dimulai dari **1**.
+
+**2. Kondisi**
+```php
+while ($i <= 5)
+```
+Artinya: _"Selama `$i` masih kurang dari atau sama dengan 5, ulangi terus kodenya."_
+- Kalau kondisi **true**, loop berjalan.
+- Kalau **false**, loop berhenti.
+
+**3. Increment**
+```php
+$i++;
+```
+Setiap perulangan selesai, nilai `$i` **bertambah 1**. Tujuannya supaya perulangan **bergerak menuju berhenti**, tidak muter terus.
 
 **Contoh:**
 
@@ -205,41 +323,69 @@ while (kondisi) {
 // Menampilkan angka 1-5
 $i = 1;
 while ($i <= 5) {
-    echo $i . " ";
+    echo $i;
     $i++;
 }
 // Output: 1 2 3 4 5
 
-// Menghitung mundur
-$countdown = 5;
-while ($countdown > 0) {
-    echo $countdown . " ";
-    $countdown--;
-}
-echo "Go!";
-// Output: 5 4 3 2 1 Go!
-
-// Contoh praktis: validasi input
-$password = "";
-$attempt = 0;
-while ($password != "rahasia" && $attempt < 3) {
-    echo "Masukkan password: ";
-    // $password = readline(); // untuk CLI
-    $attempt++;
-}
+// Penjelasan:
+// - Mulai dari 1
+// - Dicek: "1 ≤ 5?" → YA → cetak
+// - Naik jadi 2
+// - Dicek lagi → YA → cetak
+// - Terus sampai 5
+// - Saat $i jadi 6, dicek: "6 ≤ 5?" → TIDAK → perulangan berhenti
 ?>
 ```
 
-### 3. DO-WHILE Loop
+### c. DO-WHILE Loop
 
-Mirip while, tapi kode dijalankan minimal 1 kali sebelum cek kondisi.
+`do...while` mirip dengan `while`, tetapi memiliki **satu perbedaan penting**:
+
+> **Kode di dalam `do` akan dijalankan minimal sekali, meskipun kondisi sebenarnya false.**
+
+Artinya, `do...while` cocok dipakai ketika kamu ingin **menjalankan suatu aksi dulu**, baru setelah itu mengecek kondisinya.
+
+**Perbandingan Flowchart WHILE vs DO-WHILE:**
+
+![DO-WHILE Flowchart](../assets/images/materi/do-while-flowchart.png)
 
 **Sintaks:**
+
 ```php
 do {
     // kode yang diulang
 } while (kondisi);
 ```
+
+**Gambar Ilustrasi DO-WHILE di PHP:**
+
+![DO-WHILE di PHP](../assets/images/materi/do-while-php.png)
+
+**Penjelasan:**
+
+**1. Inisialisasi**
+```php
+$i = 1;
+```
+Kita mulai dari angka 1.
+
+**2. Bagian `do` (Dijalankan dulu!)**
+```php
+do {
+    echo $i;
+    $i++;
+}
+```
+Bagian ini **langsung dijalankan**, tanpa tanya-tanya dulu. Makanya `do...while` beda dari `while`.
+
+**3. Kondisi**
+```php
+while ($i <= 5);
+```
+Setelah satu putaran selesai, baru dicek: _"Apakah `$i` masih ≤ 5?"_
+- Jika **iya**, ulangi lagi do-block.
+- Jika **tidak**, perulangan berhenti.
 
 **Contoh:**
 
@@ -250,33 +396,31 @@ do {
 // WHILE - tidak dijalankan jika kondisi false
 $i = 10;
 while ($i < 5) {
-    echo $i; // Tidak tampil
+    echo $i;  // Tidak tampil
 }
 
 // DO-WHILE - dijalankan minimal 1x
 $i = 10;
 do {
-    echo $i; // Tampil: 10
+    echo $i;  // Tampil: 10
 } while ($i < 5);
-
-// Contoh praktis: menu
-do {
-    echo "=== MENU ===\n";
-    echo "1. Tambah Data\n";
-    echo "2. Lihat Data\n";
-    echo "3. Keluar\n";
-    echo "Pilih: ";
-    // $pilihan = readline();
-    $pilihan = 3; // simulasi
-} while ($pilihan != 3);
 ?>
 ```
 
-### 4. FOREACH Loop
+**Bedanya dengan `while`:**
+
+Dengan `while`, jika kondisi awal salah, kode tidak akan pernah berjalan. Tapi dengan `do...while`, kode **selalu jalan dulu**, meski kondisi akhirnya false.
+
+Analoginya:
+- `while` = **"Cek dulu, baru lakukan."**
+- `do...while` = **"Lakukan dulu, baru cek."**
+
+### d. FOREACH Loop
 
 Khusus untuk iterasi array.
 
 **Sintaks:**
+
 ```php
 foreach ($array as $value) {
     // kode
@@ -331,16 +475,19 @@ foreach ($siswa as $key => $value) {
 ?>
 ```
 
+---
+
 ## Break dan Continue
 
 ### BREAK
+
 Menghentikan loop sepenuhnya.
 
 ```php
 <?php
 for ($i = 1; $i <= 10; $i++) {
     if ($i == 5) {
-        break; // Stop di 5
+        break;  // Stop di 5
     }
     echo $i . " ";
 }
@@ -349,19 +496,22 @@ for ($i = 1; $i <= 10; $i++) {
 ```
 
 ### CONTINUE
+
 Melewati iterasi saat ini dan lanjut ke iterasi berikutnya.
 
 ```php
 <?php
 for ($i = 1; $i <= 10; $i++) {
     if ($i % 2 == 0) {
-        continue; // Skip angka genap
+        continue;  // Skip angka genap
     }
     echo $i . " ";
 }
 // Output: 1 3 5 7 9
 ?>
 ```
+
+---
 
 ## Nested Loop
 
@@ -400,6 +550,8 @@ for ($i = 1; $i <= 5; $i++) {
 // * * * * *
 ?>
 ```
+
+---
 
 ## Contoh Praktis
 
@@ -489,6 +641,8 @@ if ($rata >= 80) {
 }
 ?>
 ```
+
+---
 
 ## Kesimpulan
 
