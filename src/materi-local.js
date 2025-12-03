@@ -2,6 +2,7 @@ import './style.css'
 import './pages.css'
 import { initHamburger } from './hamburger.js'
 import { renderNavbar } from './components/navbar.js'
+import { renderFooter } from './components/footer.js'
 
 const app = document.querySelector('#app')
 
@@ -62,6 +63,8 @@ const renderMateri = (materiList) => {
         `).join('')}
       </div>
     </div>
+
+    ${renderFooter()}
   `
   initHamburger()
 }

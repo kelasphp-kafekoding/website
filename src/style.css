@@ -965,7 +965,7 @@ navbar {
 /* Comments Section */
 .comments-section {
   padding: 60px 20px;
-  background: linear-gradient(180deg, rgba(248,250,252,0.6) 0%, rgba(241,245,249,0.6) 100%);
+  background: #f6f8fa;
 }
 
 .comments-container {
@@ -991,6 +991,27 @@ navbar {
   margin-bottom: 48px;
   margin-top: 0;
 }
+
+.giscus-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Giscus Styling */
+.giscus-wrapper .giscus-frame {
+  width: 100%;
+  border: none;
+  min-height: 400px;
+  background: #f6f8fa;
+}
+
+.giscus-wrapper iframe.giscus-frame {
+  background: #f6f8fa !important;
+  color-scheme: light;
+}
+
+/* Pagination styling akan ditangani oleh Giscus internal */
 
 .comments-wrapper {
   display: grid;

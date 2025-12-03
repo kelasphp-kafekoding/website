@@ -4,6 +4,7 @@ import 'aos/dist/aos.css'
 import { welcomeSection } from './sections/welcomeSection.js'
 import { showcaseSection } from './sections/showcaseSection.js'
 import { testimonialSection } from './sections/testimonialSection.js'
+import { renderFooter, renderGiscusWrapper, initGiscus } from './components/footer.js'
 
 console.log('Main.js loaded');
 
@@ -154,54 +155,7 @@ app.innerHTML = `
     </div>
   </section>
 
-  <footer class="footer-section">
-    <div class="footer-container">
-      <div class="footer-content">
-        <div class="footer-column">
-          <div class="footer-logo">
-            <img src="/icons/kk.png" alt="Kafekoding" class="footer-logo-img">
-            <div>
-              <div class="footer-logo-title">Kafekoding</div>
-              <div class="footer-logo-subtitle">Kelas PHP</div>
-            </div>
-          </div>
-          <p class="footer-desc">Platform pembelajaran PHP yang menyenangkan dan interaktif untuk semua level.</p>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Menu</h4>
-          <ul>
-            <li><a href="/#home">Home</a></li>
-            <li><a href="/materi.html">Materi</a></li>
-            <li><a href="/#showcase">Showcase</a></li>
-            <li><a href="/#gallery">Galeri</a></li>
-            <li><a href="/#comments">Testimoni</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Lainnya</h4>
-          <ul>
-            <li><a href="/tentang.html">Tentang</a></li>
-            <li><a href="/kontak.html">Kontak</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Ikuti Kami</h4>
-          <ul>
-            <li><a href="https://www.instagram.com/kafekoding" target="_blank">Instagram</a></li>
-            <li><a href="https://www.tiktok.com/@kafekoding" target="_blank">TikTok</a></li>
-            <li><a href="https://github.com/kelasphp-kafekoding/" target="_blank">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2025 Kafekoding. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  ${renderFooter()}
 
 `
 
