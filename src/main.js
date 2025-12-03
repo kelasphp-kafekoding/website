@@ -43,8 +43,7 @@ app.innerHTML = `
 
   <section class="welcome-section" id="home">
     <div class="welcome-content">
-      <h1 data-aos="fade-up">Selamat Datang di Kafekoding</h1>
-      <h2 class="welcome-subtitle" data-aos="fade-up" data-aos-delay="50">Kelas PHP</h2>
+      <h1 data-aos="fade-up">Selamat Datang di Kelas PHP</h1>
       <p data-aos="fade-up" data-aos-delay="100">Belajar PHP dengan cara yang menyenangkan dan interaktif</p>
       <button data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='/materi.html'">Lihat Materi</button>
     </div>
