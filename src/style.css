@@ -965,7 +965,7 @@ navbar {
 /* Comments Section */
 .comments-section {
   padding: 60px 20px;
-  background: #f6f8fa;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e0f2fe 100%);
 }
 
 .comments-container {
@@ -1003,11 +1003,11 @@ navbar {
   width: 100%;
   border: none;
   min-height: 400px;
-  background: #f6f8fa;
+  background: transparent;
 }
 
 .giscus-wrapper iframe.giscus-frame {
-  background: #f6f8fa !important;
+  background: transparent !important;
   color-scheme: light;
 }
 
