@@ -69,7 +69,8 @@ const renderMateriDetail = async () => {
   const materiData = await loadMateriData(slug)
   
   if (!materiData) {
-    app.innerHTML = '<div style="text-align: center; padding: 100px 20px;"><h1>Materi tidak ditemukan</h1><p><a href="/materi.html">Kembali ke daftar materi</a></p></div>'
+    // Redirect to 404 page
+    window.location.href = '/404.html'
     return
   }
 
