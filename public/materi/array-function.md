@@ -1,520 +1,122 @@
-# Array dan Function PHP
+# Array di PHP
 
-![Array and Function](https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=400&fit=crop)
+## Apa itu Array?
 
-## PART 1: ARRAY
+Array adalah **wadah yang bisa menyimpan banyak data sekaligus** dalam satu variabel.
 
-### Apa itu Array?
+### Analogi
+Bayangkan array seperti **rak buku**:
+- Setiap buku punya **nomor rak** (indeks)
+- Nomor rak dimulai dari **0** (bukan 1)
+- Kamu bisa ambil buku dengan menyebut nomor raknya
 
-Array adalah variabel yang dapat menyimpan banyak nilai dalam satu variabel.
+## Penjelasan Kode array.php
 
-### 1. Array Indexed (Numeric Array)
-
-Array dengan index berupa angka (dimulai dari 0).
-
+### 1. Membuat Array
 ```php
-<?php
-// Cara 1: menggunakan array()
-$buah = array("Apel", "Jeruk", "Mangga");
-
-// Cara 2: menggunakan []
-$warna = ["Merah", "Hijau", "Biru"];
-
-// Mengakses elemen
-echo $buah[0]; // Apel
-echo $buah[1]; // Jeruk
-echo $buah[2]; // Mangga
-
-// Mengubah nilai
-$buah[1] = "Pisang";
-echo $buah[1]; // Pisang
-
-// Menambah elemen
-$buah[] = "Durian"; // Ditambah di akhir
-$buah[10] = "Semangka"; // Index spesifik
-?>
+$sahabat = ["Arief", "Sefira", "Asria", "Kamila", "Avin", "Syarla", "Marsya"];
 ```
+Array `$sahabat` berisi 7 nama dengan indeks 0-6.
 
-### 2. Array Associative
-
-Array dengan index berupa string (key-value pair).
-
+### 2. Mengakses Elemen Array
 ```php
-<?php
-$siswa = [
-    "nama" => "Budi Santoso",
-    "umur" => 20,
-    "kelas" => "PHP",
-    "nilai" => 85
-];
-
-// Mengakses elemen
-echo $siswa["nama"];  // Budi Santoso
-echo $siswa["umur"];  // 20
-
-// Mengubah nilai
-$siswa["nilai"] = 90;
-
-// Menambah elemen
-$siswa["alamat"] = "Jakarta";
-?>
+echo $sahabat[4]; // Output: Avin
 ```
+Mengambil data di indeks 4 (elemen ke-5).
 
-### 3. Multidimensional Array
-
-Array di dalam array.
-
+### 3. Array Push - Menambah di Akhir
 ```php
-<?php
-$mahasiswa = [
-    [
-        "nama" => "Budi",
-        "umur" => 20,
-        "nilai" => [85, 90, 78]
-    ],
-    [
-        "nama" => "Ani",
-        "umur" => 19,
-        "nilai" => [92, 88, 95]
-    ],
-    [
-        "nama" => "Citra",
-        "umur" => 21,
-        "nilai" => [78, 82, 80]
-    ]
-];
-
-// Mengakses elemen
-echo $mahasiswa[0]["nama"]; // Budi
-echo $mahasiswa[1]["umur"]; // 19
-echo $mahasiswa[0]["nilai"][0]; // 85
-
-// Loop multidimensional array
-foreach ($mahasiswa as $mhs) {
-    echo "Nama: " . $mhs["nama"] . "<br>";
-    echo "Umur: " . $mhs["umur"] . "<br>";
-    echo "Nilai: " . implode(", ", $mhs["nilai"]) . "<br><br>";
-}
-?>
+array_push($sahabat, "silvi");
 ```
+Menambahkan "silvi" ke akhir array (indeks 7).
 
-### Fungsi-fungsi Array
+**Analogi**: Menambah buku baru di rak paling belakang.
 
-#### 1. count() - Menghitung jumlah elemen
-
+### 4. Menampilkan Elemen Baru
 ```php
-<?php
-$buah = ["Apel", "Jeruk", "Mangga"];
-echo count($buah); // 3
-?>
+echo $sahabat[7]; // Output: silvi
 ```
+Akses elemen yang baru ditambahkan.
 
-#### 2. array_push() - Menambah elemen di akhir
-
+### 5. Array Pop - Menghapus dari Akhir
 ```php
-<?php
-$buah = ["Apel", "Jeruk"];
-array_push($buah, "Mangga", "Pisang");
-print_r($buah); // ["Apel", "Jeruk", "Mangga", "Pisang"]
-?>
+array_pop($sahabat);
 ```
+Menghapus elemen terakhir ("silvi" dihapus).
 
-#### 3. array_pop() - Menghapus elemen terakhir
+**Analogi**: Mengambil buku paling belakang dari rak.
 
+### 6. Push Lagi
 ```php
-<?php
-$buah = ["Apel", "Jeruk", "Mangga"];
-$last = array_pop($buah);
-echo $last; // Mangga
-print_r($buah); // ["Apel", "Jeruk"]
-?>
+array_push($sahabat, "dimas");
+echo $sahabat[7]; // Output: dimas
 ```
+Tambah "dimas" di akhir, sekarang indeks 7 berisi "dimas".
 
-#### 4. array_shift() - Menghapus elemen pertama
-
+### 7. Lihat Semua Isi Array
 ```php
-<?php
-$buah = ["Apel", "Jeruk", "Mangga"];
-$first = array_shift($buah);
-echo $first; // Apel
-print_r($buah); // ["Jeruk", "Mangga"]
-?>
+print_r($sahabat);
 ```
+Menampilkan seluruh isi array.
 
-#### 5. array_unshift() - Menambah elemen di awal
+## Poin Penting Array
 
-```php
-<?php
-$buah = ["Jeruk", "Mangga"];
-array_unshift($buah, "Apel");
-print_r($buah); // ["Apel", "Jeruk", "Mangga"]
-?>
-```
-
-#### 6. in_array() - Cek apakah nilai ada di array
-
-```php
-<?php
-$buah = ["Apel", "Jeruk", "Mangga"];
-if (in_array("Jeruk", $buah)) {
-    echo "Jeruk ada di array";
-}
-?>
-```
-
-#### 7. array_search() - Cari index dari nilai
-
-```php
-<?php
-$buah = ["Apel", "Jeruk", "Mangga"];
-$index = array_search("Jeruk", $buah);
-echo $index; // 1
-?>
-```
-
-#### 8. sort() & rsort() - Mengurutkan array
-
-```php
-<?php
-$angka = [5, 2, 8, 1, 9];
-
-sort($angka); // Ascending
-print_r($angka); // [1, 2, 5, 8, 9]
-
-rsort($angka); // Descending
-print_r($angka); // [9, 8, 5, 2, 1]
-?>
-```
-
-#### 9. array_merge() - Menggabungkan array
-
-```php
-<?php
-$arr1 = ["Apel", "Jeruk"];
-$arr2 = ["Mangga", "Pisang"];
-$result = array_merge($arr1, $arr2);
-print_r($result); // ["Apel", "Jeruk", "Mangga", "Pisang"]
-?>
-```
-
-#### 10. explode() & implode() - Konversi string <-> array
-
-```php
-<?php
-// explode: string ke array
-$str = "Apel,Jeruk,Mangga";
-$arr = explode(",", $str);
-print_r($arr); // ["Apel", "Jeruk", "Mangga"]
-
-// implode: array ke string
-$buah = ["Apel", "Jeruk", "Mangga"];
-$str = implode(", ", $buah);
-echo $str; // Apel, Jeruk, Mangga
-?>
-```
+- Array dimulai dari indeks **0**
+- **array_push()** menambah di akhir
+- **array_pop()** menghapus dari akhir
+- Setelah pop, indeks yang dihapus bisa diisi lagi dengan push
+- **print_r()** untuk melihat isi array lengkap
 
 ---
 
-## PART 2: FUNCTION
+# Function di PHP
 
-### Apa itu Function?
+## Apa itu Function?
 
-Function adalah blok kode yang dapat digunakan berulang kali.
+Function adalah **blok kode yang bisa dipakai berulang kali** tanpa perlu menulis ulang kodenya.
 
-### 1. Function Dasar
+### Analogi
+Bayangkan function seperti **mesin kopi**:
+- Kamu masukkan **bahan** (parameter)
+- Mesin memproses
+- Keluar **hasil** (return value)
 
+## Penjelasan Kode function.php
+
+### 1. Membuat Function
 ```php
-<?php
-// Membuat function
-function sapa() {
-    echo "Halo, Selamat datang!";
+function contohFunction($nilai1, $nilai2) {
+    $hasil = $nilai1 + $nilai2;
+    return $hasil;
 }
-
-// Memanggil function
-sapa(); // Halo, Selamat datang!
-?>
 ```
 
-### 2. Function dengan Parameter
+**Penjelasan:**
+- `function contohFunction` = nama function
+- `($nilai1, $nilai2)` = parameter (input)
+- `$hasil = $nilai1 + $nilai2` = proses penjumlahan
+- `return $hasil` = mengembalikan hasil
 
+### 2. Memanggil Function
 ```php
-<?php
-function sapa($nama) {
-    echo "Halo, $nama!";
-}
-
-sapa("Budi");    // Halo, Budi!
-sapa("Ani");     // Halo, Ani!
-
-// Multiple parameter
-function perkenalan($nama, $umur) {
-    echo "Nama saya $nama, umur $umur tahun";
-}
-
-perkenalan("Budi", 20); // Nama saya Budi, umur 20 tahun
-?>
+echo "Hasil: " . contohFunction(5, 3);
 ```
 
-### 3. Function dengan Default Parameter
+**Penjelasan:**
+- `contohFunction(5, 3)` = panggil function dengan input 5 dan 3
+- Function menghitung: 5 + 3 = 8
+- Output: **Hasil: 8**
 
-```php
-<?php
-function sapa($nama = "Tamu") {
-    echo "Halo, $nama!";
-}
+### Cara Kerja:
+1. Function menerima 2 angka (5 dan 3)
+2. Menjumlahkan kedua angka
+3. Mengembalikan hasilnya (8)
+4. Hasil ditampilkan dengan `echo`
 
-sapa("Budi"); // Halo, Budi!
-sapa();       // Halo, Tamu!
+## Poin Penting Function
 
-// Multiple default parameter
-function buatProfil($nama, $umur = 18, $kota = "Jakarta") {
-    echo "$nama, $umur tahun, dari $kota";
-}
-
-buatProfil("Budi");              // Budi, 18 tahun, dari Jakarta
-buatProfil("Ani", 20);           // Ani, 20 tahun, dari Jakarta
-buatProfil("Citra", 22, "Bandung"); // Citra, 22 tahun, dari Bandung
-?>
-```
-
-### 4. Function dengan Return Value
-
-```php
-<?php
-function tambah($a, $b) {
-    return $a + $b;
-}
-
-$hasil = tambah(5, 3);
-echo $hasil; // 8
-
-// Return multiple values (menggunakan array)
-function hitungLingkaran($radius) {
-    $luas = 3.14 * $radius * $radius;
-    $keliling = 2 * 3.14 * $radius;
-    
-    return [
-        "luas" => $luas,
-        "keliling" => $keliling
-    ];
-}
-
-$hasil = hitungLingkaran(7);
-echo "Luas: " . $hasil["luas"];
-echo "Keliling: " . $hasil["keliling"];
-?>
-```
-
-### 5. Function dengan Type Declaration
-
-```php
-<?php
-// Parameter type
-function tambah(int $a, int $b): int {
-    return $a + $b;
-}
-
-echo tambah(5, 3); // 8
-
-// String type
-function sapa(string $nama): string {
-    return "Halo, $nama!";
-}
-
-echo sapa("Budi"); // Halo, Budi!
-
-// Array type
-function hitungRata(array $nilai): float {
-    $total = array_sum($nilai);
-    return $total / count($nilai);
-}
-
-$nilai = [85, 90, 78, 92];
-echo hitungRata($nilai); // 86.25
-?>
-```
-
-### 6. Variable Scope
-
-```php
-<?php
-// Global scope
-$nama = "Budi";
-
-function tampilNama() {
-    global $nama; // Akses variabel global
-    echo $nama;
-}
-
-tampilNama(); // Budi
-
-// Local scope
-function test() {
-    $lokal = "Hanya di dalam function";
-    echo $lokal;
-}
-
-test(); // Hanya di dalam function
-// echo $lokal; // Error: undefined variable
-?>
-```
-
-### 7. Anonymous Function (Closure)
-
-```php
-<?php
-// Function tanpa nama
-$sapa = function($nama) {
-    return "Halo, $nama!";
-};
-
-echo $sapa("Budi"); // Halo, Budi!
-
-// Sebagai callback
-$angka = [1, 2, 3, 4, 5];
-$kuadrat = array_map(function($n) {
-    return $n * $n;
-}, $angka);
-
-print_r($kuadrat); // [1, 4, 9, 16, 25]
-?>
-```
-
-### 8. Arrow Function (PHP 7.4+)
-
-```php
-<?php
-// Sintaks lebih pendek
-$tambah = fn($a, $b) => $a + $b;
-echo $tambah(5, 3); // 8
-
-// Dengan array_map
-$angka = [1, 2, 3, 4, 5];
-$kuadrat = array_map(fn($n) => $n * $n, $angka);
-print_r($kuadrat); // [1, 4, 9, 16, 25]
-?>
-```
-
-## Contoh Praktis
-
-### 1. Sistem Penilaian
-
-```php
-<?php
-function hitungGrade($nilai) {
-    if ($nilai >= 90) return "A";
-    elseif ($nilai >= 80) return "B";
-    elseif ($nilai >= 70) return "C";
-    elseif ($nilai >= 60) return "D";
-    else return "E";
-}
-
-function hitungRataRata($nilai) {
-    return array_sum($nilai) / count($nilai);
-}
-
-$siswa = [
-    ["nama" => "Budi", "nilai" => [85, 90, 78]],
-    ["nama" => "Ani", "nilai" => [92, 88, 95]],
-    ["nama" => "Citra", "nilai" => [78, 82, 80]]
-];
-
-echo "<h3>Laporan Nilai</h3>";
-echo "<table border='1' cellpadding='10'>";
-echo "<tr><th>Nama</th><th>Nilai</th><th>Rata-rata</th><th>Grade</th></tr>";
-
-foreach ($siswa as $s) {
-    $rata = hitungRataRata($s["nilai"]);
-    $grade = hitungGrade($rata);
-    
-    echo "<tr>";
-    echo "<td>{$s['nama']}</td>";
-    echo "<td>" . implode(", ", $s["nilai"]) . "</td>";
-    echo "<td>" . number_format($rata, 2) . "</td>";
-    echo "<td>$grade</td>";
-    echo "</tr>";
-}
-
-echo "</table>";
-?>
-```
-
-### 2. Kalkulator Sederhana
-
-```php
-<?php
-function kalkulator($angka1, $operator, $angka2) {
-    switch ($operator) {
-        case '+':
-            return $angka1 + $angka2;
-        case '-':
-            return $angka1 - $angka2;
-        case '*':
-            return $angka1 * $angka2;
-        case '/':
-            if ($angka2 == 0) {
-                return "Error: Tidak bisa dibagi 0";
-            }
-            return $angka1 / $angka2;
-        default:
-            return "Operator tidak valid";
-    }
-}
-
-echo kalkulator(10, '+', 5);  // 15
-echo kalkulator(10, '-', 5);  // 5
-echo kalkulator(10, '*', 5);  // 50
-echo kalkulator(10, '/', 5);  // 2
-echo kalkulator(10, '/', 0);  // Error: Tidak bisa dibagi 0
-?>
-```
-
-### 3. Validasi Data
-
-```php
-<?php
-function validasiEmail($email) {
-    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
-}
-
-function validasiPassword($password) {
-    // Minimal 8 karakter
-    if (strlen($password) < 8) {
-        return false;
-    }
-    return true;
-}
-
-function validasiUsername($username) {
-    // Hanya huruf, angka, dan underscore
-    return preg_match('/^[a-zA-Z0-9_]+$/', $username);
-}
-
-// Test
-$email = "budi@example.com";
-$password = "rahasia123";
-$username = "budi_123";
-
-if (validasiEmail($email)) {
-    echo "Email valid<br>";
-}
-
-if (validasiPassword($password)) {
-    echo "Password valid<br>";
-}
-
-if (validasiUsername($username)) {
-    echo "Username valid<br>";
-}
-?>
-```
-
-## Kesimpulan
-
-Anda telah mempelajari:
-- **Array**: indexed, associative, multidimensional
-- **Fungsi Array**: count, push, pop, sort, merge, dll
-- **Function**: dasar, parameter, return, type declaration
-- **Advanced**: anonymous function, arrow function
-
-Selanjutnya kita akan belajar membuat Form dengan Bootstrap 5!
+- Function membuat kode lebih **rapi** dan **reusable**
+- **Parameter** = input yang dikirim ke function ($nilai1, $nilai2)
+- **Return** = output yang dikembalikan function
+- Function bisa dipanggil berkali-kali dengan input berbeda
+- Contoh: `contohFunction(10, 20)` akan menghasilkan 30
