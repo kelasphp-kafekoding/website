@@ -67,9 +67,9 @@ app.innerHTML = `
       
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-item" data-index="0">
-          <img src="/assets/meet.jpg" alt="Meet Belajar Online">
+          <img src="/assets/meet.jpg" alt="Belajar Bersama Online">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Meet Belajar Online</span>
+            <span class="gallery-caption">Belajar Bersama Online</span>
           </div>
         </div>
         <div class="gallery-item" data-index="1">
