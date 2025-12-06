@@ -1428,6 +1428,30 @@ navbar {
   max-width: 280px;
 }
 
+.footer-location {
+  margin-top: 24px;
+}
+
+.footer-location h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-location i {
+  color: var(--primary);
+}
+
+.footer-location p {
+  color: #9ca3af;
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
 .footer-column ul {
   list-style: none;
   display: flex;

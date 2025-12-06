@@ -12,6 +12,14 @@ export const renderFooter = () => {
               </div>
             </div>
             <p class="footer-desc">Platform pembelajaran PHP yang menyenangkan dan interaktif untuk semua level.</p>
+            <div class="footer-location">
+              <h4><i class="fa-solid fa-location-dot"></i> Lokasi</h4>
+              <p>Jln. Khatib Sulaiman Dalam No. 1<br>
+              RW. 006, RT. 004<br>
+              Kelurahan Lolong Belanti<br>
+              Koto Padang, Padang<br>
+              Sumatera Barat, Indonesia 25136</p>
+            </div>
           </div>
           
           <div class="footer-column">
