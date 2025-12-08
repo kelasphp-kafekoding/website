@@ -53,6 +53,15 @@
       "file": "array-function.md",
       "author": "M. Rifaldo Saputra",
       "date": "2025-12-01"
+    },
+    {
+      "id": 7,
+      "slug": "form-bootstrap",
+      "title": "Form + Bootstrap",
+      "description": "Aplikasi pemesanan kantin sederhana menggunakan PHP dan Bootstrap.",
+      "file": "form-bootstrap.md",
+      "author": "M. Rifaldo Saputra",
+      "date": "2025-12-08"
     }
   ]
 }
