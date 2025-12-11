@@ -7,21 +7,51 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build output
 dist
 dist-ssr
+build
+
+# Local env files
 *.local
+.env
+.env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Deployment
 .vercel
-.env*.local
+.netlify
+
+# Cache
+.cache
+*.cache
+.parcel-cache
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+*.bak
+*.tmp
+*.temp
