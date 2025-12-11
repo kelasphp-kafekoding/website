@@ -1,4 +1,4 @@
-/* style.css (fixed & improved) */
+/* style.css (optimized for performance) */
 
 * {
   margin: 0;
@@ -35,6 +35,14 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* Optimasi gambar */
+img {
+  max-width: 100%;
+  height: auto;
+  content-visibility: auto;
 }
 
 #tsparticles {
@@ -45,6 +53,7 @@ body {
   height: 100%;
   z-index: 1;
   pointer-events: none;
+  contain: strict;
 }
 
 /* App shell */

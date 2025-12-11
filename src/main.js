@@ -4,18 +4,17 @@ import 'aos/dist/aos.css'
 import { welcomeSection } from './sections/welcomeSection.js'
 import { showcaseSection } from './sections/showcaseSection.js'
 import { testimonialSection } from './sections/testimonialSection.js'
-import { renderFooter, renderGiscusWrapper, initGiscus } from './components/footer.js'
+import { renderFooter } from './components/footer.js'
 
-console.log('Main.js loaded');
-
+// Initialize AOS with optimized settings
 AOS.init({
-  duration: 1000,
+  duration: 800,
   once: true,
-  offset: 100
+  offset: 50,
+  disable: 'mobile' // Disable on mobile for better performance
 });
 
 const app = document.querySelector('#app')
-console.log('App element:', app);
 
 app.innerHTML = `
   <navbar>
@@ -67,37 +66,37 @@ app.innerHTML = `
       
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-item" data-index="0">
-          <img src="/assets/meet.jpg" alt="Belajar Bersama Online">
+          <img src="/assets/meet.jpg" alt="Belajar Bersama Online" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Belajar Bersama Online</span>
           </div>
         </div>
         <div class="gallery-item" data-index="1">
-          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop" alt="Coding Session">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop&auto=format" alt="Coding Session" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Coding Session</span>
           </div>
         </div>
         <div class="gallery-item" data-index="2">
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop" alt="Workshop PHP">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop&auto=format" alt="Workshop PHP" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Workshop PHP</span>
           </div>
         </div>
         <div class="gallery-item" data-index="3">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop" alt="Presentasi Project">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop&auto=format" alt="Presentasi Project" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Presentasi Project</span>
           </div>
         </div>
         <div class="gallery-item" data-index="4">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Team Collaboration">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&auto=format" alt="Team Collaboration" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Team Collaboration</span>
           </div>
         </div>
         <div class="gallery-item" data-index="5">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop" alt="Sertifikat Kelulusan">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop&auto=format" alt="Sertifikat Kelulusan" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Sertifikat Kelulusan</span>
           </div>
@@ -248,69 +247,47 @@ welcomeSection();
 showcaseSection();
 initGallery();
 
-console.log('Attempting to load tsParticles from window...');
+// Lazy load tsParticles untuk performa lebih baik
+const loadParticles = async () => {
+  // Skip particles di mobile untuk performa
+  if (window.innerWidth < 768) return;
+  
+  try {
+    const { tsParticles } = await import('tsparticles-engine');
+    const { loadFull } = await import('tsparticles');
+    
+    await loadFull(tsParticles);
+    
+    await tsParticles.load("tsparticles", {
+      particles: {
+        number: { value: 30 },
+        shape: { type: "circle" },
+        size: { value: { min: 2, max: 6 } },
+        opacity: { value: 0.5 },
+        color: { value: "#0a0e27" },
+        move: {
+          enable: true,
+          speed: 0.8,
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: { default: "out" }
+        }
+      },
+      background: { color: "transparent" },
+      detectRetina: true,
+      fpsLimit: 30
+    });
+  } catch (err) {
+    // Silently fail - particles are not critical
+  }
+};
 
-// Coba pakai window.tsParticles dari CDN atau global scope
-if (window.tsParticles) {
-  console.log('window.tsParticles found:', window.tsParticles);
-  
-  window.tsParticles.load("tsparticles", {
-    particles: {
-      number: { value: 50 },
-      shape: { type: "circle" },
-      size: { value: { min: 3, max: 10 } },
-      opacity: { value: 0.8 },
-      color: { value: "#0a0e27" },
-      move: {
-        enable: true,
-        speed: 1.2,
-        direction: "none",
-        random: true,
-        straight: false,
-        outModes: { default: "out" }
-      }
-    },
-    background: { color: "transparent" }
-  }).then(() => {
-    console.log('tsParticles loaded successfully');
-  }).catch(err => {
-    console.error('Error:', err);
-  });
+// Load particles after page is fully loaded
+if (document.readyState === 'complete') {
+  setTimeout(loadParticles, 1000);
 } else {
-  console.error('window.tsParticles not found - trying dynamic import...');
-  
-  (async () => {
-    try {
-      const tsParticles = (await import('tsparticles')).tsParticles;
-      const { loadFull } = await import('tsparticles');
-      
-      console.log('Dynamic import successful, tsParticles:', tsParticles);
-      await loadFull(tsParticles);
-      
-      await tsParticles.load("tsparticles", {
-        particles: {
-          number: { value: 50 },
-          shape: { type: "circle" },
-          size: { value: { min: 3, max: 10 } },
-          opacity: { value: 0.8 },
-          color: { value: "#0a0e27" },
-          move: {
-            enable: true,
-            speed: 1.2,
-            direction: "none",
-            random: true,
-            straight: false,
-            outModes: { default: "out" }
-          }
-        },
-        background: { color: "transparent" }
-      });
-      
-      console.log('tsParticles loaded successfully from dynamic import');
-    } catch (err) {
-      console.error('Failed to load tsParticles:', err);
-    }
-  })();
+  window.addEventListener('load', () => setTimeout(loadParticles, 1000));
 }
 
 testimonialSection();
