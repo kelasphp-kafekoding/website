@@ -12,10 +12,10 @@
     },
     {
       "id": "proj2",
-      "judul": "Project Sefira Sucandiwi",
+      "judul": "Project Sefira Sucandiwa",
       "deks": "Aplikasi web interaktif dengan desain modern dan user-friendly interface.",
       "gambar": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
-      "namaPeserta": "Sefira Sucandiwi",
+      "namaPeserta": "Sefira Sucandiwa",
       "tech": ["PHP", "Bootstrap", "JavaScript"],
       "github": "https://github.com",
       "project": "https://example.com"
@@ -70,16 +70,7 @@
       "github": "https://github.com",
       "project": "https://example.com"
     },
-    {
-      "id": "proj8",
-      "judul": "Project Arif Rahmadani",
-      "deks": "Website dengan fitur lengkap dan performa yang cepat serta optimal.",
-      "gambar": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=250&fit=crop",
-      "namaPeserta": "Arif Rahmadani",
-      "tech": ["PHP", "Bootstrap", "MySQL"],
-      "github": "https://github.com",
-      "project": "https://example.com"
-    },
+
     {
       "id": "proj9",
       "judul": "Project Tasman Aditya Al Hudha",
