@@ -72,7 +72,7 @@ section {
 }
 
 footer {
-  margin-top: auto;
+  margin-top: 0;
 }
 
 navbar {
@@ -1376,7 +1376,7 @@ navbar {
   background: linear-gradient(135deg, #0a0e27 0%, #1a202c 100%);
   color: #e5e7eb;
   padding: 60px 20px 30px;
-  margin-top: 60px;
+  margin-top: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -1491,7 +1491,7 @@ navbar {
 @media (max-width: 768px) {
   .footer-section {
     padding: 40px 16px 20px;
-    margin-top: 40px;
+    margin-top: 0;
   }
   
   .footer-content {
@@ -1798,10 +1798,11 @@ navbar {
 
 /* Showcase Page Section */
 .showcase-page-section {
-  padding: 80px 20px;
+  padding: 100px 20px 40px;
   position: relative;
   z-index: 2;
-  min-height: calc(100vh - 90px);
+  min-height: calc(100vh - 200px);
+  background: #f6f8fa;
 }
 
 .showcase-page-container {
@@ -1832,7 +1833,7 @@ navbar {
 
 @media (max-width: 768px) {
   .showcase-page-section {
-    padding: 60px 20px;
+    padding: 80px 20px 30px;
   }
 
   .showcase-page-title {
@@ -1847,7 +1848,7 @@ navbar {
 
 @media (max-width: 480px) {
   .showcase-page-section {
-    padding: 40px 16px;
+    padding: 80px 16px 20px;
   }
 
   .showcase-page-title {

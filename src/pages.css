@@ -157,7 +157,7 @@ navbar {
   flex: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 20px 60px;
+  padding: 100px 20px 40px;
   width: 100%;
 }
 
@@ -594,8 +594,8 @@ h1 {
 
 /* Materi Detail Section */
 .materi-detail-section {
-  min-height: 100vh;
-  padding: 100px 20px 80px;
+  min-height: calc(100vh - 200px);
+  padding: 100px 20px 40px;
   background: #f6f8fa;
 }
 
