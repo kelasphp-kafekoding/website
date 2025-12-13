@@ -1,14 +1,18 @@
-# Panduan Kontributor
+# Panduan Kontribusi
 
-Terima kasih telah tertarik berkontribusi di Kafekoding! Ikuti panduan ini untuk memulai.
+Terima kasih telah tertarik berkontribusi di Kafekoding Kelas PHP! Ikuti panduan ini untuk memulai.
 
-## Siapa Bisa Kontribusi?
+---
 
-- Anggota Kelas PHP Komunitas Kafekoding
-- Peserta aktif dalam program pembelajaran
+## 👥 Siapa yang Bisa Berkontribusi?
+
+- Peserta aktif Kelas PHP Komunitas Kafekoding
 - Memiliki proyek yang sudah selesai dan berfungsi
+- Bersedia mengikuti panduan kontribusi
 
-## Jenis Kontribusi
+---
+
+## 📝 Jenis Kontribusi
 
 ### 1. Tambah Materi Pembelajaran
 
@@ -17,19 +21,20 @@ Terima kasih telah tertarik berkontribusi di Kafekoding! Ikuti panduan ini untuk
 - `public/materi-list.json` - Update daftar materi
 
 **Langkah:**
+
 1. Buat file markdown di `public/materi/nama-materi.md`
-2. Tulis materi dengan markdown format
-3. Update `public/materi-list.json`:
+2. Tulis materi dengan format markdown
+3. Tambahkan entry di `public/materi-list.json`:
 
 ```json
 {
   "id": 8,
-  "slug": "nama-materi-unique",
+  "slug": "nama-materi",
   "title": "Judul Materi",
   "description": "Deskripsi singkat materi",
   "file": "nama-materi.md",
   "author": "Nama Anda",
-  "date": "2025-12-03"
+  "date": "2025-12-13"
 }
 ```
 
@@ -39,60 +44,72 @@ Terima kasih telah tertarik berkontribusi di Kafekoding! Ikuti panduan ini untuk
 - `public/showcase.json`
 
 **Langkah:**
-Tambahkan entry baru di `public/showcase.json`:
+
+Tambahkan entry baru di array `showcase`:
 
 ```json
 {
-  "id": 10,
-  "title": "Nama Proyek Anda",
-  "description": "Deskripsi singkat proyek",
-  "image": "https://url-gambar-proyek.jpg",
+  "id": "proj12",
+  "judul": "Project Nama Anda",
+  "deks": "Deskripsi singkat proyek Anda",
+  "gambar": "https://url-gambar-proyek.jpg",
+  "namaPeserta": "Nama Lengkap",
+  "tech": ["PHP", "MySQL", "Bootstrap"],
   "github": "https://github.com/username/repo",
-  "demo": "https://demo-link.com",
-  "author": "Nama Anda"
+  "project": "https://demo-link.com"
 }
 ```
 
 ### 3. Perbaikan Bug & Improvement
 
-- Update styling
 - Fix responsive design
 - Improve performance
 - Perbaikan typo/dokumentasi
+- Update styling
 
-## Proses Kontribusi
+---
+
+## 🔄 Proses Kontribusi
 
 ### Step 1: Fork Repository
 
-Klik tombol **Fork** di halaman repository GitHub
+Klik tombol **Fork** di halaman [repository GitHub](https://github.com/kelasphp-kafekoding/website)
 
 ### Step 2: Clone Repository
 
 ```bash
-git clone https://github.com/username-anda/website.git
+git clone https://github.com/USERNAME-ANDA/website.git
 cd website
 ```
 
-### Step 3: Buat Branch
+### Step 3: Install Dependencies
 
 ```bash
-git checkout -b Nama_Lengkap_Nama_Sekolah
+npm install
+```
+
+### Step 4: Buat Branch Baru
+
+Format: `Nama_Lengkap_Sekolah`
+
+```bash
+git checkout -b Nama_Lengkap_Sekolah
 ```
 
 Contoh:
 ```bash
-git checkout -b Rifaldo_Saputra_metamedia
+git checkout -b Budi_Santoso_SMKN1
 ```
 
-### Step 4: Buat Perubahan
+### Step 5: Buat Perubahan
 
-Buat perubahan yang Anda inginkan:
-- Tambah materi
-- Update showcase
-- Perbaiki bug
-- Improvement fitur
+Lakukan perubahan yang diinginkan, lalu test di local:
 
-### Step 5: Commit Changes
+```bash
+npm run dev
+```
+
+### Step 6: Commit Changes
 
 ```bash
 git add .
@@ -100,149 +117,109 @@ git commit -m "feat: deskripsi perubahan"
 ```
 
 **Format commit message:**
-- `feat:` untuk fitur baru
-- `fix:` untuk perbaikan bug
-- `docs:` untuk dokumentasi
-- `style:` untuk styling
-- `chore:` untuk update lainnya
+
+| Prefix | Kegunaan |
+|--------|----------|
+| `feat:` | Fitur baru |
+| `fix:` | Perbaikan bug |
+| `docs:` | Dokumentasi |
+| `style:` | Styling/CSS |
+| `chore:` | Update lainnya |
 
 Contoh:
 ```bash
-git commit -m "feat: add new php tutorial material"
-git commit -m "fix: responsive design on gallery"
+git commit -m "feat: add tutorial array PHP"
+git commit -m "fix: responsive navbar mobile"
 git commit -m "docs: update README"
 ```
 
-### Step 6: Push ke Branch
+### Step 7: Push ke Branch
 
 ```bash
-git push origin Rifaldo_Saputra_metamedia
+git push origin Nama_Lengkap_Sekolah
 ```
 
-### Step 7: Buat Pull Request
+### Step 8: Buat Pull Request
 
 1. Buka repository Anda di GitHub
-2. Klik tombol **Pull Request**
-3. Pilih branch Anda dan repository utama
-4. Isi judul dan deskripsi PR
-5. Klik **Create Pull Request**
+2. Klik tombol **Compare & pull request**
+3. Isi judul dan deskripsi PR
+4. Klik **Create Pull Request**
 
-## Review Process
+---
 
-- Tim maintainer akan review PR Anda dalam 3-7 hari kerja
-- Mungkin ada feedback atau request perubahan
-- Setelah approved, PR akan di-merge ke main branch
+## ✅ Checklist Sebelum PR
 
-## Checklist Sebelum PR
-
-- [ ] Branch name sesuai format: `Nama_Lengkap_Nama_Kampus`
+- [ ] Branch name sesuai format: `Nama_Lengkap_Sekolah`
 - [ ] Commit message jelas dan deskriptif
 - [ ] Tidak ada conflict dengan branch main
-- [ ] Kode sudah ditest di local
-- [ ] Tidak ada hardcode path atau sensitive data
-- [ ] File JSON sudah di-format dengan benar
-- [ ] Gambar/asset sudah optimal (jika ada)
+- [ ] Sudah ditest di local (`npm run dev`)
+- [ ] File JSON valid (tidak ada syntax error)
+- [ ] Gambar sudah dioptimasi (jika ada)
 
-## Standar Kode
+---
 
-### Markdown Materi
+## 📋 Standar Penulisan
+
+### Format Materi (Markdown)
 
 ```markdown
 # Judul Materi
 
-Pengenalan singkat...
+Pengenalan singkat tentang materi...
+
+---
 
 ## Apa itu [Topik]?
 
-Penjelasan...
-
-## Cara Kerja
-
-1. Step pertama
-2. Step kedua
-3. Step ketiga
+Penjelasan detail...
 
 ## Contoh Kode
 
-\`\`\`php
+```php
 <?php
 echo "Hello World";
 ?>
-\`\`\`
+```
 
 ## Kesimpulan
 
-Summary...
-
-## Referensi
-
-- [Link 1](url)
-- [Link 2](url)
+Ringkasan materi...
 ```
 
-### JSON Format
+### Format JSON
 
-```json
-{
-  "id": 1,
-  "slug": "lowercase-with-hyphens",
-  "title": "Judul dengan Capitalize",
-  "description": "Deskripsi singkat",
-  "file": "lowercase-filename.md",
-  "author": "Nama Lengkap",
-  "date": "YYYY-MM-DD"
-}
-```
+- Gunakan lowercase dengan hyphen untuk `slug` dan `file`
+- Gunakan format tanggal `YYYY-MM-DD`
+- Pastikan JSON valid sebelum commit
 
-## Tips Berkontribusi
+---
 
-1. **Komunikasi** - Diskusikan ide besar sebelum mulai
-2. **Research** - Pastikan materi akurat dan up-to-date
-3. **Testing** - Test di local sebelum push
-4. **Dokumentasi** - Pastikan README/docs update
-5. **Feedback** - Terima saran dengan terbuka
+## ⏱️ Review Process
 
-## Pertanyaan?
+- Tim maintainer akan review PR dalam 3-7 hari
+- Mungkin ada feedback atau request perubahan
+- Setelah approved, PR akan di-merge ke main
 
-Hubungi mentor/maintainer:
+---
+
+## 🏆 Kontributor
+
+Nama Anda akan masuk ke daftar kontributor setelah PR di-approve!
+
+| Nama | Sekolah/Kampus | Kontribusi |
+|------|----------------|------------|
+| M. Rifaldo Saputra | Metamedia | Lead Developer |
+| *Nama Anda* | *Sekolah* | *Kontribusi* |
+
+---
+
+## ❓ Pertanyaan?
+
+Hubungi mentor:
+
 - GitHub: [@rifaldo-dev](https://github.com/rifaldo-dev)
 - Instagram: [@rifaldo.dev](https://www.instagram.com/rifaldo.dev)
-
-## Kontributor
-
-<div align="center">
-
-### Tim Pengembang
-
-[![rifaldo-dev](https://img.shields.io/badge/GitHub-rifaldo--dev-black?style=flat&logo=github)](https://github.com/rifaldo-dev)
-
-**M. Rifaldo Saputra**  
-*Lead Developer | Mentor*  
-[![Instagram](https://img.shields.io/badge/Instagram-rifaldo.dev-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/rifaldo.dev)
-[![GitHub](https://img.shields.io/badge/GitHub-rifaldo--dev-black?style=flat&logo=github)](https://github.com/rifaldo-dev)
-
----
-
-### Kontributor Aktif
-
-*Daftar peserta yang berkontribusi pada platform ini*
-
-| Nama | Sekolah/Kampus | Kontribusi | GitHub |
-|------|-----------------|-----------|--------|
-| Rifaldo Saputra | Metamedia | Lead Dev | [@rifaldo-dev](https://github.com/rifaldo-dev) |
-| *Nama Kontributor* | *Sekolah* | *Materi/Showcase* | *GitHub* |
-
----
-
-### Bagaimana Nama Anda Masuk Daftar?
-
-1. Fork repository ini
-2. Kontribusi (tambah materi, showcase, atau improvement)
-3. Buat Pull Request
-4. Tunggu PR di-approve
-5. Nama Anda akan masuk ke daftar kontributor!
-
-</div>
 
 ---
 
