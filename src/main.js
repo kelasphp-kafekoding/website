@@ -72,9 +72,9 @@ app.innerHTML = `
           </div>
         </div>
         <div class="gallery-item" data-index="1">
-          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop&auto=format" alt="Coding Session" loading="lazy" decoding="async">
+          <img src="/assets/rotasisimulasi.jpg" alt="Rotasi Stasiun - Fix Materi" loading="lazy" decoding="async">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Coding Session</span>
+            <span class="gallery-caption">Rotasi Stasiun - Fix Materi</span>
           </div>
         </div>
         <div class="gallery-item" data-index="2">
