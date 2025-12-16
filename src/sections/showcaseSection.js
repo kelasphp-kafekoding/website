@@ -1,3 +1,20 @@
+// Sanitize HTML to prevent XSS attacks
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Sanitize URL to prevent javascript: protocol attacks
+function sanitizeUrl(url) {
+  if (!url) return '#';
+  const trimmed = url.trim().toLowerCase();
+  if (trimmed.startsWith('javascript:') || trimmed.startsWith('data:')) {
+    return '#';
+  }
+  return url;
+}
+
 export const showcaseSection = async () => {
   const showcaseGrid = document.getElementById('showcase-grid');
   
@@ -11,16 +28,16 @@ export const showcaseSection = async () => {
       
       showcaseGrid.innerHTML = limitedProjects.map(project => `
         <div class="showcase-card">
-          <img src="${project.gambar}" alt="${project.judul}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-          <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--text);">${project.judul}</h3>
-          <p style="color: var(--text-light); margin-bottom: 16px; line-height: 1.6;">${project.deks}</p>
+          <img src="${sanitizeUrl(project.gambar)}" alt="${escapeHtml(project.judul)}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--text);">${escapeHtml(project.judul)}</h3>
+          <p style="color: var(--text-light); margin-bottom: 16px; line-height: 1.6;">${escapeHtml(project.deks)}</p>
           <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
-            ${project.tech.map(tech => `<span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600;">${tech}</span>`).join('')}
+            ${project.tech.map(tech => `<span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600;">${escapeHtml(tech)}</span>`).join('')}
           </div>
-          <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;"><i class="fa-solid fa-user" style="margin-right: 6px;"></i>${project.namaPeserta}</p>
+          <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;"><i class="fa-solid fa-user" style="margin-right: 6px;"></i>${escapeHtml(project.namaPeserta)}</p>
           <div style="display: flex; gap: 12px;">
-            <a href="${project.github}" target="_blank" style="color: var(--secondary); text-decoration: none; font-weight: 600;">GitHub →</a>
-            <a href="${project.project}" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">Live Demo →</a>
+            <a href="${sanitizeUrl(project.github)}" target="_blank" rel="noopener noreferrer" style="color: var(--secondary); text-decoration: none; font-weight: 600;">GitHub →</a>
+            <a href="${sanitizeUrl(project.project)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-weight: 600;">Live Demo →</a>
           </div>
         </div>
       `).join('');

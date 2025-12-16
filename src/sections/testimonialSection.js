@@ -4,6 +4,13 @@ const COMMENTS_PER_PAGE = 5;
 let allComments = [];
 let currentPage = 1;
 
+// Sanitize HTML to prevent XSS attacks
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 function generateRandomId() {
   return Math.random().toString(36).substr(2, 9);
 }
@@ -58,15 +65,15 @@ function renderComments(page = 1) {
   commentsCount.textContent = `(${allComments.length})`;
   
   commentsList.innerHTML = pageComments.map(comment => `
-    <div class="comment-card" style="border-left-color: ${comment.color || '#3b82f6'};">
+    <div class="comment-card" style="border-left-color: ${escapeHtml(comment.color) || '#3b82f6'};">
       <div class="comment-header">
         <div class="comment-info">
-          <h4 class="comment-name">${comment.name}</h4>
-          <p class="comment-status">${comment.status}</p>
+          <h4 class="comment-name">${escapeHtml(comment.name)}</h4>
+          <p class="comment-status">${escapeHtml(comment.status)}</p>
         </div>
         <span class="comment-date">${getRelativeTime(comment.date)}</span>
       </div>
-      <p class="comment-message">${comment.message}</p>
+      <p class="comment-message">${escapeHtml(comment.message)}</p>
     </div>
   `).join('');
   
@@ -210,6 +217,4 @@ function setupCommentForm() {
 export const testimonialSection = () => {
   loadComments();
   setupCommentForm();
-  
-  setInterval(loadComments, 10000);
 };

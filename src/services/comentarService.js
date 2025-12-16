@@ -1,17 +1,15 @@
-// Google Apps Script disabled temporarily - using local data only
-const API_URL = null;
+const API_URL = 'https://script.google.com/macros/s/AKfycbyIwhn0QcwmnQfswCH6cEkLNQD85cL-1R2MdZPDRdJ2LKM-F2FExbORAy7lMPXcyvUM/exec';
 const LOCAL_STORAGE_KEY = 'kelas_php_comments_local';
 
 let cachedComentarData = null;
 let cacheTimestamp = 0;
-const CACHE_DURATION = 10000;
+const CACHE_DURATION = 30000;
 
 function getLocalComments() {
   try {
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
     return stored ? JSON.parse(stored) : [];
   } catch (err) {
-    console.error('Error reading localStorage:', err);
     return [];
   }
 }
@@ -19,9 +17,8 @@ function getLocalComments() {
 function saveLocalComments(comments) {
   try {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(comments));
-    console.log('✓ Comments saved to localStorage');
   } catch (err) {
-    console.error('Error saving to localStorage:', err);
+    // Silent fail
   }
 }
 
@@ -33,43 +30,69 @@ export const comentarService = {
       return { comentar: cachedComentarData };
     }
 
-    // Load from showcase.json + localStorage only (Google Apps Script disabled)
     try {
-      const response = await fetch('/showcase.json');
+      const response = await fetch(API_URL, { 
+        method: 'GET',
+        mode: 'cors'
+      });
+      
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      
       const data = await response.json();
-      const showcaseComments = data.testimonials || [];
-      const localComments = getLocalComments();
       
-      const allComments = [...showcaseComments, ...localComments];
-      cachedComentarData = allComments;
-      cacheTimestamp = now;
-      
-      return { comentar: allComments };
+      if (data.comentar && Array.isArray(data.comentar)) {
+        cachedComentarData = data.comentar;
+        cacheTimestamp = now;
+        return { comentar: data.comentar };
+      } else {
+        throw new Error('Invalid response');
+      }
     } catch (err) {
-      const localComments = getLocalComments();
-      return { comentar: localComments };
+      // Fallback to showcase.json
+      try {
+        const response = await fetch('/showcase.json');
+        const data = await response.json();
+        const comments = data.testimonials || [];
+        cachedComentarData = comments;
+        cacheTimestamp = now;
+        return { comentar: comments };
+      } catch (fallbackErr) {
+        return { comentar: [] };
+      }
     }
   },
 
   addComentar: async (newComment) => {
-    // Save to localStorage only (Google Apps Script disabled)
     try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(newComment),
+        mode: 'cors'
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        if (data.status === 200) {
+          cachedComentarData = null;
+          cacheTimestamp = 0;
+          return { success: true, data: newComment };
+        }
+      }
+      throw new Error('API error');
+    } catch (err) {
+      // Fallback to localStorage
       const localComments = getLocalComments();
       localComments.push(newComment);
       saveLocalComments(localComments);
-      
       cachedComentarData = null;
       cacheTimestamp = 0;
-      
       return { success: true, data: newComment, source: 'localStorage' };
-    } catch (err) {
-      throw new Error('Gagal menyimpan komentar. ' + err.message);
     }
   },
 
   clearCache: () => {
     cachedComentarData = null;
     cacheTimestamp = 0;
-    console.log('Cache cleared');
   }
 };
