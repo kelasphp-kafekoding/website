@@ -15,55 +15,108 @@ function sanitizeUrl(url) {
   return url;
 }
 
-export const showcaseSection = async () => {
+const renderProjects = (projects, showViewAll = false, totalCount = 0) => {
   const showcaseGrid = document.getElementById('showcase-grid');
+  
+  if (projects.length > 0) {
+    showcaseGrid.innerHTML = projects.map(project => `
+      <div class="showcase-card">
+        <div class="card-image">
+          <img src="${sanitizeUrl(project.gambar)}" alt="${escapeHtml(project.judul)}" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">${escapeHtml(project.judul)}</h3>
+          <p class="card-desc">${escapeHtml(project.deks)}</p>
+          <div class="card-tech">
+            ${project.tech.map(tech => `<span class="tech-badge">${escapeHtml(tech)}</span>`).join('')}
+          </div>
+          <div class="card-footer">
+            <span class="card-author"><i class="fa-solid fa-user"></i>${escapeHtml(project.namaPeserta)}</span>
+            <div class="card-links">
+              <a href="${sanitizeUrl(project.github)}" target="_blank" rel="noopener noreferrer" class="card-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="${sanitizeUrl(project.project)}" target="_blank" rel="noopener noreferrer" class="card-link demo" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    if (showViewAll && totalCount > 6) {
+      showcaseGrid.innerHTML += `
+        <div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;">
+          <a href="/showcase.html" style="display: inline-block; background: var(--text); color: white; padding: 14px 36px; text-decoration: none; border-radius: 30px; font-weight: 700; transition: transform 0.25s ease, box-shadow 0.25s ease; box-shadow: 0 10px 30px rgba(10, 14, 39, 0.18);">
+            LIHAT SEMUA
+          </a>
+        </div>
+      `;
+    }
+  } else {
+    showcaseGrid.innerHTML = `
+      <div class="coming-soon" style="grid-column: 1 / -1;">
+        <div class="coming-soon-icon">🔍</div>
+        <h3>Tidak Ada Hasil</h3>
+        <p>Coba kata kunci lain untuk pencarian</p>
+      </div>
+    `;
+  }
+};
+
+export const showcaseSection = async () => {
+  const showcaseContainer = document.querySelector('.showcase-container');
+  
+  // Tambahkan search bar sebelum grid
+  const searchHTML = `
+    <div class="showcase-search">
+      <input type="text" id="showcase-search-input" placeholder="Cari proyek, nama, atau teknologi...">
+      <i class="fa-solid fa-search"></i>
+    </div>
+  `;
+  
+  const subtitleEl = showcaseContainer.querySelector('.showcase-subtitle');
+  if (subtitleEl) {
+    subtitleEl.insertAdjacentHTML('afterend', searchHTML);
+  }
   
   try {
     const response = await fetch('/showcase.json');
     const data = await response.json();
     
     if (data.showcase && data.showcase.length > 0) {
-      // Hanya tampilkan 6 project pertama
-      const limitedProjects = data.showcase.slice(0, 6);
+      const allProjects = data.showcase;
+      const limitedProjects = allProjects.slice(0, 6);
       
-      showcaseGrid.innerHTML = limitedProjects.map(project => `
-        <div class="showcase-card">
-          <img src="${sanitizeUrl(project.gambar)}" alt="${escapeHtml(project.judul)}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-          <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--text);">${escapeHtml(project.judul)}</h3>
-          <p style="color: var(--text-light); margin-bottom: 16px; line-height: 1.6;">${escapeHtml(project.deks)}</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
-            ${project.tech.map(tech => `<span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600;">${escapeHtml(tech)}</span>`).join('')}
-          </div>
-          <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;"><i class="fa-solid fa-user" style="margin-right: 6px;"></i>${escapeHtml(project.namaPeserta)}</p>
-          <div style="display: flex; gap: 12px;">
-            <a href="${sanitizeUrl(project.github)}" target="_blank" rel="noopener noreferrer" style="color: var(--secondary); text-decoration: none; font-weight: 600;">GitHub →</a>
-            <a href="${sanitizeUrl(project.project)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-weight: 600;">Live Demo →</a>
-          </div>
-        </div>
-      `).join('');
+      renderProjects(limitedProjects, true, allProjects.length);
       
-      // Tambahkan tombol "LIHAT SEMUA" jika ada lebih dari 6 project
-      if (data.showcase.length > 6) {
-        showcaseGrid.innerHTML += `
-          <div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;">
-            <a href="/showcase.html" style="display: inline-block; background: var(--text); color: white; padding: 14px 36px; text-decoration: none; border-radius: 30px; font-weight: 700; transition: transform 0.25s ease, box-shadow 0.25s ease; box-shadow: 0 10px 30px rgba(10, 14, 39, 0.18);">
-              LIHAT SEMUA
-            </a>
-          </div>
-        `;
-      }
+      // Setup search
+      const searchInput = document.getElementById('showcase-search-input');
+      let debounceTimer;
+      
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          const term = e.target.value.toLowerCase().trim();
+          
+          if (!term) {
+            renderProjects(limitedProjects, true, allProjects.length);
+            return;
+          }
+          
+          const filtered = allProjects.filter(p => 
+            p.judul.toLowerCase().includes(term) ||
+            p.namaPeserta.toLowerCase().includes(term) ||
+            p.deks.toLowerCase().includes(term) ||
+            p.tech.some(t => t.toLowerCase().includes(term))
+          );
+          
+          renderProjects(filtered, false);
+        }, 300);
+      });
     } else {
-      showcaseGrid.innerHTML = `
-        <div class="coming-soon">
-          <div class="coming-soon-icon">🚀</div>
-          <h3>Coming Soon</h3>
-          <p>Showcase proyek dari peserta akan segera ditampilkan di sini</p>
-        </div>
-      `;
+      renderProjects([]);
     }
   } catch (error) {
     console.error('Error loading showcase:', error);
-    showcaseGrid.innerHTML = `
+    document.getElementById('showcase-grid').innerHTML = `
       <div class="coming-soon">
         <div class="coming-soon-icon">🚀</div>
         <h3>Coming Soon</h3>

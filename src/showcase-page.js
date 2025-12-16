@@ -47,16 +47,22 @@ const renderProjects = (projects) => {
   if (projects.length > 0) {
     showcaseGrid.innerHTML = projects.map(project => `
       <div class="showcase-card">
-        <img src="${sanitizeUrl(project.gambar)}" alt="${escapeHtml(project.judul)}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-        <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--text);">${escapeHtml(project.judul)}</h3>
-        <p style="color: var(--text-light); margin-bottom: 16px; line-height: 1.6;">${escapeHtml(project.deks)}</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
-          ${project.tech.map(tech => `<span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600;">${escapeHtml(tech)}</span>`).join('')}
+        <div class="card-image">
+          <img src="${sanitizeUrl(project.gambar)}" alt="${escapeHtml(project.judul)}" loading="lazy">
         </div>
-        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;"><i class="fa-solid fa-user" style="margin-right: 6px;"></i>${escapeHtml(project.namaPeserta)}</p>
-        <div style="display: flex; gap: 12px;">
-          <a href="${sanitizeUrl(project.github)}" target="_blank" rel="noopener noreferrer" style="color: var(--secondary); text-decoration: none; font-weight: 600;">GitHub →</a>
-          <a href="${sanitizeUrl(project.project)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-weight: 600;">Live Demo →</a>
+        <div class="card-body">
+          <h3 class="card-title">${escapeHtml(project.judul)}</h3>
+          <p class="card-desc">${escapeHtml(project.deks)}</p>
+          <div class="card-tech">
+            ${project.tech.map(tech => `<span class="tech-badge">${escapeHtml(tech)}</span>`).join('')}
+          </div>
+          <div class="card-footer">
+            <span class="card-author"><i class="fa-solid fa-user"></i>${escapeHtml(project.namaPeserta)}</span>
+            <div class="card-links">
+              <a href="${sanitizeUrl(project.github)}" target="_blank" rel="noopener noreferrer" class="card-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="${sanitizeUrl(project.project)}" target="_blank" rel="noopener noreferrer" class="card-link demo" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
         </div>
       </div>
     `).join('')
