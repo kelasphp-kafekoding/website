@@ -22,10 +22,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 html, body {
-  height: 100%;
+  min-height: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -36,6 +38,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
+  overflow-x: hidden;
 }
 
 /* Optimasi gambar */
@@ -203,7 +206,6 @@ navbar {
 
 /* Welcome / Hero Section */
 .welcome-section {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1117,7 +1119,7 @@ navbar {
 .floating-icon:nth-child(5) { left: 48%; top: 75%; animation-delay: 0.4s; animation-duration: 7.5s; }
 .floating-icon:nth-child(6) { left: 62%; top: 25%; animation-delay: 0.5s; animation-duration: 8.5s; }
 .floating-icon:nth-child(7) { left: 75%; top: 55%; animation-delay: 0.6s; animation-duration: 9.5s; }
-.floating-icon:nth-child(8) { left: 88%; top: 18%; animation-delay: 0.7s; animation-duration: 7s; }
+.floating-icon:nth-child(8) { left: 85%; top: 18%; animation-delay: 0.7s; animation-duration: 7s; }
 .floating-icon:nth-child(9) { left: 8%; top: 48%; animation-delay: 0.8s; animation-duration: 8s; }
 .floating-icon:nth-child(10) { left: 28%; top: 78%; animation-delay: 0.9s; animation-duration: 9s; }
 .floating-icon:nth-child(11) { left: 42%; top: 42%; animation-delay: 1s; animation-duration: 10s; }
