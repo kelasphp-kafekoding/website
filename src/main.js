@@ -6,14 +6,13 @@ import { showcaseSection } from './sections/showcaseSection.js'
 import { testimonialSection } from './sections/testimonialSection.js'
 import { renderFooter } from './components/footer.js'
 
-// Initialize AOS - disable on mobile for performance
+// Initialize AOS - shorter duration on mobile
 const isMobile = window.innerWidth < 768;
 AOS.init({
-  duration: isMobile ? 0 : 700,
+  duration: isMobile ? 400 : 700,
   once: true,
-  offset: isMobile ? 0 : 80,
-  easing: 'ease-out-cubic',
-  disable: isMobile
+  offset: isMobile ? 30 : 80,
+  easing: 'ease-out-cubic'
 });
 
 const app = document.querySelector('#app')

@@ -1,8 +1,13 @@
 export const welcomeSection = () => {
-  // Skip floating icons on mobile for better performance
-  if (window.innerWidth < 768) return;
+  const isMobile = window.innerWidth < 768;
   
-  const icons = [
+  // Fewer icons on mobile for performance
+  const icons = isMobile ? [
+    { src: '/icons/php.svg', alt: 'PHP' },
+    { src: '/icons/laravel.svg', alt: 'Laravel' },
+    { src: '/icons/mysql-icon-light.svg', alt: 'MySQL' },
+    { src: '/icons/html5.svg', alt: 'HTML5' }
+  ] : [
     { src: '/icons/php.svg', alt: 'PHP' },
     { src: '/icons/laravel.svg', alt: 'Laravel' },
     { src: '/icons/mysql-icon-light.svg', alt: 'MySQL' },

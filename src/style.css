@@ -746,10 +746,10 @@ navbar {
 }
 
 @media (max-width: 768px) {
-  /* Hide floating icons on mobile for performance */
-  .floating-icon,
-  .icons-showcase {
-    display: none !important;
+  /* Reduce floating icons size on mobile */
+  .floating-icon {
+    height: 28px;
+    opacity: 0.5;
   }
 
   navbar {
