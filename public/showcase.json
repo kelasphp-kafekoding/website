@@ -40,26 +40,7 @@
       "github": "https://github.com",
       "project": "https://example.com"
     },
-    {
-      "id": "proj5",
-      "judul": "Project Syarla Azira Zulva",
-      "deks": "Website dinamis dengan tampilan responsif dan fitur interaktif yang menarik.",
-      "gambar": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=250&fit=crop",
-      "namaPeserta": "Syarla Azira Zulva",
-      "tech": ["PHP", "CSS", "JavaScript"],
-      "github": "https://github.com",
-      "project": "https://example.com"
-    },
-    {
-      "id": "proj6",
-      "judul": "Project Marsya Dalila Putri",
-      "deks": "Aplikasi web dengan desain elegan dan fungsionalitas yang optimal.",
-      "gambar": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=400&h=250&fit=crop",
-      "namaPeserta": "Marsya Dalila Putri",
-      "tech": ["PHP", "MySQL", "Tailwind CSS"],
-      "github": "https://github.com",
-      "project": "https://example.com"
-    },
+
     {
       "id": "proj7",
       "judul": "Project Arief Arafad",
