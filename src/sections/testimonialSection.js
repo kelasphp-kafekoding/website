@@ -124,7 +124,7 @@ async function loadComments() {
     allComments = response.comentar.sort((a, b) => {
       return new Date(b.date) - new Date(a.date);
     });
-    console.log('✓ Loaded', allComments.length, 'comments');
+
     currentPage = 1;
     renderComments(currentPage);
   } catch (err) {

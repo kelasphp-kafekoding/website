@@ -44,9 +44,9 @@ export const renderFooter = () => {
           <div class="footer-column">
             <h4>Ikuti Kami</h4>
             <ul>
-              <li><a href="https://www.instagram.com/kafekoding" target="_blank">Instagram</a></li>
-              <li><a href="https://www.tiktok.com/@kafekoding" target="_blank">TikTok</a></li>
-              <li><a href="https://github.com/kelasphp-kafekoding/" target="_blank">GitHub</a></li>
+              <li><a href="https://www.instagram.com/kafekoding" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://www.tiktok.com/@kafekoding" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+              <li><a href="https://github.com/kelasphp-kafekoding/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             </ul>
           </div>
         </div>
@@ -78,8 +78,7 @@ export const initGiscus = (term = 'default-materi') => {
     return
   }
 
-  console.log('=== Giscus Init ===')
-  console.log('Term:', term)
+
 
   // Remove all existing Giscus elements
   const existingGiscus = document.querySelectorAll('.giscus, giscus-widget, iframe.giscus-frame')
@@ -112,6 +111,4 @@ export const initGiscus = (term = 'default-materi') => {
   script.async = true
 
   wrapper.appendChild(script)
-  
-  console.log('Giscus script added with term:', term)
 }

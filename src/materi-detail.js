@@ -83,11 +83,6 @@ const renderMateriDetail = async () => {
 
   // Buat term unik untuk Giscus berdasarkan slug materi
   const term = `materi:${materiData.slug}`
-  
-  console.log('=== Materi Detail Debug ===')
-  console.log('Slug:', materiData.slug)
-  console.log('Term for Giscus:', term)
-  console.log('Title:', materiData.title)
 
   app.innerHTML = `
     ${renderNavbar()}

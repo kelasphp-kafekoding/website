@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Kelas PHP Kafekoding - Belajar PHP dengan cara yang menyenangkan dan interaktif" />
     
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     
@@ -22,8 +26,8 @@
     <title>Kelas PHP - Kafekoding</title>
     
     <!-- Font Awesome - lazy load -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" /></noscript>
   </head>
   <body>
     <div id="tsparticles"></div>
@@ -33,26 +37,27 @@
     <!-- Lazy load non-critical scripts -->
     <script>
       // Load SweetAlert2 only when needed
-      window.loadSwal = () => {
+      window.loadSwal = function() {
         if (!window.Swal) {
-          const s = document.createElement('script');
+          var s = document.createElement('script');
           s.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+          s.crossOrigin = 'anonymous';
           document.head.appendChild(s);
         }
       };
       // Load reCAPTCHA when form is visible
-      const loadRecaptcha = () => {
+      function loadRecaptcha() {
         if (!document.querySelector('script[src*="recaptcha"]')) {
-          const s = document.createElement('script');
+          var s = document.createElement('script');
           s.src = 'https://www.google.com/recaptcha/api.js';
           s.async = true;
           document.head.appendChild(s);
         }
-      };
+      }
       // Intersection Observer for lazy loading
       if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
             if (entry.isIntersecting) {
               loadRecaptcha();
               window.loadSwal();
@@ -60,8 +65,8 @@
             }
           });
         }, { rootMargin: '200px' });
-        setTimeout(() => {
-          const form = document.getElementById('comment-form');
+        setTimeout(function() {
+          var form = document.getElementById('comment-form');
           if (form) observer.observe(form);
         }, 1000);
       } else {
