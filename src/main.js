@@ -247,6 +247,9 @@ welcomeSection();
 showcaseSection();
 initGallery();
 
+// Refresh AOS setelah konten dinamis di-render
+setTimeout(() => AOS.refresh(), 500);
+
 // Lazy load tsParticles untuk performa lebih baik
 const loadParticles = async () => {
   // Skip particles di mobile untuk performa

@@ -1,3 +1,5 @@
+import AOS from 'aos';
+
 // Sanitize HTML to prevent XSS attacks
 function escapeHtml(text) {
   const div = document.createElement('div');
@@ -19,8 +21,8 @@ const renderProjects = (projects, showViewAll = false, totalCount = 0) => {
   const showcaseGrid = document.getElementById('showcase-grid');
   
   if (projects.length > 0) {
-    showcaseGrid.innerHTML = projects.map(project => `
-      <div class="showcase-card">
+    showcaseGrid.innerHTML = projects.map((project, index) => `
+      <div class="showcase-card" data-aos="fade-up" data-aos-delay="${index * 100}">
         <div class="card-image">
           <img src="${sanitizeUrl(project.gambar)}" alt="${escapeHtml(project.judul)}" loading="lazy">
         </div>
@@ -45,12 +47,17 @@ const renderProjects = (projects, showViewAll = false, totalCount = 0) => {
     const limit = isMobile ? 3 : 6;
     if (showViewAll && totalCount > limit) {
       showcaseGrid.innerHTML += `
-        <div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;">
+        <div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;" data-aos="fade-up" data-aos-delay="${limit * 100}">
           <a href="/showcase.html" style="display: inline-block; background: var(--text); color: white; padding: 14px 36px; text-decoration: none; border-radius: 30px; font-weight: 700; transition: transform 0.25s ease, box-shadow 0.25s ease; box-shadow: 0 10px 30px rgba(10, 14, 39, 0.18);">
             LIHAT SEMUA
           </a>
         </div>
       `;
+    }
+    
+    // Refresh AOS untuk elemen baru
+    if (typeof AOS !== 'undefined') {
+      AOS.refresh();
     }
   } else {
     showcaseGrid.innerHTML = `
