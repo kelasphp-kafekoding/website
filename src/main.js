@@ -71,7 +71,7 @@ app.innerHTML = `
         <div class="floating-icons-code">
           <img src="/icons/php.svg" alt="PHP" class="float-icon icon-1">
           <img src="/icons/html5.svg" alt="HTML5" class="float-icon icon-2">
-          <img src="/icons/laravel.svg" alt="Laravel" class="float-icon icon-3">
+          <img src="/icons/mysql-icon-light.svg" alt="MySQL" class="float-icon icon-3">
         </div>
       </div>
     </div>
