@@ -46,8 +46,8 @@ app.innerHTML = `
     <div class="hero-container">
       <div class="hero-text">
         
-        <h1 data-aos="fade-up" data-aos-delay="100">Belajar <span class="text-gradient">PHP</span> dengan cara yang menyenangkan dan interaktif</h1>
-        <p data-aos="fade-up" data-aos-delay="200">Website profesional, aplikasi web dinamis, dan sistem informasi custom yang dirancang khusus sesuai kebutuhan Anda.</p>
+        <h1 data-aos="fade-up" data-aos-delay="100">Selamat Datang di <span class="text-gradient">Kelas PHP</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">Belajar PHP dengan cara yang menyenangkan dan interaktif</p>
         <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
           <button class="btn-primary" onclick="window.location.href='/materi.html'"><i class="fa-solid fa-play"></i> Mulai Belajar</button>
           <button class="btn-secondary" onclick="window.location.href='#showcase'"><i class="fa-solid fa-folder-open"></i> Lihat Showcase</button>
