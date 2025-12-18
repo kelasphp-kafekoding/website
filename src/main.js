@@ -45,12 +45,12 @@ app.innerHTML = `
   <section class="welcome-section" id="home">
     <div class="hero-container">
       <div class="hero-text">
-        <span class="hero-badge" data-aos="fade-up"><i class="fa-solid fa-rocket"></i> Kelas PHP Kafekoding</span>
-        <h1 data-aos="fade-up" data-aos-delay="100">Belajar <span class="text-gradient">PHP</span> dengan Cara yang Menyenangkan</h1>
-        <p data-aos="fade-up" data-aos-delay="200">Kuasai PHP dari dasar hingga mahir. Website profesional, aplikasi web dinamis, dan sistem informasi custom yang dirancang khusus sesuai kebutuhan Anda.</p>
+        
+        <h1 data-aos="fade-up" data-aos-delay="100">Selamat Datang di <span class="text-gradient">Kelas PHP</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">Website profesional, aplikasi web dinamis, dan sistem informasi custom yang dirancang khusus sesuai kebutuhan Anda.</p>
         <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
           <button class="btn-primary" onclick="window.location.href='/materi.html'"><i class="fa-solid fa-play"></i> Mulai Belajar</button>
-          <button class="btn-secondary" onclick="window.location.href='#showcase'"><i class="fa-solid fa-folder-open"></i> Lihat Portfolio</button>
+          <button class="btn-secondary" onclick="window.location.href='#showcase'"><i class="fa-solid fa-folder-open"></i> Lihat Showcase</button>
         </div>
       </div>
       
@@ -62,10 +62,16 @@ app.innerHTML = `
               <span class="dot yellow"></span>
               <span class="dot green"></span>
             </div>
-            <span class="code-title">index.php</span>
+            <div class="code-tabs">
+              <button class="code-tab active" data-tab="code"><i class="fa-solid fa-code"></i> index.php</button>
+              <button class="code-tab" data-tab="terminal"><i class="fa-solid fa-terminal"></i> Terminal</button>
+            </div>
           </div>
-          <div class="code-body">
+          <div class="code-body" id="tab-code">
             <pre><code id="typing-code"></code></pre>
+          </div>
+          <div class="code-body terminal-body" id="tab-terminal" style="display: none;">
+            <pre><code id="typing-terminal"></code></pre>
           </div>
         </div>
         <div class="floating-icons-code">
@@ -272,8 +278,10 @@ const initGallery = () => {
 // Code typing animation
 const initTypingAnimation = () => {
   const codeElement = document.getElementById('typing-code');
+  const terminalElement = document.getElementById('typing-terminal');
   if (!codeElement) return;
   
+  // PHP Code
   const codeLines = [
     '<span class="keyword">&lt;?php</span>',
     '',
@@ -292,41 +300,93 @@ const initTypingAnimation = () => {
     '<span class="keyword">echo</span> <span class="string">"Selamat Belajar!"</span>;',
   ];
   
-  let lineIndex = 0;
-  let charIndex = 0;
-  let currentText = '';
+  // Terminal output
+  const terminalLines = [
+    '<span class="terminal-prompt">$</span> php -S localhost:80',
+    '',
+    '<span class="terminal-info">[Thu Dec 18 10:30:00 2025]</span> PHP Development Server started',
+    '<span class="terminal-success">Listening on http://localhost:80</span>',
+    'Document root is <span class="terminal-path">C:/xampp/htdocs/kelasphp</span>',
+    'Press Ctrl+C to quit.',
+    '',
+    '<span class="terminal-output">[Thu Dec 18 10:30:05]</span> <span class="terminal-success">200</span> /index.php',
+  ];
   
-  const type = () => {
-    if (lineIndex < codeLines.length) {
-      const currentLine = codeLines[lineIndex];
-      
-      if (charIndex < currentLine.length) {
-        // Handle HTML tags - add them all at once
-        if (currentLine[charIndex] === '<') {
-          const tagEnd = currentLine.indexOf('>', charIndex);
-          if (tagEnd !== -1) {
-            currentText += currentLine.substring(charIndex, tagEnd + 1);
-            charIndex = tagEnd + 1;
+  let codeFinished = false;
+  let terminalFinished = false;
+  
+  // Generic typing function
+  const typeContent = (element, lines, onComplete) => {
+    let lineIndex = 0;
+    let charIndex = 0;
+    let currentText = '';
+    
+    const type = () => {
+      if (lineIndex < lines.length) {
+        const currentLine = lines[lineIndex];
+        
+        if (charIndex < currentLine.length) {
+          if (currentLine[charIndex] === '<') {
+            const tagEnd = currentLine.indexOf('>', charIndex);
+            if (tagEnd !== -1) {
+              currentText += currentLine.substring(charIndex, tagEnd + 1);
+              charIndex = tagEnd + 1;
+            }
+          } else {
+            currentText += currentLine[charIndex];
+            charIndex++;
           }
+          element.innerHTML = currentText + '<span class="typing-cursor"></span>';
+          setTimeout(type, 25);
         } else {
-          currentText += currentLine[charIndex];
-          charIndex++;
+          currentText += '\n';
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(type, 80);
         }
-        codeElement.innerHTML = currentText + '<span class="typing-cursor"></span>';
-        setTimeout(type, 30);
       } else {
-        currentText += '\n';
-        lineIndex++;
-        charIndex = 0;
-        setTimeout(type, 100);
+        element.innerHTML = currentText;
+        if (onComplete) onComplete();
       }
-    } else {
-      codeElement.innerHTML = currentText;
-    }
+    };
+    
+    type();
   };
   
-  // Start typing after a delay
-  setTimeout(type, 1000);
+  // Start code typing
+  setTimeout(() => {
+    typeContent(codeElement, codeLines, () => {
+      codeFinished = true;
+    });
+  }, 800);
+  
+  // Tab switching
+  const tabs = document.querySelectorAll('.code-tab');
+  const tabCode = document.getElementById('tab-code');
+  const tabTerminal = document.getElementById('tab-terminal');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      const tabName = tab.dataset.tab;
+      if (tabName === 'code') {
+        tabCode.style.display = 'block';
+        tabTerminal.style.display = 'none';
+      } else {
+        tabCode.style.display = 'none';
+        tabTerminal.style.display = 'block';
+        
+        // Start terminal typing if not started
+        if (!terminalFinished && terminalElement.innerHTML === '') {
+          typeContent(terminalElement, terminalLines, () => {
+            terminalFinished = true;
+          });
+        }
+      }
+    });
+  });
 };
 
 initTypingAnimation();
