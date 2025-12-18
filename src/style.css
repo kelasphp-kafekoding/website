@@ -257,7 +257,7 @@ navbar {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, var(--text) 0%, #111423 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -281,7 +281,7 @@ navbar {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--secondary);
+  background: var(--text);
   color: white;
   border: none;
   padding: 14px 28px;
@@ -290,13 +290,13 @@ navbar {
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 16px rgba(10, 14, 39, 0.2);
 }
 
 .hero-buttons .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
-  background: #2563eb;
+  box-shadow: 0 8px 24px rgba(10, 14, 39, 0.3);
+  background: #111423;
 }
 
 .hero-buttons .btn-secondary {
