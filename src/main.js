@@ -8,10 +8,10 @@ import { renderFooter } from './components/footer.js'
 
 // Initialize AOS with optimized settings
 AOS.init({
-  duration: 800,
+  duration: 700,
   once: true,
-  offset: 50,
-  disable: 'mobile' // Disable on mobile for better performance
+  offset: 80,
+  easing: 'ease-out-cubic'
 });
 
 const app = document.querySelector('#app')
@@ -53,49 +53,49 @@ app.innerHTML = `
 
   <section class="showcase-section" id="showcase">
     <div class="showcase-container">
-      <h2>Showcase Proyek Peserta</h2>
-      <p class="showcase-subtitle">Karya-karya menakjubkan dari peserta Kelas PHP</p>
+      <h2 data-aos="fade-up">Showcase Proyek Peserta</h2>
+      <p class="showcase-subtitle" data-aos="fade-up" data-aos-delay="100">Karya-karya menakjubkan dari peserta Kelas PHP</p>
       <div class="showcase-grid" id="showcase-grid"></div>
     </div>
   </section>
 
   <section class="gallery-section" id="gallery">
     <div class="gallery-container">
-      <h2>Galeri Kelas PHP</h2>
-      <p class="gallery-subtitle">Dokumentasi kegiatan dan momen belajar bersama di Kelas PHP Kafekoding</p>
+      <h2 data-aos="fade-up">Galeri Kelas PHP</h2>
+      <p class="gallery-subtitle" data-aos="fade-up" data-aos-delay="100">Dokumentasi kegiatan dan momen belajar bersama di Kelas PHP Kafekoding</p>
       
       <div class="gallery-grid" id="gallery-grid">
-        <div class="gallery-item" data-index="0">
+        <div class="gallery-item" data-index="0" data-aos="zoom-in" data-aos-delay="0">
           <img src="/assets/meet.jpg" alt="Belajar Bersama Online" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Belajar Bersama Online</span>
           </div>
         </div>
-        <div class="gallery-item" data-index="1">
+        <div class="gallery-item" data-index="1" data-aos="zoom-in" data-aos-delay="100">
           <img src="/assets/rotasisimulasi.jpg" alt="Rotasi Stasiun - Fix Materi" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Rotasi Stasiun - Fix Materi</span>
           </div>
         </div>
-        <div class="gallery-item" data-index="2">
+        <div class="gallery-item" data-index="2" data-aos="zoom-in" data-aos-delay="200">
           <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop&auto=format" alt="Workshop PHP" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Workshop PHP</span>
           </div>
         </div>
-        <div class="gallery-item" data-index="3">
+        <div class="gallery-item" data-index="3" data-aos="zoom-in" data-aos-delay="300">
           <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop&auto=format" alt="Presentasi Project" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Presentasi Project</span>
           </div>
         </div>
-        <div class="gallery-item" data-index="4">
+        <div class="gallery-item" data-index="4" data-aos="zoom-in" data-aos-delay="400">
           <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&auto=format" alt="Team Collaboration" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Team Collaboration</span>
           </div>
         </div>
-        <div class="gallery-item" data-index="5">
+        <div class="gallery-item" data-index="5" data-aos="zoom-in" data-aos-delay="500">
           <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop&auto=format" alt="Sertifikat Kelulusan" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Sertifikat Kelulusan</span>
@@ -115,11 +115,11 @@ app.innerHTML = `
 
   <section class="comments-section" id="comments">
     <div class="comments-container">
-      <h2>Apa Kata Mereka <span id="comments-count">(0)</span></h2>
-      <p class="comments-subtitle">Dengarkan pengalaman dan testimonial dari komunitas</p>
+      <h2 data-aos="fade-up">Apa Kata Mereka <span id="comments-count">(0)</span></h2>
+      <p class="comments-subtitle" data-aos="fade-up" data-aos-delay="100">Dengarkan pengalaman dan testimonial dari komunitas</p>
       
       <div class="comments-wrapper">
-        <div>
+        <div data-aos="fade-right" data-aos-delay="200">
           <div class="comments-list" id="comments-list">
             <div class="loading-spinner">
               <div></div>
@@ -130,7 +130,7 @@ app.innerHTML = `
           <div class="pagination" id="pagination"></div>
         </div>
         
-        <div class="comment-form-wrapper">
+        <div class="comment-form-wrapper" data-aos="fade-left" data-aos-delay="300">
           <h3>Tulis Pendapatmu</h3>
           <form id="comment-form" class="comment-form">
             <div class="form-group">
