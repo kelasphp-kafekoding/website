@@ -6,12 +6,14 @@ import { showcaseSection } from './sections/showcaseSection.js'
 import { testimonialSection } from './sections/testimonialSection.js'
 import { renderFooter } from './components/footer.js'
 
-// Initialize AOS with optimized settings
+// Initialize AOS - disable on mobile for performance
+const isMobile = window.innerWidth < 768;
 AOS.init({
-  duration: 700,
+  duration: isMobile ? 0 : 700,
   once: true,
-  offset: 80,
-  easing: 'ease-out-cubic'
+  offset: isMobile ? 0 : 80,
+  easing: 'ease-out-cubic',
+  disable: isMobile
 });
 
 const app = document.querySelector('#app')
@@ -78,25 +80,25 @@ app.innerHTML = `
           </div>
         </div>
         <div class="gallery-item" data-index="2" data-aos="zoom-in" data-aos-delay="200">
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop&auto=format" alt="Workshop PHP" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=267&fit=crop&auto=format&q=75" alt="Workshop PHP" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Workshop PHP</span>
           </div>
         </div>
         <div class="gallery-item" data-index="3" data-aos="zoom-in" data-aos-delay="300">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop&auto=format" alt="Presentasi Project" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=267&fit=crop&auto=format&q=75" alt="Presentasi Project" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Presentasi Project</span>
           </div>
         </div>
         <div class="gallery-item" data-index="4" data-aos="zoom-in" data-aos-delay="400">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&auto=format" alt="Team Collaboration" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=267&fit=crop&auto=format&q=75" alt="Team Collaboration" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Team Collaboration</span>
           </div>
         </div>
         <div class="gallery-item" data-index="5" data-aos="zoom-in" data-aos-delay="500">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop&auto=format" alt="Sertifikat Kelulusan" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=267&fit=crop&auto=format&q=75" alt="Sertifikat Kelulusan" loading="lazy" decoding="async">
           <div class="gallery-overlay">
             <span class="gallery-caption">Sertifikat Kelulusan</span>
           </div>
