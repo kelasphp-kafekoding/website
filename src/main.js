@@ -1,7 +1,7 @@
 import './style.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import { welcomeSection } from './sections/welcomeSection.js'
+// welcomeSection removed - using new hero with code typing
 import { showcaseSection } from './sections/showcaseSection.js'
 import { testimonialSection } from './sections/testimonialSection.js'
 import { renderFooter } from './components/footer.js'
@@ -43,13 +43,38 @@ app.innerHTML = `
   </navbar>
 
   <section class="welcome-section" id="home">
-    <div class="welcome-content">
-      <h1 data-aos="fade-up">Selamat Datang di Kelas PHP</h1>
-      <p data-aos="fade-up" data-aos-delay="100">Belajar PHP dengan cara yang menyenangkan dan interaktif</p>
-      <button data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='/materi.html'">Lihat Materi</button>
+    <div class="hero-container">
+      <div class="hero-text">
+        <span class="hero-badge" data-aos="fade-up"><i class="fa-solid fa-rocket"></i> Kelas PHP Kafekoding</span>
+        <h1 data-aos="fade-up" data-aos-delay="100">Belajar <span class="text-gradient">PHP</span> dengan Cara yang Menyenangkan</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Kuasai PHP dari dasar hingga mahir. Website profesional, aplikasi web dinamis, dan sistem informasi custom yang dirancang khusus sesuai kebutuhan Anda.</p>
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+          <button class="btn-primary" onclick="window.location.href='/materi.html'"><i class="fa-solid fa-play"></i> Mulai Belajar</button>
+          <button class="btn-secondary" onclick="window.location.href='#showcase'"><i class="fa-solid fa-folder-open"></i> Lihat Portfolio</button>
+        </div>
+      </div>
+      
+      <div class="hero-code" data-aos="fade-left" data-aos-delay="400">
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="code-title">index.php</span>
+          </div>
+          <div class="code-body">
+            <pre><code id="typing-code"></code></pre>
+          </div>
+        </div>
+        <div class="floating-icons-code">
+          <img src="/icons/php.svg" alt="PHP" class="float-icon icon-1">
+          <img src="/icons/html5.svg" alt="HTML5" class="float-icon icon-2">
+          <img src="/icons/laravel.svg" alt="Laravel" class="float-icon icon-3">
+        </div>
+      </div>
     </div>
-    
-    <div class="icons-showcase" id="icons-container"></div>
   </section>
 
   <section class="showcase-section" id="showcase">
@@ -244,7 +269,66 @@ const initGallery = () => {
   })
 }
 
-welcomeSection();
+// Code typing animation
+const initTypingAnimation = () => {
+  const codeElement = document.getElementById('typing-code');
+  if (!codeElement) return;
+  
+  const codeLines = [
+    '<span class="keyword">&lt;?php</span>',
+    '',
+    '<span class="keyword">class</span> <span class="function">KelasPhp</span> <span class="bracket">{</span>',
+    '  <span class="keyword">public</span> <span class="variable">$nama</span> = <span class="string">"Kafekoding"</span>;',
+    '  <span class="keyword">public</span> <span class="variable">$materi</span> = <span class="bracket">[</span>',
+    '    <span class="string">"PHP Dasar"</span>,',
+    '    <span class="string">"MySQL Database"</span>,',
+    '    <span class="string">"Laravel Framework"</span>,',
+    '  <span class="bracket">]</span>;',
+    '',
+    '  <span class="keyword">public function</span> <span class="function">belajar</span>() <span class="bracket">{</span>',
+    '    <span class="keyword">return</span> <span class="string">"Selamat Belajar!"</span>;',
+    '  <span class="bracket">}</span>',
+    '<span class="bracket">}</span>',
+  ];
+  
+  let lineIndex = 0;
+  let charIndex = 0;
+  let currentText = '';
+  
+  const type = () => {
+    if (lineIndex < codeLines.length) {
+      const currentLine = codeLines[lineIndex];
+      
+      if (charIndex < currentLine.length) {
+        // Handle HTML tags - add them all at once
+        if (currentLine[charIndex] === '<') {
+          const tagEnd = currentLine.indexOf('>', charIndex);
+          if (tagEnd !== -1) {
+            currentText += currentLine.substring(charIndex, tagEnd + 1);
+            charIndex = tagEnd + 1;
+          }
+        } else {
+          currentText += currentLine[charIndex];
+          charIndex++;
+        }
+        codeElement.innerHTML = currentText + '<span class="typing-cursor"></span>';
+        setTimeout(type, 30);
+      } else {
+        currentText += '\n';
+        lineIndex++;
+        charIndex = 0;
+        setTimeout(type, 100);
+      }
+    } else {
+      codeElement.innerHTML = currentText;
+    }
+  };
+  
+  // Start typing after a delay
+  setTimeout(type, 1000);
+};
+
+initTypingAnimation();
 showcaseSection();
 initGallery();
 
