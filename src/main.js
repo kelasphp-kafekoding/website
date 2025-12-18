@@ -250,47 +250,52 @@ initGallery();
 // Refresh AOS setelah konten dinamis di-render
 setTimeout(() => AOS.refresh(), 500);
 
-// Lazy load tsParticles untuk performa lebih baik
+// Lazy load tsParticles - skip entirely for better performance
 const loadParticles = async () => {
-  // Skip particles di mobile untuk performa
-  if (window.innerWidth < 768) return;
+  // Skip particles for better performance (optional feature)
+  if (window.innerWidth < 1024 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   
-  try {
-    const { tsParticles } = await import('tsparticles-engine');
-    const { loadFull } = await import('tsparticles');
-    
-    await loadFull(tsParticles);
-    
-    await tsParticles.load("tsparticles", {
-      particles: {
-        number: { value: 30 },
-        shape: { type: "circle" },
-        size: { value: { min: 2, max: 6 } },
-        opacity: { value: 0.5 },
-        color: { value: "#0a0e27" },
-        move: {
-          enable: true,
-          speed: 0.8,
-          direction: "none",
-          random: true,
-          straight: false,
-          outModes: { default: "out" }
-        }
-      },
-      background: { color: "transparent" },
-      detectRetina: true,
-      fpsLimit: 30
-    });
-  } catch (err) {
-    // Silently fail - particles are not critical
+  // Only load after user interaction or idle
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(async () => {
+      try {
+        const { tsParticles } = await import('tsparticles-engine');
+        const { loadSlim } = await import('tsparticles-slim');
+        
+        await loadSlim(tsParticles);
+        
+        await tsParticles.load("tsparticles", {
+          particles: {
+            number: { value: 20 },
+            shape: { type: "circle" },
+            size: { value: { min: 2, max: 4 } },
+            opacity: { value: 0.4 },
+            color: { value: "#0a0e27" },
+            move: {
+              enable: true,
+              speed: 0.5,
+              direction: "none",
+              random: true,
+              straight: false,
+              outModes: { default: "out" }
+            }
+          },
+          background: { color: "transparent" },
+          detectRetina: false,
+          fpsLimit: 20
+        });
+      } catch (err) {
+        // Silently fail
+      }
+    }, { timeout: 3000 });
   }
 };
 
 // Load particles after page is fully loaded
 if (document.readyState === 'complete') {
-  setTimeout(loadParticles, 1000);
+  setTimeout(loadParticles, 2000);
 } else {
-  window.addEventListener('load', () => setTimeout(loadParticles, 1000));
+  window.addEventListener('load', () => setTimeout(loadParticles, 2000));
 }
 
 testimonialSection();

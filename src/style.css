@@ -415,8 +415,9 @@ navbar {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(10, 14, 39, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  contain: layout style paint;
 }
 
 .showcase-card:hover {
@@ -1077,6 +1078,8 @@ navbar {
   animation: floatIn 0.6s ease-out forwards, floatMove 8s ease-in-out infinite;
   cursor: pointer;
   transition: filter 0.3s ease, transform 0.3s ease;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
 .floating-icon:hover {

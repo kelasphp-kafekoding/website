@@ -2,27 +2,72 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Kelas PHP Kafekoding - Belajar PHP dengan cara yang menyenangkan dan interaktif" />
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
     <!-- Preconnect untuk external resources -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
     
-    <!-- Font Awesome dengan display swap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/icons/kk.png" as="image" />
     
     <title>Kelas PHP - Kafekoding</title>
     
-    <!-- Lazy load SweetAlert2 dan reCAPTCHA -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Font Awesome - lazy load -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
   </head>
   <body>
     <div id="tsparticles"></div>
     <div id="app"></div>
     <script type="module" src="./src/main.js"></script>
+    
+    <!-- Lazy load non-critical scripts -->
+    <script>
+      // Load SweetAlert2 only when needed
+      window.loadSwal = () => {
+        if (!window.Swal) {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
+          document.head.appendChild(s);
+        }
+      };
+      // Load reCAPTCHA when form is visible
+      const loadRecaptcha = () => {
+        if (!document.querySelector('script[src*="recaptcha"]')) {
+          const s = document.createElement('script');
+          s.src = 'https://www.google.com/recaptcha/api.js';
+          s.async = true;
+          document.head.appendChild(s);
+        }
+      };
+      // Intersection Observer for lazy loading
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              loadRecaptcha();
+              window.loadSwal();
+              observer.disconnect();
+            }
+          });
+        }, { rootMargin: '200px' });
+        setTimeout(() => {
+          const form = document.getElementById('comment-form');
+          if (form) observer.observe(form);
+        }, 1000);
+      } else {
+        loadRecaptcha();
+        window.loadSwal();
+      }
+    </script>
   </body>
 </html>
