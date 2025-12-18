@@ -746,17 +746,8 @@ navbar {
 }
 
 @media (max-width: 768px) {
-  /* Disable animations on mobile for performance */
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .floating-icon {
-    display: none !important;
-  }
-  
+  /* Hide floating icons on mobile for performance */
+  .floating-icon,
   .icons-showcase {
     display: none !important;
   }
