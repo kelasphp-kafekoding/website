@@ -63,7 +63,7 @@ app.innerHTML = `
               <span class="dot green"></span>
             </div>
             <div class="code-tabs">
-              <button class="code-tab active" data-tab="code"><i class="fa-solid fa-code"></i> index.php</button>
+              <button class="code-tab active" data-tab="code"><i class="fa-brands fa-php"></i> index.php</button>
               <button class="code-tab" data-tab="terminal"><i class="fa-solid fa-terminal"></i> Terminal</button>
             </div>
           </div>
