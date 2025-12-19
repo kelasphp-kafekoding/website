@@ -412,9 +412,10 @@ const initRecaptcha = () => {
   
   if (hostname === 'localhost' || hostname === '127.0.0.1') {
     sitekey = '6Le0NC8sAAAAAIUTZPfUjVE_I3BNoRYUcRPb1BLy';
-  } else if (hostname.includes('kelasphp-kafekoding.github.io')) {
+  } else if (hostname.includes('kelasphp.vercel.app')) {
     sitekey = '6LcD5xwsAAAAACCknilZ9y8BuprHx8w2xlmpkLOV';
   } else {
+    // kelasphp.web.id dan domain lainnya
     sitekey = '6LchNS8sAAAAAIMOrrdvGlKILEM6--Pyc6Iso0XG';
   }
   
