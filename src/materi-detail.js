@@ -99,11 +99,14 @@ const renderMateriDetail = async () => {
     <section class="materi-detail-section">
       <div class="materi-layout">
         <aside class="materi-sidebar">
-          <div class="sidebar-header">
-            <i class="fa-solid fa-book"></i>
-            <span>Daftar Materi</span>
-          </div>
-          <nav class="sidebar-nav">
+          <button class="sidebar-header" id="sidebar-toggle">
+            <div class="sidebar-header-left">
+              <i class="fa-solid fa-book"></i>
+              <span>Daftar Materi</span>
+            </div>
+            <i class="fa-solid fa-chevron-down sidebar-arrow"></i>
+          </button>
+          <nav class="sidebar-nav" id="sidebar-nav">
             ${renderSidebar(data.materi, materiData.slug)}
           </nav>
         </aside>
@@ -135,6 +138,37 @@ const renderMateriDetail = async () => {
   `
 
   initHamburger()
+  
+  // Sidebar accordion toggle (mobile only)
+  const sidebarToggle = document.getElementById('sidebar-toggle')
+  const sidebarNav = document.getElementById('sidebar-nav')
+  
+  if (sidebarToggle && sidebarNav) {
+    // Check if mobile
+    const isMobile = () => window.innerWidth <= 1024
+    
+    // Set initial state on mobile
+    if (isMobile()) {
+      sidebarNav.classList.add('collapsed')
+    }
+    
+    sidebarToggle.addEventListener('click', () => {
+      if (isMobile()) {
+        sidebarNav.classList.toggle('collapsed')
+        sidebarToggle.classList.toggle('active')
+      }
+    })
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+      if (!isMobile()) {
+        sidebarNav.classList.remove('collapsed')
+        sidebarToggle.classList.remove('active')
+      } else if (!sidebarToggle.classList.contains('active')) {
+        sidebarNav.classList.add('collapsed')
+      }
+    })
+  }
   
   // Delay untuk memastikan DOM sudah ready
   setTimeout(() => {

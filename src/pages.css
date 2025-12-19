@@ -608,7 +608,7 @@ h1 {
 /* Materi Detail Section */
 .materi-detail-section {
   min-height: calc(100vh - 200px);
-  padding: 100px 20px 40px;
+  padding: 85px 20px 40px;
   background: #f6f8fa;
 }
 
@@ -645,19 +645,36 @@ h1 {
 .sidebar-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  width: 100%;
   padding: 20px;
   font-weight: 700;
   color: var(--text);
+  border: none;
   border-bottom: 2px solid #f3f4f6;
-  position: sticky;
-  top: 0;
   background: white;
-  z-index: 1;
+  cursor: default;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
-.sidebar-header i {
+.sidebar-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-header-left i {
   color: var(--secondary);
+}
+
+.sidebar-arrow {
+  display: none;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header.active .sidebar-arrow {
+  transform: rotate(180deg);
 }
 
 .sidebar-nav {
@@ -723,11 +740,34 @@ h1 {
     max-height: none;
   }
   
+  .sidebar-header {
+    cursor: pointer;
+    border-radius: 12px;
+  }
+  
+  .sidebar-header:hover {
+    background: #f9fafb;
+  }
+  
+  .sidebar-arrow {
+    display: block;
+    color: var(--text-light);
+  }
+  
   .sidebar-nav {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     padding: 12px;
+    overflow: hidden;
+    max-height: 500px;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-nav.collapsed {
+    max-height: 0;
+    padding: 0 12px;
+    opacity: 0;
   }
   
   .sidebar-item {
