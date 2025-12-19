@@ -58,6 +58,15 @@ const loadMarkdown = async (filename) => {
   }
 }
 
+const renderSidebar = (materiList, currentSlug) => {
+  return materiList.map(m => `
+    <a href="/materi-detail.html?m=${m.slug}" class="sidebar-item ${m.slug === currentSlug ? 'active' : ''}">
+      <span class="sidebar-number">${m.id}</span>
+      <span class="sidebar-title">${m.title}</span>
+    </a>
+  `).join('')
+}
+
 const renderMateriDetail = async () => {
   // Get slug from URL parameter (support both 'm' and old 'file' for backward compatibility)
   const urlParams = new URLSearchParams(window.location.search)
@@ -88,27 +97,35 @@ const renderMateriDetail = async () => {
     ${renderNavbar()}
 
     <section class="materi-detail-section">
-      <div class="materi-detail-container">
-        <button class="back-button" onclick="window.location.href='/materi.html'">
-          <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar
-        </button>
+      <div class="materi-layout">
+        <aside class="materi-sidebar">
+          <div class="sidebar-header">
+            <i class="fa-solid fa-book"></i>
+            <span>Daftar Materi</span>
+          </div>
+          <nav class="sidebar-nav">
+            ${renderSidebar(data.materi, materiData.slug)}
+          </nav>
+        </aside>
         
-        <article class="markdown-content">
-          ${content}
-        </article>
+        <div class="materi-detail-container">
+          <article class="markdown-content">
+            ${content}
+          </article>
 
-        <div class="materi-navigation">
-          ${previousMateri ? `
-            <a href="/materi-detail.html?m=${previousMateri.slug}" class="nav-button nav-prev">
-              <i class="fa-solid fa-chevron-left"></i> ${previousMateri.title}
-            </a>
-          ` : `<div class="nav-button-placeholder"></div>`}
-          
-          ${nextMateri ? `
-            <a href="/materi-detail.html?m=${nextMateri.slug}" class="nav-button nav-next">
-              ${nextMateri.title} <i class="fa-solid fa-chevron-right"></i>
-            </a>
-          ` : `<div class="nav-button-placeholder"></div>`}
+          <div class="materi-navigation">
+            ${previousMateri ? `
+              <a href="/materi-detail.html?m=${previousMateri.slug}" class="nav-button nav-prev">
+                <i class="fa-solid fa-chevron-left"></i> ${previousMateri.title}
+              </a>
+            ` : `<div class="nav-button-placeholder"></div>`}
+            
+            ${nextMateri ? `
+              <a href="/materi-detail.html?m=${nextMateri.slug}" class="nav-button nav-next">
+                ${nextMateri.title} <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            ` : `<div class="nav-button-placeholder"></div>`}
+          </div>
         </div>
       </div>
     </section>
