@@ -174,7 +174,7 @@ app.innerHTML = `
             </div>
             <div class="form-group">
               <label for="comment-status">Status</label>
-              <input type="text" id="comment-status" placeholder="Mahasiswa Universitas Metamedia, Mahasiswa UPI YPTK, dll" required />
+              <input type="text" id="comment-status" placeholder="Mahasiswa Metamedia, Mahasiswa UPI YPTK, dll" required />
             </div>
             <div class="form-group">
               <label for="comment-message">Pendapat Anda</label>
