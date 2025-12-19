@@ -189,6 +189,10 @@ app.innerHTML = `
     </div>
   </section>
 
+  <button class="back-to-top" id="back-to-top" aria-label="Kembali ke atas">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
   ${renderFooter()}
 
 `
@@ -473,6 +477,22 @@ if (document.readyState === 'complete') {
   setTimeout(loadParticles, 2000);
 } else {
   window.addEventListener('load', () => setTimeout(loadParticles, 2000));
+}
+
+// Back to top button
+const backToTop = document.getElementById('back-to-top');
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+  
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
 
 testimonialSection();
