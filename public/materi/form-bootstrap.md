@@ -248,9 +248,9 @@ $tanggal = date('d F Y H:i:s');
    - Validasi minimal 1 menu harus dipilih
 
 4. **Generate Invoice**
-   - `date('Ymd')`: Format tanggal YYYYMMDD (contoh: 20241208)
+   - `date('Ymd')`: Format tanggal YYYYMMDD (contoh: 20260108)
    - `rand(1000, 9999)`: Generate angka random 4 digit
-   - Format invoice: INV-20241208-1234
+   - Format invoice: INV-20260108-1234
    - `date('d F Y H:i:s')`: Format tanggal lengkap untuk tampilan
 
 ---

@@ -2,11 +2,11 @@
 
 Daftar peserta yang mengikuti program Kelas PHP Kafekoding.
 
-*Terakhir diperbarui: Desember 2025*
+*Terakhir diperbarui: Januari 2026*
 
 ---
 
-## 📅 Periode 2/2025
+## 📅 Periode 1/2026
 
 👨‍🏫 **Mentor:** [![GitHub](https://img.shields.io/badge/-rifaldo--dev-black?logo=github)](https://github.com/rifaldo-dev)
 

@@ -34,7 +34,7 @@ Terima kasih telah tertarik berkontribusi di Kafekoding Kelas PHP! Ikuti panduan
   "description": "Deskripsi singkat materi",
   "file": "nama-materi.md",
   "author": "Nama Anda",
-  "date": "2025-12-13"
+  "date": "2026-01-01"
 }
 ```
 

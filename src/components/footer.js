@@ -52,7 +52,7 @@ export const renderFooter = () => {
         </div>
         
         <div class="footer-bottom">
-          <p>&copy; 2025 Kafekoding. All rights reserved.</p>
+          <p>&copy; 2026 Kafekoding. All rights reserved.</p>
         </div>
       </div>
     </footer>

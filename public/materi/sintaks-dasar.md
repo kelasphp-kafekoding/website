@@ -66,11 +66,11 @@ StrLen("test");
 // ✅ BENAR
 $nama = "Kafekoding";
 $_kota = "Padang";
-$tahun2025 = 2025;
+$tahun2026 = 2026;
 
 // ❌ SALAH
 nama = "Kafekoding";      // Tidak ada $
-$2tahun = 2025;           // Tidak boleh diawali angka
+$2tahun = 2026;           // Tidak boleh diawali angka
 $nama-kelas = "PHP";      // Tidak boleh pakai dash (-)
 $nama kelas = "PHP";      // Tidak boleh ada spasi
 ?>
@@ -282,7 +282,7 @@ $greeting = "Hello " . $nama . "!"; // Hello Kafekoding!
 ```php
 <?php
 $umur = 25;
-$tahun = 2024;
+$tahun = 2026;
 $negatif = -10;
 
 echo $umur; // 25

@@ -17,4 +17,4 @@ Lihat [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ---
 
-© 2025 Kafekoding
+© 2026 Kafekoding

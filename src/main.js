@@ -323,7 +323,7 @@ const initTypingAnimation = () => {
   const terminalLines = [
     '<span class="terminal-prompt">$</span> php -S localhost:80',
     '',
-    '<span class="terminal-info">[Thu Dec 18 10:30:00 2025]</span> PHP Development Server started',
+    '<span class="terminal-info">[Thu Dec 18 10:30:00 2026]</span> PHP Development Server started',
     '<span class="terminal-success">Listening on http://localhost:80</span>',
     'Document root is <span class="terminal-path">C:/xampp/htdocs/kelasphp</span>',
     'Press Ctrl+C to quit.',
