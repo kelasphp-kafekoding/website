@@ -119,15 +119,15 @@ app.innerHTML = `
           </div>
         </div>
         <div class="gallery-item" data-index="3" data-aos="zoom-in" data-aos-delay="300">
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=267&fit=crop&auto=format&q=75" alt="Workshop PHP" loading="lazy" decoding="async">
+          <img src="/assets/pertemuan12.png" alt="Pertemuan 12 - Belajar Interaksi dengan Database CRUD" loading="lazy" decoding="async">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Workshop PHP</span>
+            <span class="gallery-caption">Pertemuan 12 - Belajar Interaksi dengan Database CRUD</span>
           </div>
         </div>
         <div class="gallery-item" data-index="4" data-aos="zoom-in" data-aos-delay="400">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=267&fit=crop&auto=format&q=75" alt="Presentasi Project" loading="lazy" decoding="async">
+          <img src="/assets/pertemuan12a.png" alt="Pertemuan 12 - Belajar Interaksi dengan Database CRUD" loading="lazy" decoding="async">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Presentasi Project</span>
+            <span class="gallery-caption">Pertemuan 12 - Belajar Interaksi dengan Database CRUD</span>
           </div>
         </div>
         <div class="gallery-item" data-index="5" data-aos="zoom-in" data-aos-delay="500">
