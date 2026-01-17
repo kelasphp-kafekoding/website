@@ -12,13 +12,15 @@ AOS.init({
   duration: isMobile ? 400 : 700,
   once: true,
   offset: isMobile ? 30 : 80,
-  easing: 'ease-out-cubic'
+  easing: 'ease-out-cubic',
+  delay: 0,
+  anchorPlacement: 'top-bottom'
 });
 
 const app = document.querySelector('#app')
 
 app.innerHTML = `
-  <navbar>
+  <navbar data-aos="fade-down" data-aos-duration="800">
     <div class="logo-container">
       <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
       <div class="logo-text">
@@ -78,9 +80,9 @@ app.innerHTML = `
           </div>
         </div>
         <div class="floating-icons-code">
-          <img src="/icons/php.svg" alt="PHP" class="float-icon icon-1">
-          <img src="/icons/html5.svg" alt="HTML5" class="float-icon icon-2">
-          <img src="/icons/mysql-icon-light.svg" alt="MySQL" class="float-icon icon-3">
+          <img src="/icons/php.svg" alt="PHP" class="float-icon icon-1" data-aos="fade-up" data-aos-delay="500">
+          <img src="/icons/html5.svg" alt="HTML5" class="float-icon icon-2" data-aos="fade-up" data-aos-delay="600">
+          <img src="/icons/mysql-icon-light.svg" alt="MySQL" class="float-icon icon-3" data-aos="fade-up" data-aos-delay="700">
         </div>
       </div>
     </div>

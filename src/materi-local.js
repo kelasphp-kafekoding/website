@@ -1,8 +1,18 @@
 import './style.css'
 import './pages.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import { initHamburger } from './hamburger.js'
 import { renderNavbar } from './components/navbar.js'
 import { renderFooter } from './components/footer.js'
+
+// Initialize AOS
+AOS.init({
+  duration: 600,
+  once: true,
+  offset: 50,
+  easing: 'ease-out-cubic'
+})
 
 const app = document.querySelector('#app')
 
@@ -42,12 +52,12 @@ const renderMateri = (materiList) => {
     ${renderNavbar()}
 
     <div class="container">
-      <h1>Materi Kelas PHP</h1>
-      <p class="subtitle">Pelajari PHP dari dasar hingga mahir</p>
+      <h1 data-aos="fade-up">Materi Kelas PHP</h1>
+      <p class="subtitle" data-aos="fade-up" data-aos-delay="100">Pelajari PHP dari dasar hingga mahir</p>
 
       <div class="kelas-grid">
-        ${materiList.map(materi => `
-          <div class="card">
+        ${materiList.map((materi, index) => `
+          <div class="card" data-aos="fade-up" data-aos-delay="${index * 50}">
             <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 8px; margin-bottom: 15px; overflow: hidden;">
               <img src="${materi.thumbnail}" alt="${materi.title}" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
@@ -71,6 +81,9 @@ const renderMateri = (materiList) => {
     ${renderFooter()}
   `
   initHamburger()
+  
+  // Refresh AOS after content is loaded
+  setTimeout(() => AOS.refresh(), 100)
   
   // Back to top button
   const backToTop = document.getElementById('back-to-top')

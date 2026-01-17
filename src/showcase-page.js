@@ -1,6 +1,16 @@
 import './style.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import { initHamburger } from './hamburger.js'
 import { renderFooter } from './components/footer.js'
+
+// Initialize AOS
+AOS.init({
+  duration: 600,
+  once: true,
+  offset: 50,
+  easing: 'ease-out-cubic'
+})
 
 const app = document.querySelector('#app')
 
@@ -42,8 +52,8 @@ const renderProjects = (projects) => {
   const showcaseGrid = document.getElementById('showcase-grid')
   
   if (projects.length > 0) {
-    showcaseGrid.innerHTML = projects.map(project => `
-      <div class="showcase-card">
+    showcaseGrid.innerHTML = projects.map((project, index) => `
+      <div class="showcase-card" data-aos="fade-up" data-aos-delay="${index * 50}">
         <div class="card-image">
           <img src="${sanitizeUrl(project.gambar)}" alt="${escapeHtml(project.judul)}" loading="lazy">
         </div>
@@ -63,6 +73,9 @@ const renderProjects = (projects) => {
         </div>
       </div>
     `).join('')
+    
+    // Refresh AOS after content is loaded
+    setTimeout(() => AOS.refresh(), 100)
   } else {
     showcaseGrid.innerHTML = `
       <div class="coming-soon" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
@@ -103,10 +116,10 @@ const renderShowcase = async () => {
 
     <section class="showcase-page-section">
       <div class="showcase-page-container">
-        <h1 class="showcase-page-title">Showcase Proyek Peserta</h1>
-        <p class="showcase-page-subtitle">Karya-karya menakjubkan dari peserta Kelas PHP Kafekoding</p>
+        <h1 class="showcase-page-title" data-aos="fade-up">Showcase Proyek Peserta</h1>
+        <p class="showcase-page-subtitle" data-aos="fade-up" data-aos-delay="100">Karya-karya menakjubkan dari peserta Kelas PHP Kafekoding</p>
         
-        <div class="search-container" style="max-width: 600px; margin: 0 auto 40px; position: relative;">
+        <div class="search-container" style="max-width: 600px; margin: 0 auto 40px; position: relative;" data-aos="fade-up" data-aos-delay="200">
           <input 
             type="text" 
             id="search-input" 
