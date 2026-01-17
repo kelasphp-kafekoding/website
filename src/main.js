@@ -22,8 +22,8 @@ app.innerHTML = `
     <div class="logo-container">
       <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
       <div class="logo-text">
-        <div class="logo-title">Kafekoding</div>
-        <div class="logo-subtitle">Kelas PHP</div>
+        <div class="logo-title">Kelas PHP</div>
+        <div class="logo-subtitle">Powered by Kafekoding</div>
       </div>
     </div>
     <button class="hamburger" id="hamburger">

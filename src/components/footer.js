@@ -7,8 +7,8 @@ export const renderFooter = () => {
             <div class="footer-logo">
               <img src="/icons/kk.png" alt="Kafekoding" class="footer-logo-img">
               <div>
-                <div class="footer-logo-title">Kafekoding</div>
-                <div class="footer-logo-subtitle">Kelas PHP</div>
+                <div class="footer-logo-title">Kelas PHP</div>
+                <div class="footer-logo-subtitle">Powered by Kafekoding</div>
               </div>
             </div>
             <p class="footer-desc">Platform pembelajaran PHP yang menyenangkan dan interaktif untuk semua level.</p>
