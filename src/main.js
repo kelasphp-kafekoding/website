@@ -136,12 +136,6 @@ app.innerHTML = `
             <span class="gallery-caption">Team Collaboration</span>
           </div>
         </div>
-        <div class="gallery-item" data-index="6" data-aos="zoom-in" data-aos-delay="600">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=267&fit=crop&auto=format&q=75" alt="Sertifikat Kelulusan" loading="lazy" decoding="async">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">Sertifikat Kelulusan</span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
