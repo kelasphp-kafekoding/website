@@ -74,13 +74,13 @@
     },
     {
       "id": "proj11",
-      "judul": "Project Asria Nur Zafirah",
-      "deks": "Website kreatif dengan implementasi best practices dalam web development.",
-      "gambar": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=250&fit=crop",
+      "judul": "To-Do List Application",
+      "deks": "Aplikasi manajemen tugas berbasis web dengan fitur CRUD untuk membantu produktivitas sehari-hari.",
+      "gambar": "/assets/showcase/asria-nur-zafirah.png",
       "namaPeserta": "Asria Nur Zafirah",
       "tech": ["PHP", "MySQL", "JavaScript"],
-      "github": "https://github.com",
-      "project": "https://example.com"
+      "github": "https://github.com/Asrnzfrh/to-do-list",
+      "project": "https://github.com/Asrnzfrh/to-do-list"
     }
   ],
   "testimonials": [
