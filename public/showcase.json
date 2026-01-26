@@ -2,13 +2,13 @@
   "showcase": [
     {
       "id": "proj1",
-      "judul": "Project Kamila Wardah",
-      "deks": "Proyek web development dengan PHP yang menampilkan kreativitas dan kemampuan coding.",
-      "gambar": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
+      "judul": "Sistem Informasi Data Barang",
+      "deks": "Aplikasi manajemen data barang dengan fitur CRUD yang menampilkan kreativitas dan kemampuan coding.",
+      "gambar": "/assets/showcase/kamila-wardah.png",
       "namaPeserta": "Kamila Wardah",
       "tech": ["PHP", "MySQL", "HTML", "CSS"],
-      "github": "https://github.com",
-      "project": "https://example.com"
+      "github": "https://github.com/kml4w/tugas_akhir",
+      "project": "https://github.com/kml4w/tugas_akhir"
     },
     {
       "id": "proj2",
