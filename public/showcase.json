@@ -12,13 +12,13 @@
     },
     {
       "id": "proj2",
-      "judul": "Project Sefira Sucandiwa",
-      "deks": "Aplikasi web interaktif dengan desain modern dan user-friendly interface.",
-      "gambar": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
+      "judul": "Sistem Informasi Pendaftaran Siswa Baru",
+      "deks": "Aplikasi web untuk mengelola pendaftaran siswa baru dengan fitur manajemen data yang efisien dan user-friendly.",
+      "gambar": "/assets/showcase/sefira-sucandiwa.png",
       "namaPeserta": "Sefira Sucandiwa",
-      "tech": ["PHP", "Bootstrap", "JavaScript"],
-      "github": "https://github.com",
-      "project": "https://example.com"
+      "tech": ["PHP", "MySQL", "Bootstrap", "JavaScript"],
+      "github": "https://github.com/sucandiwasefira-del/project-sefiranamanya",
+      "project": "https://github.com/sucandiwasefira-del/project-sefiranamanya"
     },
     {
       "id": "proj3",
