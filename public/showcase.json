@@ -43,13 +43,13 @@
 
     {
       "id": "proj7",
-      "judul": "Project Arief Arafad",
-      "deks": "Sistem berbasis web dengan arsitektur yang terstruktur dan maintainable.",
-      "gambar": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=250&fit=crop",
+      "judul": "CRUD Laporan Kerusakan",
+      "deks": "Sistem pelaporan dan manajemen kerusakan dengan arsitektur yang terstruktur dan maintainable.",
+      "gambar": "/assets/showcase/arief-arafad.png",
       "namaPeserta": "Arief Arafad",
       "tech": ["PHP", "Laravel", "MySQL"],
-      "github": "https://github.com",
-      "project": "https://example.com"
+      "github": "https://github.com/ariefarafad/CRUD-Laporan-Kerusakan",
+      "project": "https://github.com/ariefarafad/CRUD-Laporan-Kerusakan"
     },
 
     {
