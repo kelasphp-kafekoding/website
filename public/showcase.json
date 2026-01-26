@@ -21,6 +21,16 @@
       "project": "https://github.com/sucandiwasefira-del/project-sefiranamanya"
     },
     {
+      "id": "proj11",
+      "judul": "To-Do List Application",
+      "deks": "Aplikasi manajemen tugas berbasis web dengan fitur CRUD untuk membantu produktivitas sehari-hari.",
+      "gambar": "/assets/showcase/asria-nur-zafirah.png",
+      "namaPeserta": "Asria Nur Zafirah",
+      "tech": ["PHP", "MySQL", "JavaScript"],
+      "github": "https://github.com/Asrnzfrh/to-do-list",
+      "project": "https://github.com/Asrnzfrh/to-do-list"
+    },
+    {
       "id": "proj4",
       "judul": "CRUD Data Mahasiswa",
       "deks": "Sistem manajemen data mahasiswa dengan fitur Create, Read, Update, Delete dan integrasi database yang efisien.",
@@ -40,17 +50,6 @@
       "tech": ["PHP", "Laravel", "MySQL"],
       "github": "https://github.com/ariefarafad/CRUD-Laporan-Kerusakan",
       "project": "https://github.com/ariefarafad/CRUD-Laporan-Kerusakan"
-    },
-
-    {
-      "id": "proj11",
-      "judul": "To-Do List Application",
-      "deks": "Aplikasi manajemen tugas berbasis web dengan fitur CRUD untuk membantu produktivitas sehari-hari.",
-      "gambar": "/assets/showcase/asria-nur-zafirah.png",
-      "namaPeserta": "Asria Nur Zafirah",
-      "tech": ["PHP", "MySQL", "JavaScript"],
-      "github": "https://github.com/Asrnzfrh/to-do-list",
-      "project": "https://github.com/Asrnzfrh/to-do-list"
     }
   ],
   "testimonials": [
