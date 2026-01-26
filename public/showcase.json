@@ -32,13 +32,13 @@
     },
     {
       "id": "proj4",
-      "judul": "Project Avinly Alvendri",
-      "deks": "Platform web dengan integrasi database dan sistem autentikasi yang aman.",
-      "gambar": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=250&fit=crop",
+      "judul": "CRUD Data Mahasiswa",
+      "deks": "Sistem manajemen data mahasiswa dengan fitur Create, Read, Update, Delete dan integrasi database yang efisien.",
+      "gambar": "/assets/showcase/Avinly-Alvendri.png",
       "namaPeserta": "Avinly Alvendri",
       "tech": ["PHP", "MySQL", "Bootstrap"],
-      "github": "https://github.com",
-      "project": "https://example.com"
+      "github": "https://github.com/NIVA-su/CRUD-data-mahasiswa",
+      "project": "https://github.com/NIVA-su/CRUD-data-mahasiswa"
     },
 
     {
