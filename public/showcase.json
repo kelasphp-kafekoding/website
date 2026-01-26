@@ -21,16 +21,6 @@
       "project": "https://github.com/sucandiwasefira-del/project-sefiranamanya"
     },
     {
-      "id": "proj3",
-      "judul": "Project Dimas Pio Pratana",
-      "deks": "Sistem informasi berbasis web dengan fitur CRUD dan manajemen data yang efisien.",
-      "gambar": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=250&fit=crop",
-      "namaPeserta": "Dimas Pio Pratana",
-      "tech": ["PHP", "MySQL", "Laravel"],
-      "github": "https://github.com",
-      "project": "https://example.com"
-    },
-    {
       "id": "proj4",
       "judul": "CRUD Data Mahasiswa",
       "deks": "Sistem manajemen data mahasiswa dengan fitur Create, Read, Update, Delete dan integrasi database yang efisien.",
@@ -52,26 +42,6 @@
       "project": "https://github.com/ariefarafad/CRUD-Laporan-Kerusakan"
     },
 
-    {
-      "id": "proj9",
-      "judul": "Project Tasman Aditya Al Hudha",
-      "deks": "Platform digital dengan teknologi modern dan user experience yang baik.",
-      "gambar": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=250&fit=crop",
-      "namaPeserta": "Tasman Aditya Al Hudha",
-      "tech": ["PHP", "JavaScript", "MySQL"],
-      "github": "https://github.com",
-      "project": "https://example.com"
-    },
-    {
-      "id": "proj10",
-      "judul": "Project Silvi Masri",
-      "deks": "Aplikasi web inovatif dengan fitur-fitur yang memudahkan pengguna.",
-      "gambar": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=400&h=250&fit=crop",
-      "namaPeserta": "Silvi Masri",
-      "tech": ["PHP", "CSS", "Bootstrap"],
-      "github": "https://github.com",
-      "project": "https://example.com"
-    },
     {
       "id": "proj11",
       "judul": "To-Do List Application",
