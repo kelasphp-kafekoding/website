@@ -182,7 +182,6 @@ app.innerHTML = `
               <label for="comment-message">Pendapat Anda</label>
               <textarea id="comment-message" placeholder="Tulis pesan Anda (1-2 kalimat)" required></textarea>
             </div>
-            <div class="form-group g-recaptcha" id="recaptcha-container"></div>
             <button type="submit" class="btn-submit">Kirim Pendapat</button>
             <div id="form-message" class="form-message"></div>
           </form>
@@ -407,28 +406,6 @@ const initTypingAnimation = () => {
 initTypingAnimation();
 showcaseSection();
 initGallery();
-
-// Initialize reCAPTCHA with dynamic sitekey based on hostname
-const initRecaptcha = () => {
-  const container = document.getElementById('recaptcha-container');
-  if (!container) return;
-  
-  const hostname = window.location.hostname;
-  let sitekey;
-  
-  if (hostname === 'localhost' || hostname === '127.0.0.1') {
-    sitekey = '6Le0NC8sAAAAAIUTZPfUjVE_I3BNoRYUcRPb1BLy';
-  } else if (hostname.includes('kelasphp.vercel.app')) {
-    sitekey = '6LcD5xwsAAAAACCknilZ9y8BuprHx8w2xlmpkLOV';
-  } else {
-    // kelasphp.web.id dan domain lainnya
-    sitekey = '6LchNS8sAAAAAIMOrrdvGlKILEM6--Pyc6Iso0XG';
-  }
-  
-  container.setAttribute('data-sitekey', sitekey);
-};
-
-initRecaptcha();
 
 // Refresh AOS setelah konten dinamis di-render
 setTimeout(() => AOS.refresh(), 500);

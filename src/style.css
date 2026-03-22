@@ -1839,13 +1839,6 @@ navbar {
   display: block;
 }
 
-.form-group.g-recaptcha {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 12px 0;
-}
-
 .form-group input,
 .form-group textarea {
   width: 100%;
