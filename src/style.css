@@ -2439,50 +2439,43 @@ navbar {
 }
 
 .gallery-item {
-  position: relative;
+  background: white;
+  border-radius: 16px;
   overflow: hidden;
-  border-radius: 12px;
   cursor: pointer;
-  aspect-ratio: 3/2;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
+  border: 1px solid #f1f5f9;
 }
 
 .gallery-item:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .gallery-item img {
   width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
 .gallery-item:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .gallery-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  padding: 25px;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .gallery-overlay {
-  transform: translateY(0);
+  padding: 20px;
+  background: white;
+  border-top: 1px solid #f1f5f9;
 }
 
 .gallery-caption {
-  color: white;
+  color: var(--text);
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
 }
 
 /* Lightbox */

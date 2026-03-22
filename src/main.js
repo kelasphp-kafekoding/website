@@ -133,9 +133,9 @@ app.innerHTML = `
           </div>
         </div>
         <div class="gallery-item" data-index="5" data-aos="zoom-in" data-aos-delay="500">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=267&fit=crop&auto=format&q=75" alt="Team Collaboration" loading="lazy" decoding="async">
+          <img src="/assets/ujian akhir.png" alt="Ujian Akhir Seluruh Kelas di Kafekoding" loading="lazy" decoding="async">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Team Collaboration</span>
+            <span class="gallery-caption">Ujian Akhir Seluruh Kelas di Kafekoding</span>
           </div>
         </div>
       </div>
@@ -442,10 +442,7 @@ const loadParticles = async () => {
   if ('requestIdleCallback' in window) {
     requestIdleCallback(async () => {
       try {
-        const { tsParticles } = await import('tsparticles-engine');
-        const { loadSlim } = await import('tsparticles-slim');
-        
-        await loadSlim(tsParticles);
+        const { tsParticles } = await import('@tsparticles/slim');
         
         await tsParticles.load("tsparticles", {
           particles: {
