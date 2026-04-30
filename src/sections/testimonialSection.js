@@ -67,6 +67,7 @@ function renderComments(page = 1) {
   commentsList.innerHTML = pageComments.map(comment => `
     <div class="comment-card" style="border-left-color: ${escapeHtml(comment.color) || '#3b82f6'};">
       <div class="comment-header">
+        <img src="https://api.dicebear.com/9.x/thumbs/svg?seed=${encodeURIComponent(comment.name)}&backgroundColor=f8fafc,e2e8f0,cbd5e1" alt="${escapeHtml(comment.name)} avatar" class="comment-avatar" loading="lazy" />
         <div class="comment-info">
           <h4 class="comment-name">${escapeHtml(comment.name)}</h4>
           <p class="comment-status">${escapeHtml(comment.status)}</p>

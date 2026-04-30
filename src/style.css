@@ -1723,9 +1723,20 @@ navbar {
 .comment-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 12px;
   gap: 12px;
+}
+
+.comment-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--primary);
+  box-shadow: 0 2px 8px rgba(10, 14, 39, 0.08);
 }
 
 .comment-info {
