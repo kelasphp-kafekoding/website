@@ -1,0 +1,11 @@
+{
+  "name": "kelasphp-showcase",
+  "version": "1.0.0",
+  "description": "CLI untuk kontribusi showcase proyek peserta Kelas PHP Kafekoding",
+  "type": "module",
+  "bin": {
+    "kelasphp-showcase": "./index.js"
+  },
+  "keywords": ["cli", "showcase", "kelasphp", "kafekoding"],
+  "license": "MIT"
+}
