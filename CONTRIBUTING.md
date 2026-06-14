@@ -14,7 +14,65 @@ Terima kasih telah tertarik berkontribusi di Kafekoding Kelas PHP! Ikuti panduan
 
 ## 📝 Jenis Kontribusi
 
-### 1. Tambah Materi Pembelajaran
+### 1. Tambah Showcase Proyek (via CLI) ⭐ Recommended
+
+Cara paling gampang berkontribusi! Cukup jalankan satu command:
+
+```bash
+npx kelasphp-showcase add \
+  --id proj-todo-app \
+  --judul "To-Do List Application" \
+  --deskripsi "Aplikasi manajemen tugas berbasis web dengan fitur CRUD" \
+  --gambar "https://i.imgur.com/screenshot.png" \
+  --nama "Budi Santoso" \
+  --tech "PHP,MySQL,Bootstrap" \
+  --github "https://github.com/budi/todo-app" \
+  --demo "https://todo-app.vercel.app"
+```
+
+**Langkah:**
+
+1. Fork & clone repo
+2. `npm install`
+3. Jalankan command `npx kelasphp-showcase add` dengan data proyek kamu
+4. Commit file `public/showcase.json` yang ter-update
+5. Push & buat Pull Request
+
+**CLI Commands:**
+- `npx kelasphp-showcase add [options]` — Tambah proyek baru
+- `npx kelasphp-showcase list` — Lihat semua proyek
+- `npx kelasphp-showcase remove --id <id>` — Hapus proyek
+- `npx kelasphp-showcase --help` — Bantuan lengkap
+
+**Format:**
+- Tech stack: pisahkan dengan `,` (koma), contoh: `"PHP,MySQL,Bootstrap"`
+- ID: gunakan format slug, contoh: `proj-nama-proyek`
+
+---
+
+### 2. Tambah Showcase Proyek (Manual)
+
+**File yang diubah:**
+- `public/showcase.json`
+
+**Langkah:**
+
+Tambahkan entry baru di array `showcase`:
+
+```json
+{
+  "id": "proj12",
+  "judul": "Project Nama Anda",
+  "deks": "Deskripsi singkat proyek Anda",
+  "gambar": "https://url-gambar-proyek.jpg",
+  "namaPeserta": "Nama Lengkap",
+  "tech": ["PHP", "MySQL", "Bootstrap"],
+  "github": "https://github.com/username/repo",
+  "project": "https://demo-link.com"
+}
+```
+
+### 3. Tambah Materi Pembelajaran
 
 **File yang diubah:**
 - `public/materi/` - Tambah file markdown baru
@@ -38,29 +96,7 @@ Terima kasih telah tertarik berkontribusi di Kafekoding Kelas PHP! Ikuti panduan
 }
 ```
 
-### 2. Tambah Showcase Proyek
-
-**File yang diubah:**
-- `public/showcase.json`
-
-**Langkah:**
-
-Tambahkan entry baru di array `showcase`:
-
-```json
-{
-  "id": "proj12",
-  "judul": "Project Nama Anda",
-  "deks": "Deskripsi singkat proyek Anda",
-  "gambar": "https://url-gambar-proyek.jpg",
-  "namaPeserta": "Nama Lengkap",
-  "tech": ["PHP", "MySQL", "Bootstrap"],
-  "github": "https://github.com/username/repo",
-  "project": "https://demo-link.com"
-}
-```
-
-### 3. Perbaikan Bug & Improvement
+### 4. Perbaikan Bug & Improvement
 
 - Fix responsive design
 - Improve performance
@@ -128,7 +164,7 @@ git commit -m "feat: deskripsi perubahan"
 
 Contoh:
 ```bash
-git commit -m "feat: add tutorial array PHP"
+git commit -m "feat: add showcase proj-todo-app"
 git commit -m "fix: responsive navbar mobile"
 git commit -m "docs: update README"
 ```
@@ -161,35 +197,9 @@ git push origin Nama_Lengkap_Sekolah
 
 ## 📋 Standar Penulisan
 
-### Format Materi (Markdown)
-
-```markdown
-# Judul Materi
-
-Pengenalan singkat tentang materi...
-
----
-
-## Apa itu [Topik]?
-
-Penjelasan detail...
-
-## Contoh Kode
-
-```php
-<?php
-echo "Hello World";
-?>
-```
-
-## Kesimpulan
-
-Ringkasan materi...
-```
-
 ### Format JSON
 
-- Gunakan lowercase dengan hyphen untuk `slug` dan `file`
+- Gunakan lowercase dengan hyphen untuk `slug` dan `id`
 - Gunakan format tanggal `YYYY-MM-DD`
 - Pastikan JSON valid sebelum commit
 

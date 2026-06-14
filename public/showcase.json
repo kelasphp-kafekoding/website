@@ -6,7 +6,12 @@
       "deks": "Aplikasi manajemen data barang dengan fitur CRUD yang menampilkan kreativitas dan kemampuan coding.",
       "gambar": "/assets/showcase/kamila-wardah.png",
       "namaPeserta": "Kamila Wardah",
-      "tech": ["PHP", "MySQL", "HTML", "CSS"],
+      "tech": [
+        "PHP",
+        "MySQL",
+        "HTML",
+        "CSS"
+      ],
       "github": "https://github.com/kml4w/tugas_akhir",
       "project": "https://github.com/kml4w/tugas_akhir"
     },
@@ -16,7 +21,12 @@
       "deks": "Aplikasi web untuk mengelola pendaftaran siswa baru dengan fitur manajemen data yang efisien dan user-friendly.",
       "gambar": "/assets/showcase/sefira-sucandiwa.png",
       "namaPeserta": "Sefira Sucandiwa",
-      "tech": ["PHP", "MySQL", "Bootstrap", "JavaScript"],
+      "tech": [
+        "PHP",
+        "MySQL",
+        "Bootstrap",
+        "JavaScript"
+      ],
       "github": "https://github.com/sucandiwasefira-del/project-sefiranamanya",
       "project": "https://github.com/sucandiwasefira-del/project-sefiranamanya"
     },
@@ -26,7 +36,11 @@
       "deks": "Aplikasi manajemen tugas berbasis web dengan fitur CRUD untuk membantu produktivitas sehari-hari.",
       "gambar": "/assets/showcase/asria-nur-zafirah.png",
       "namaPeserta": "Asria Nur Zafirah",
-      "tech": ["PHP", "MySQL", "JavaScript"],
+      "tech": [
+        "PHP",
+        "MySQL",
+        "JavaScript"
+      ],
       "github": "https://github.com/Asrnzfrh/to-do-list",
       "project": "https://github.com/Asrnzfrh/to-do-list"
     },
@@ -36,18 +50,25 @@
       "deks": "Sistem manajemen data mahasiswa dengan fitur Create, Read, Update, Delete dan integrasi database yang efisien.",
       "gambar": "/assets/showcase/Avinly-Alvendri.png",
       "namaPeserta": "Avinly Alvendri",
-      "tech": ["PHP", "MySQL", "Bootstrap"],
+      "tech": [
+        "PHP",
+        "MySQL",
+        "Bootstrap"
+      ],
       "github": "https://github.com/NIVA-su/CRUD-data-mahasiswa",
       "project": "https://github.com/NIVA-su/CRUD-data-mahasiswa"
     },
-
     {
       "id": "proj7",
       "judul": "CRUD Laporan Kerusakan",
       "deks": "Sistem pelaporan dan manajemen kerusakan dengan arsitektur yang terstruktur dan maintainable.",
       "gambar": "/assets/showcase/arief-arafad.png",
       "namaPeserta": "Arief Arafad",
-      "tech": ["PHP", "Laravel", "MySQL"],
+      "tech": [
+        "PHP",
+        "Laravel",
+        "MySQL"
+      ],
       "github": "https://github.com/ariefarafad/CRUD-Laporan-Kerusakan",
       "project": "https://github.com/ariefarafad/CRUD-Laporan-Kerusakan"
     }
