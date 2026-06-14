@@ -20,23 +20,25 @@ Cara paling gampang berkontribusi! Cukup jalankan satu command:
 
 ```bash
 npx kelasphp-showcase add \
-  --id proj-todo-app \
   --judul "To-Do List Application" \
   --deskripsi "Aplikasi manajemen tugas berbasis web dengan fitur CRUD" \
-  --gambar "https://i.imgur.com/screenshot.png" \
+  --gambar "./screenshot.png" \
   --nama "Budi Santoso" \
   --tech "PHP,MySQL,Bootstrap" \
   --github "https://github.com/budi/todo-app" \
   --demo "https://todo-app.vercel.app"
 ```
 
+> ID otomatis di-generate dari judul. Gambar lokal otomatis di-copy ke folder yang benar.
+
 **Langkah:**
 
 1. Fork & clone repo
 2. `npm install`
-3. Jalankan command `npx kelasphp-showcase add` dengan data proyek kamu
-4. Commit file `public/showcase.json` yang ter-update
-5. Push & buat Pull Request
+3. Siapkan screenshot proyek (opsional)
+4. Jalankan command `npx kelasphp-showcase add` dengan data proyek kamu
+5. Commit perubahan
+6. Push & buat Pull Request
 
 **CLI Commands:**
 - `npx kelasphp-showcase add [options]` — Tambah proyek baru
@@ -46,7 +48,8 @@ npx kelasphp-showcase add \
 
 **Format:**
 - Tech stack: pisahkan dengan `,` (koma), contoh: `"PHP,MySQL,Bootstrap"`
-- ID: gunakan format slug, contoh: `proj-nama-proyek`
+- Gambar: path file lokal (otomatis di-copy) atau URL langsung
+- ID: opsional, auto-generate dari judul
 
 ---
 
