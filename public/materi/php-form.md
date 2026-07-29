@@ -1,4 +1,4 @@
-# Pertemuan 8 — PHP Form
+# Pertemuan 8 - PHP Form
 
 ![PHP Form](https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop)
 
@@ -163,7 +163,7 @@ if (!empty($errors)) {
 ?>
 ```
 
-### Fungsi `htmlspecialchars()` — Mencegah XSS
+### Fungsi `htmlspecialchars()` - Mencegah XSS
 
 **Penting!** Selalu gunakan `htmlspecialchars()` saat menampilkan data dari form untuk mencegah serangan **XSS (Cross-Site Scripting)**.
 
@@ -276,12 +276,12 @@ if ($_FILES['file']['error'] === UPLOAD_ERR_OK) {
 
 Pada pertemuan ini kamu telah mempelajari:
 
-1. **Membuat form HTML** — input, select, checkbox, radio, textarea
-2. **Memproses form dengan PHP** — `$_POST` dan `$_GET`
-3. **Perbedaan GET dan POST** — kapan menggunakan masing-masing
-4. **Validasi form** — memastikan data aman dan sesuai format
-5. **Mencegah XSS** — menggunakan `htmlspecialchars()`
-6. **Upload file** — menggunakan `enctype="multipart/form-data"`
+1. **Membuat form HTML** - input, select, checkbox, radio, textarea
+2. **Memproses form dengan PHP** - `$_POST` dan `$_GET`
+3. **Perbedaan GET dan POST** - kapan menggunakan masing-masing
+4. **Validasi form** - memastikan data aman dan sesuai format
+5. **Mencegah XSS** - menggunakan `htmlspecialchars()`
+6. **Upload file** - menggunakan `enctype="multipart/form-data"`
 
 **Tips Keamanan:**
 - Selalu validasi input dari user

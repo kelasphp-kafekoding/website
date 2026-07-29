@@ -1,4 +1,4 @@
-# Pertemuan 10 — Membuat Tabel Database
+# Pertemuan 10 - Membuat Tabel Database
 
 ![Database](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop)
 
@@ -240,7 +240,7 @@ echo count($data) . " data berhasil ditambahkan!";
 
 Pada pertemuan ini kamu telah mempelajari:
 
-1. **Tipe data MySQL** — VARCHAR, INT, DECIMAL, DATE, ENUM, dll
+1. **Tipe data MySQL** - VARCHAR, INT, DECIMAL, DATE, ENUM, dll
 2. **Membuat database dan tabel** dengan constraint (PK, NOT NULL, UNIQUE, DEFAULT)
 3. **Relasi antar tabel** menggunakan Foreign Key
 4. **Memodifikasi tabel** dengan ALTER TABLE

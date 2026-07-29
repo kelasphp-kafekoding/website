@@ -28,6 +28,21 @@ marked.setOptions({
   gfm: true
 })
 
+// Load quiz data
+let quizData = {}
+
+const loadQuizData = async () => {
+  try {
+    const response = await fetch('/quiz.json')
+    if (response.ok) {
+      const data = await response.json()
+      quizData = data
+    }
+  } catch (error) {
+    console.warn('Quiz data not available:', error)
+  }
+}
+
 const loadMateriData = async (slugOrId, data) => {
   try {
     if (!data) {
@@ -35,7 +50,6 @@ const loadMateriData = async (slugOrId, data) => {
       if (!response.ok) throw new Error('Materi list not found')
       data = await response.json()
     }
-    // Try ID match first, then slug
     const materiById = data.materi.find(m => m.id === parseInt(slugOrId))
     if (materiById) return materiById
     const materiBySlug = data.materi.find(m => m.slug === slugOrId)
@@ -68,7 +82,103 @@ const renderSidebar = (materiList, currentId) => {
   `).join('')
 }
 
+// Escape HTML entities to prevent XSS and rendering issues
+const escapeHtml = (str) => {
+  const div = document.createElement('div')
+  div.textContent = str
+  return div.innerHTML
+}
+
+const renderQuiz = (quiz) => {
+  if (!quiz || !quiz.questions) return ''
+
+  const safeTitle = escapeHtml(quiz.title)
+  let html = `
+    <div class="quiz-section" id="quiz-section">
+      <div class="quiz-header">
+        <h2><i class="fa-solid fa-clipboard-question"></i> Kuis: ${safeTitle}</h2>
+        <p class="quiz-desc">Jawab ${quiz.questions.length} pertanyaan berikut untuk menguji pemahamanmu.</p>
+      </div>
+  `
+
+  quiz.questions.forEach((q, i) => {
+    const safeQuestion = escapeHtml(q.question)
+    html += `
+      <div class="quiz-question" id="quiz-q${i}">
+        <p class="quiz-question-text"><strong>${i + 1}.</strong> ${safeQuestion}</p>
+        <div class="quiz-options">
+    `
+    q.options.forEach((opt, j) => {
+      const safeOption = escapeHtml(opt)
+      html += `
+        <label class="quiz-option">
+          <input type="radio" name="quiz${i}" value="${j}" onchange="checkQuizAnswer(${i}, ${j}, ${q.answer})">
+          <span>${String.fromCharCode(65 + j)}. ${safeOption}</span>
+        </label>
+      `
+    })
+    html += `
+          <div class="quiz-feedback" id="quiz-feedback-${i}"></div>
+        </div>
+      </div>
+    `
+  })
+
+  html += `
+      <button class="quiz-submit-btn" id="quiz-submit" onclick="showQuizResults()">
+        <i class="fa-solid fa-paper-plane"></i> Periksa Jawaban
+      </button>
+      <div class="quiz-result" id="quiz-result"></div>
+    </div>
+  `
+
+  return html
+}
+
+// Global quiz checker
+window.checkQuizAnswer = (qIndex, selected, correct) => {
+  const feedback = document.getElementById(`quiz-feedback-${qIndex}`)
+  if (feedback) {
+    if (selected === correct) {
+      feedback.innerHTML = '<i class="fa-solid fa-check-circle"></i> Benar!'
+      feedback.className = 'quiz-feedback quiz-correct'
+    } else {
+      feedback.innerHTML = '<i class="fa-solid fa-times-circle"></i> Salah, coba lagi.'
+      feedback.className = 'quiz-feedback quiz-wrong'
+    }
+  }
+}
+
+window.showQuizResults = () => {
+  const quiz = window.__currentQuiz
+  if (!quiz) return
+
+  let correct = 0
+  quiz.questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="quiz${i}"]:checked`)
+    if (selected && parseInt(selected.value) === q.answer) {
+      correct++
+    }
+  })
+
+  const total = quiz.questions.length
+  const percentage = Math.round((correct / total) * 100)
+  const resultEl = document.getElementById('quiz-result')
+  const emoji = percentage >= 75 ? '🎉' : '💪'
+
+  resultEl.innerHTML = `
+    <div class="quiz-score ${percentage >= 75 ? 'quiz-pass' : 'quiz-fail'}">
+      <span class="quiz-score-emoji">${emoji}</span>
+      <span class="quiz-score-text">Skor: ${correct}/${total} (${percentage}%)</span>
+      ${percentage >= 75 ? '<span class="quiz-score-badge">Lulus!</span>' : '<span class="quiz-score-badge">Belum Lulus (min. 75%)</span>'}
+    </div>
+  `
+  resultEl.style.display = 'block'
+}
+
 const renderMateriDetail = async () => {
+  await loadQuizData()
+
   const urlParams = new URLSearchParams(window.location.search)
   const slug = urlParams.get('m') || urlParams.get('slug') || '1'
 
@@ -90,11 +200,15 @@ const renderMateriDetail = async () => {
 
   const term = `materi:${materiData.id}`
 
+  // Get quiz for this materi
+  const quiz = quizData[materiData.id] || null
+  window.__currentQuiz = quiz
+
   app.innerHTML = `
     ${renderNavbar()}
 
     <section class="materi-detail-section">
-      <div class="materi-layout">
+      <div class="materi-layout materi-layout-right-sidebar">
         <aside class="materi-sidebar">
           <button class="sidebar-header" id="sidebar-toggle">
             <div class="sidebar-header-left">
@@ -112,6 +226,8 @@ const renderMateriDetail = async () => {
           <article class="markdown-content">
             ${content}
           </article>
+
+          ${quiz ? renderQuiz(quiz) : ''}
 
           <div class="materi-navigation">
             ${previousMateri ? `

@@ -1,4 +1,4 @@
-# Pertemuan 12 — Mengubah dan Menghapus Data dari Database
+# Pertemuan 12 - Mengubah dan Menghapus Data dari Database
 
 ![Update Delete](https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop)
 
@@ -8,7 +8,7 @@ Dua operasi CRUD terakhir yang akan kita pelajari: **Update** (mengubah data) da
 
 ---
 
-## 1. UPDATE — Mengubah Data
+## 1. UPDATE - Mengubah Data
 
 Query `UPDATE` digunakan untuk **mengubah data yang sudah ada** di database.
 
@@ -79,7 +79,7 @@ if (!$siswa) {
     <h2>Edit Data Siswa</h2>
     
     <form action="proses_edit.php" method="POST">
-        <!-- ID hidden — tidak diubah user -->
+        <!-- ID hidden - tidak diubah user -->
         <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
         
         <label>Nama:</label>
@@ -147,7 +147,7 @@ echo "<br><a href='index.php'>Kembali</a>";
 
 ---
 
-## 3. DELETE — Menghapus Data
+## 3. DELETE - Menghapus Data
 
 Query `DELETE` digunakan untuk **menghapus baris dari database**.
 

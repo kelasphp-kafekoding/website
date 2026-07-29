@@ -1,4 +1,4 @@
-# Pertemuan 11 — Menampilkan Data dari Database dengan PHP
+# Pertemuan 11 - Menampilkan Data dari Database dengan PHP
 
 ![Data Display](https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop)
 
@@ -245,7 +245,7 @@ echo "</table>";
 
 ---
 
-## 5. JOIN — Menggabungkan Tabel
+## 5. JOIN - Menggabungkan Tabel
 
 ```php
 <?php
@@ -291,13 +291,13 @@ echo "</table>";
 
 Pada pertemuan ini kamu telah mempelajari:
 
-1. **SELECT** — Mengambil data dari database
-2. **WHERE** — Memfilter data berdasarkan kondisi
-3. **ORDER BY** — Mengurutkan data
-4. **LIMIT & OFFSET** — Pagination
-5. **Aggregate Functions** — COUNT, SUM, AVG, MAX, MIN
-6. **GROUP BY** — Mengelompokkan data
-7. **JOIN** — Menggabungkan tabel
+1. **SELECT** - Mengambil data dari database
+2. **WHERE** - Memfilter data berdasarkan kondisi
+3. **ORDER BY** - Mengurutkan data
+4. **LIMIT & OFFSET** - Pagination
+5. **Aggregate Functions** - COUNT, SUM, AVG, MAX, MIN
+6. **GROUP BY** - Mengelompokkan data
+7. **JOIN** - Menggabungkan tabel
 
 **Tips:**
 - Selalu gunakan `mysqli_fetch_assoc()` untuk kemudahan akses via nama kolom

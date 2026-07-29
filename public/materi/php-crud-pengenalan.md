@@ -1,4 +1,4 @@
-# Pertemuan 9 — Pengenalan CRUD pada PHP
+# Pertemuan 9 - Pengenalan CRUD pada PHP
 
 ![CRUD Database](https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=400&fit=crop)
 
@@ -100,7 +100,7 @@ project-crud/
 
 ---
 
-## 3. Read — Menampilkan Data
+## 3. Read - Menampilkan Data
 
 ```php
 <?php
@@ -184,7 +184,7 @@ if (!$result) {
 
 ---
 
-## 4. Create — Form Tambah Data
+## 4. Create - Form Tambah Data
 
 ### Form (tambah.php)
 
@@ -250,11 +250,11 @@ echo "<br><a href='index.php'>Kembali</a>";
 
 Pada pertemuan ini kamu telah mempelajari:
 
-1. **Pengertian CRUD** — Create, Read, Update, Delete
+1. **Pengertian CRUD** - Create, Read, Update, Delete
 2. **Membuat database dan tabel** di MySQL
 3. **Koneksi PHP ke MySQL** menggunakan `mysqli_connect()`
-4. **Read (SELECT)** — Menampilkan data dari database ke tabel HTML
-5. **Create (INSERT)** — Menambah data baru melalui form
+4. **Read (SELECT)** - Menampilkan data dari database ke tabel HTML
+5. **Create (INSERT)** - Menambah data baru melalui form
 
 **Penting:**
 - Selalu buat file `config.php` terpisah untuk koneksi

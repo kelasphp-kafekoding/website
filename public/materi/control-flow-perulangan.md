@@ -33,7 +33,7 @@ for (inisialisasi; kondisi; increment) {
 ### Cara Kerja
 
 1. **Inisialisasi** dijalankan sekali di awal
-2. **Kondisi** dicek — jika `true`, blok kode dijalankan
+2. **Kondisi** dicek - jika `true`, blok kode dijalankan
 3. Setelah blok kode selesai, **increment** dijalankan
 4. Kembali ke langkah 2
 
@@ -275,7 +275,7 @@ for ($i = 1; $i <= 10; $i++) {
 
 ## 6. Nested Loop
 
-Loop di dalam loop — berguna untuk membuat pola atau tabel.
+Loop di dalam loop - berguna untuk membuat pola atau tabel.
 
 ```php
 <?php

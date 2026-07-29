@@ -1,4 +1,4 @@
-# Pertemuan 13-14 — Mini Project
+# Pertemuan 13-14 - Mini Project
 
 ![Mini Project](https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop)
 

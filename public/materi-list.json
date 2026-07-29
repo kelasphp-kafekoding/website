@@ -39,7 +39,7 @@
     {
       "id": 5,
       "slug": "control-flow",
-      "title": "Control Flow — Pengkondisian",
+      "title": "Control Flow - Pengkondisian",
       "description": "Pelajari percabangan (if, else, elseif, switch) untuk mengambil keputusan dalam program.",
       "file": "control-flow.md",
       "author": "M. Rifaldo Saputra",
@@ -48,7 +48,7 @@
     {
       "id": 6,
       "slug": "control-flow-perulangan",
-      "title": "Control Flow — Perulangan (Looping)",
+      "title": "Control Flow - Perulangan (Looping)",
       "description": "Menguasai perulangan for, while, do-while, foreach, break, continue, dan nested loop.",
       "file": "control-flow-perulangan.md",
       "author": "M. Rifaldo Saputra",
@@ -112,7 +112,7 @@
       "id": 13,
       "slug": "mini-project",
       "title": "Mini Project",
-      "description": "Membuat website sederhana dengan menggabungkan PHP, HTML, dan Bootstrap — Sistem Inventaris.",
+      "description": "Membuat website sederhana dengan menggabungkan PHP, HTML, dan Bootstrap - Sistem Inventaris.",
       "file": "mini-project.md",
       "author": "M. Rifaldo Saputra",
       "date": "2025-02-22"

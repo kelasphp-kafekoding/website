@@ -14,7 +14,7 @@ Bayangkan ada **polisi lalu lintas** di sebuah persimpangan. Dia melihat situasi
 - **belok ke kanan**
 - atau **putar balik**
 
-Nah, **PHP pun seperti itu** — sebelum menjalankan baris kode tertentu, dia "melihat situasi" (kondisi), lalu memilih jalur mana yang harus dilalui oleh program.
+Nah, **PHP pun seperti itu** - sebelum menjalankan baris kode tertentu, dia "melihat situasi" (kondisi), lalu memilih jalur mana yang harus dilalui oleh program.
 
 Jadi, **control flow** adalah mekanisme yang membuat program tidak berjalan lurus seperti membaca paragraf, tetapi **menyesuaikan alurnya sesuai kondisi yang terjadi** pada saat program berjalan. Control flow = _mesin pengambil keputusan_ di dalam PHP.
 
@@ -105,7 +105,7 @@ if (kondisi1) {
 ```php
 if (...) { }
 else { }
-else if (...) { }  // ❌ Tidak boleh — PHP error
+else if (...) { }  // ❌ Tidak boleh - PHP error
 ```
 
 **Contoh:**
