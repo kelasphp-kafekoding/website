@@ -21,17 +21,17 @@ app.innerHTML = `
       <div class="error-404-content">
         <h1 class="error-404-title">Halaman Tidak Ditemukan</h1>
         <p class="error-404-description">
-          Halaman yang Anda cari tidak ditemukan.
+          Halaman yang Anda cari tidak ada atau telah dipindahkan. Silakan kembali ke beranda atau pilih halaman lain di bawah ini.
         </p>
-        
+
         <div class="error-404-actions">
-          <button id="btn-back" class="btn-back">
+          <button id="btn-back" class="btn btn-ghost">
             <i class="fa-solid fa-arrow-left"></i> Kembali
           </button>
-          <a href="/" class="btn-primary">
+          <a href="/" class="btn btn-primary">
             <i class="fa-solid fa-home"></i> Beranda
           </a>
-          <a href="/materi.html" class="btn-secondary">
+          <a href="/materi.html" class="btn btn-secondary">
             <i class="fa-solid fa-book"></i> Materi
           </a>
         </div>
@@ -39,7 +39,7 @@ app.innerHTML = `
         <div class="error-404-countdown" id="countdown"></div>
 
         <div class="error-404-links">
-          <h3>Halaman Populer:</h3>
+          <h3>Halaman Populer</h3>
           <div class="quick-links">
             <a href="/materi.html" class="quick-link">
               <i class="fa-solid fa-book-open"></i>
@@ -68,14 +68,20 @@ app.innerHTML = `
 
 initHamburger()
 
+// Navbar scroll shadow
+const navbar = document.querySelector('navbar')
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20)
+  })
+}
+
 // Back button handler
 const btnBack = document.getElementById('btn-back')
 btnBack.addEventListener('click', () => {
-  // Check if there's history to go back to
   if (window.history.length > 1) {
     window.history.back()
   } else {
-    // If no history, go to home
     window.location.href = '/'
   }
 })
@@ -96,7 +102,7 @@ const updateCountdown = () => {
 updateCountdown()
 const countdownInterval = setInterval(updateCountdown, 1000)
 
-// Stop countdown if user clicks any link or button
+// Stop countdown if user interacts
 document.querySelectorAll('a, button').forEach(element => {
   element.addEventListener('click', () => {
     clearInterval(countdownInterval)

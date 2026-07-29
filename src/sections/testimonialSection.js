@@ -62,7 +62,7 @@ function renderComments(page = 1) {
   const endIndex = startIndex + COMMENTS_PER_PAGE;
   const pageComments = allComments.slice(startIndex, endIndex);
   
-  commentsCount.textContent = `(${allComments.length})`;
+  if (commentsCount) commentsCount.textContent = `(${allComments.length})`;
   
   commentsList.innerHTML = pageComments.map(comment => `
     <div class="comment-card" style="border-left-color: ${escapeHtml(comment.color) || '#3b82f6'};">

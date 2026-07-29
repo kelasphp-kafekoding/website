@@ -19,7 +19,8 @@ function sanitizeUrl(url) {
 
 const renderProjects = (projects, showViewAll = false, totalCount = 0) => {
   const showcaseGrid = document.getElementById('showcase-grid');
-  
+  if (!showcaseGrid) return;
+
   if (projects.length > 0) {
     showcaseGrid.innerHTML = projects.map((project, index) => `
       <div class="showcase-card" data-aos="fade-up" data-aos-delay="${index * 100}">
@@ -33,7 +34,7 @@ const renderProjects = (projects, showViewAll = false, totalCount = 0) => {
             ${project.tech.map(tech => `<span class="tech-badge">${escapeHtml(tech)}</span>`).join('')}
           </div>
           <div class="card-footer">
-            <span class="card-author"><i class="fa-solid fa-user"></i>${escapeHtml(project.namaPeserta)}</span>
+            <span class="card-author"><i class="fa-solid fa-user"></i> ${escapeHtml(project.namaPeserta)}</span>
             <div class="card-links">
               <a href="${sanitizeUrl(project.github)}" target="_blank" rel="noopener noreferrer" class="card-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
               <a href="${sanitizeUrl(project.project)}" target="_blank" rel="noopener noreferrer" class="card-link demo" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -42,97 +43,61 @@ const renderProjects = (projects, showViewAll = false, totalCount = 0) => {
         </div>
       </div>
     `).join('');
-    
+
     const isMobile = window.innerWidth <= 768;
     const limit = isMobile ? 3 : 6;
     if (showViewAll && totalCount > limit) {
       showcaseGrid.innerHTML += `
-        <div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;" data-aos="fade-up" data-aos-delay="${limit * 100}">
-          <a href="/showcase.html" style="display: inline-block; background: var(--text); color: white; padding: 14px 36px; text-decoration: none; border-radius: 30px; font-weight: 700; transition: transform 0.25s ease, box-shadow 0.25s ease; box-shadow: 0 10px 30px rgba(10, 14, 39, 0.18);">
-            LIHAT SEMUA
+        <div style="grid-column: 1 / -1; text-align: center; margin-top: 16px;" data-aos="fade-up" data-aos-delay="${limit * 100}">
+          <a href="/showcase.html" class="btn btn-dark" style="display: inline-flex;">
+            Lihat Semua Proyek <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
           </a>
         </div>
       `;
     }
-    
-    // Refresh AOS untuk elemen baru
+
     if (typeof AOS !== 'undefined') {
       AOS.refresh();
     }
   } else {
     showcaseGrid.innerHTML = `
       <div class="coming-soon" style="grid-column: 1 / -1;">
-        <div class="coming-soon-icon">🔍</div>
-        <h3>Tidak Ada Hasil</h3>
-        <p>Coba kata kunci lain untuk pencarian</p>
+        <div class="coming-soon-icon">🚀</div>
+        <h3>Coming Soon</h3>
+        <p>Showcase proyek dari peserta akan segera ditampilkan di sini</p>
       </div>
     `;
   }
 };
 
 export const showcaseSection = async () => {
-  const showcaseContainer = document.querySelector('.showcase-container');
-  
-  // Tambahkan search bar sebelum grid
-  const searchHTML = `
-    <div class="showcase-search">
-      <input type="text" id="showcase-search-input" placeholder="Cari proyek, nama, atau teknologi...">
-      <i class="fa-solid fa-search"></i>
-    </div>
-  `;
-  
-  const subtitleEl = showcaseContainer.querySelector('.showcase-subtitle');
-  if (subtitleEl) {
-    subtitleEl.insertAdjacentHTML('afterend', searchHTML);
-  }
-  
+  const showcaseGrid = document.getElementById('showcase-grid');
+  if (!showcaseGrid) return;
+
   try {
     const response = await fetch('/showcase.json');
     const data = await response.json();
-    
+
     if (data.showcase && data.showcase.length > 0) {
       const allProjects = data.showcase;
       const isMobile = window.innerWidth <= 768;
       const limit = isMobile ? 3 : 6;
       const limitedProjects = allProjects.slice(0, limit);
-      
+
       renderProjects(limitedProjects, true, allProjects.length);
-      
-      // Setup search
-      const searchInput = document.getElementById('showcase-search-input');
-      let debounceTimer;
-      
-      searchInput.addEventListener('input', (e) => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-          const term = e.target.value.toLowerCase().trim();
-          
-          if (!term) {
-            renderProjects(limitedProjects, true, allProjects.length);
-            return;
-          }
-          
-          const filtered = allProjects.filter(p => 
-            p.judul.toLowerCase().includes(term) ||
-            p.namaPeserta.toLowerCase().includes(term) ||
-            p.deks.toLowerCase().includes(term) ||
-            p.tech.some(t => t.toLowerCase().includes(term))
-          );
-          
-          renderProjects(filtered, false);
-        }, 300);
-      });
     } else {
       renderProjects([]);
     }
   } catch (error) {
     console.error('Error loading showcase:', error);
-    document.getElementById('showcase-grid').innerHTML = `
-      <div class="coming-soon">
-        <div class="coming-soon-icon">🚀</div>
-        <h3>Coming Soon</h3>
-        <p>Showcase proyek dari peserta akan segera ditampilkan di sini</p>
-      </div>
-    `;
+    if (showcaseGrid) {
+      showcaseGrid.innerHTML = `
+        <div class="coming-soon" style="grid-column: 1 / -1;">
+          <div class="coming-soon-icon">🚀</div>
+          <h3>Coming Soon</h3>
+          <p>Showcase proyek dari peserta akan segera ditampilkan di sini</p>
+        </div>
+      `;
+    }
   }
 };

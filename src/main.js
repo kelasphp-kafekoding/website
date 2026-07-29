@@ -1,13 +1,12 @@
-import './style.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-// welcomeSection removed - using new hero with code typing
+import './style.css'
 import { showcaseSection } from './sections/showcaseSection.js'
 import { testimonialSection } from './sections/testimonialSection.js'
 import { renderFooter } from './components/footer.js'
 
-// Initialize AOS - shorter duration on mobile
-const isMobile = window.innerWidth < 768;
+// Initialize AOS
+const isMobile = window.innerWidth < 768
 AOS.init({
   duration: isMobile ? 400 : 700,
   once: true,
@@ -15,20 +14,20 @@ AOS.init({
   easing: 'ease-out-cubic',
   delay: 0,
   anchorPlacement: 'top-bottom'
-});
+})
 
 const app = document.querySelector('#app')
 
 app.innerHTML = `
   <navbar data-aos="fade-down" data-aos-duration="800">
-    <div class="logo-container">
+    <div class="logo-container" onclick="window.location.href='/'">
       <img src="/icons/kk.png" alt="Kafekoding" class="logo-img">
       <div class="logo-text">
         <div class="logo-title">Kelas PHP</div>
         <div class="logo-subtitle">Powered by Kafekoding</div>
       </div>
     </div>
-    <button class="hamburger" id="hamburger">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span>
       <span></span>
       <span></span>
@@ -47,16 +46,18 @@ app.innerHTML = `
   <section class="welcome-section" id="home">
     <div class="hero-container">
       <div class="hero-text">
-        
-        <h1 data-aos="fade-up" data-aos-delay="100">Selamat Datang di <span class="text-gradient">Kelas PHP</span></h1>
-        <p data-aos="fade-up" data-aos-delay="200">Belajar PHP dengan cara yang menyenangkan dan interaktif</p>
-        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
-          <button class="btn-primary" onclick="window.location.href='/materi.html'"><i class="fa-solid fa-play"></i> Mulai Belajar</button>
-          <button class="btn-secondary" onclick="window.location.href='#showcase'"><i class="fa-solid fa-folder-open"></i> Lihat Showcase</button>
+        <span class="section-label" data-aos="fade-up" data-aos-delay="100">
+          <i class="fa-solid fa-code"></i> Platform Pembelajaran PHP
+        </span>
+        <h1 data-aos="fade-up" data-aos-delay="150">Selamat Datang di<br><span class="text-gradient">Kelas PHP</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">Belajar PHP dari nol hingga mahir dengan materi terstruktur, proyek nyata, dan komunitas yang aktif mendukung.</p>
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="250">
+          <a href="/materi.html" class="btn btn-primary"><i class="fa-solid fa-play"></i> Mulai Belajar</a>
+          <a href="#showcase" class="btn btn-secondary"><i class="fa-solid fa-folder-open"></i> Lihat Showcase</a>
         </div>
       </div>
-      
-      <div class="hero-code" data-aos="fade-left" data-aos-delay="400">
+
+      <div class="hero-code" data-aos="fade-left" data-aos-delay="300">
         <div class="code-window">
           <div class="code-header">
             <div class="code-dots">
@@ -80,9 +81,9 @@ app.innerHTML = `
           </div>
         </div>
         <div class="floating-icons-code">
-          <img src="/icons/php.svg" alt="PHP" class="float-icon icon-1" data-aos="fade-up" data-aos-delay="500">
-          <img src="/icons/html5.svg" alt="HTML5" class="float-icon icon-2" data-aos="fade-up" data-aos-delay="600">
-          <img src="/icons/mysql-icon-light.svg" alt="MySQL" class="float-icon icon-3" data-aos="fade-up" data-aos-delay="700">
+          <img src="/icons/php.svg" alt="PHP" class="float-icon icon-1" data-aos="fade-up" data-aos-delay="400">
+          <img src="/icons/html5.svg" alt="HTML5" class="float-icon icon-2" data-aos="fade-up" data-aos-delay="500">
+          <img src="/icons/mysql-icon-light.svg" alt="MySQL" class="float-icon icon-3" data-aos="fade-up" data-aos-delay="600">
         </div>
       </div>
     </div>
@@ -90,17 +91,23 @@ app.innerHTML = `
 
   <section class="showcase-section" id="showcase">
     <div class="showcase-container">
-      <h2 data-aos="fade-up">Showcase Proyek Peserta</h2>
-      <p class="showcase-subtitle" data-aos="fade-up" data-aos-delay="100">Karya-karya menakjubkan dari peserta Kelas PHP</p>
+      <div class="section-heading" data-aos="fade-up">
+        <span class="section-label"><i class="fa-solid fa-laptop-code"></i> Showcase</span>
+        <h2>Proyek Peserta</h2>
+        <p>Karya-karya menakjubkan dari peserta Kelas PHP Kafekoding</p>
+      </div>
       <div class="showcase-grid" id="showcase-grid"></div>
     </div>
   </section>
 
   <section class="gallery-section" id="gallery">
     <div class="gallery-container">
-      <h2 data-aos="fade-up">Galeri Kelas PHP</h2>
-      <p class="gallery-subtitle" data-aos="fade-up" data-aos-delay="100">Dokumentasi kegiatan dan momen belajar bersama di Kelas PHP Kafekoding</p>
-      
+      <div class="section-heading" data-aos="fade-up">
+        <span class="section-label"><i class="fa-solid fa-camera"></i> Galeri</span>
+        <h2>Galeri Kelas PHP</h2>
+        <p>Dokumentasi kegiatan dan momen belajar bersama di Kafekoding</p>
+      </div>
+
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-item" data-index="0" data-aos="zoom-in" data-aos-delay="0">
           <img src="/assets/meet.jpg" alt="Belajar Bersama Online" loading="lazy" decoding="async">
@@ -111,7 +118,7 @@ app.innerHTML = `
         <div class="gallery-item" data-index="1" data-aos="zoom-in" data-aos-delay="100">
           <img src="/assets/rotasisimulasi.jpg" alt="Rotasi Stasiun - Fix Materi" loading="lazy" decoding="async">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Rotasi Stasiun - Fix Materi</span>
+            <span class="gallery-caption">Rotasi Stasiun — Fix Materi</span>
           </div>
         </div>
         <div class="gallery-item" data-index="2" data-aos="zoom-in" data-aos-delay="200">
@@ -121,21 +128,21 @@ app.innerHTML = `
           </div>
         </div>
         <div class="gallery-item" data-index="3" data-aos="zoom-in" data-aos-delay="300">
-          <img src="/assets/pertemuan12.png" alt="Pertemuan 12 - Belajar Interaksi dengan Database CRUD" loading="lazy" decoding="async">
+          <img src="/assets/pertemuan12.png" alt="Pertemuan 12 - Database CRUD" loading="lazy" decoding="async">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Pertemuan 12 - Belajar Interaksi dengan Database CRUD</span>
+            <span class="gallery-caption">Pertemuan 12 — Belajar Database CRUD</span>
           </div>
         </div>
         <div class="gallery-item" data-index="4" data-aos="zoom-in" data-aos-delay="400">
-          <img src="/assets/pertemuan12a.png" alt="Pertemuan 12 - Belajar Interaksi dengan Database CRUD" loading="lazy" decoding="async">
+          <img src="/assets/pertemuan12a.png" alt="Pertemuan 12 - Database CRUD" loading="lazy" decoding="async">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Pertemuan 12 - Belajar Interaksi dengan Database CRUD</span>
+            <span class="gallery-caption">Pertemuan 12 — Praktik CRUD</span>
           </div>
         </div>
         <div class="gallery-item" data-index="5" data-aos="zoom-in" data-aos-delay="500">
-          <img src="/assets/ujian akhir.png" alt="Ujian Akhir Seluruh Kelas di Kafekoding" loading="lazy" decoding="async">
+          <img src="/assets/ujian akhir.png" alt="Ujian Akhir" loading="lazy" decoding="async">
           <div class="gallery-overlay">
-            <span class="gallery-caption">Ujian Akhir Seluruh Kelas di Kafekoding</span>
+            <span class="gallery-caption">Ujian Akhir Seluruh Kelas</span>
           </div>
         </div>
       </div>
@@ -152,11 +159,14 @@ app.innerHTML = `
 
   <section class="comments-section" id="comments">
     <div class="comments-container">
-      <h2 data-aos="fade-up">Apa Kata Mereka <span id="comments-count">(0)</span></h2>
-      <p class="comments-subtitle" data-aos="fade-up" data-aos-delay="100">Dengarkan pengalaman dan testimonial dari komunitas</p>
-      
+      <div class="section-heading" data-aos="fade-up">
+        <span class="section-label"><i class="fa-solid fa-comments"></i> Testimoni</span>
+        <h2>Apa Kata Mereka</h2>
+        <p>Pendapat dan pengalaman dari komunitas Kelas PHP</p>
+      </div>
+
       <div class="comments-wrapper">
-        <div data-aos="fade-right" data-aos-delay="200">
+        <div data-aos="fade-right" data-aos-delay="100">
           <div class="comments-list" id="comments-list">
             <div class="loading-spinner">
               <div></div>
@@ -166,8 +176,8 @@ app.innerHTML = `
           </div>
           <div class="pagination" id="pagination"></div>
         </div>
-        
-        <div class="comment-form-wrapper" data-aos="fade-left" data-aos-delay="300">
+
+        <div class="comment-form-wrapper" data-aos="fade-left" data-aos-delay="200">
           <h3>Tulis Pendapatmu</h3>
           <form id="comment-form" class="comment-form">
             <div class="form-group">
@@ -176,11 +186,11 @@ app.innerHTML = `
             </div>
             <div class="form-group">
               <label for="comment-status">Status</label>
-              <input type="text" id="comment-status" placeholder="Mahasiswa Metamedia, Mahasiswa UPI YPTK, dll" required />
+              <input type="text" id="comment-status" placeholder="Contoh: Mahasiswa Metamedia" required />
             </div>
             <div class="form-group">
               <label for="comment-message">Pendapat Anda</label>
-              <textarea id="comment-message" placeholder="Tulis pesan Anda (1-2 kalimat)" required></textarea>
+              <textarea id="comment-message" placeholder="Tulis pesan Anda (1–2 kalimat)" required></textarea>
             </div>
             <button type="submit" class="btn-submit">Kirim Pendapat</button>
             <div id="form-message" class="form-message"></div>
@@ -195,37 +205,46 @@ app.innerHTML = `
   </button>
 
   ${renderFooter()}
-
 `
 
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
+// ── Navbar scroll shadow ──
+const navbar = document.querySelector('navbar')
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar.classList.add('scrolled')
+    } else {
+      navbar.classList.remove('scrolled')
+    }
+  })
+}
+
+// ── Hamburger menu ──
+const hamburger = document.getElementById('hamburger')
+const navMenu = document.getElementById('nav-menu')
 
 hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  hamburger.classList.toggle('active');
-});
+  navMenu.classList.toggle('active')
+  hamburger.classList.toggle('active')
+})
 
 navMenu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', (e) => {
-    const href = link.getAttribute('href');
-    
-    // Jika link adalah anchor (dimulai dengan #), gunakan smooth scroll
+    const href = link.getAttribute('href')
     if (href.startsWith('#')) {
-      e.preventDefault();
-      const targetId = href.substring(1);
-      const targetElement = document.getElementById(targetId);
-      
+      e.preventDefault()
+      const targetId = href.substring(1)
+      const targetElement = document.getElementById(targetId)
       if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
-    
-    navMenu.classList.remove('active');
-    hamburger.classList.remove('active');
-  });
-});
+    navMenu.classList.remove('active')
+    hamburger.classList.remove('active')
+  })
+})
 
+// ── Gallery lightbox ──
 const initGallery = () => {
   const galleryItems = document.querySelectorAll('.gallery-item')
   const lightbox = document.getElementById('lightbox')
@@ -234,9 +253,9 @@ const initGallery = () => {
   const closeBtn = document.querySelector('.lightbox-close')
   const prevBtn = document.querySelector('.lightbox-prev')
   const nextBtn = document.querySelector('.lightbox-next')
-  
+
   if (!galleryItems.length) return
-  
+
   let currentIndex = 0
   const images = Array.from(galleryItems).map(item => ({
     src: item.querySelector('img').src,
@@ -254,26 +273,18 @@ const initGallery = () => {
     item.addEventListener('click', () => showImage(index))
   })
 
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none'
-  })
-
+  closeBtn.addEventListener('click', () => { lightbox.style.display = 'none' })
   prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + images.length) % images.length
     showImage(currentIndex)
   })
-
   nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % images.length
     showImage(currentIndex)
   })
-
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.style.display = 'none'
-    }
+    if (e.target === lightbox) lightbox.style.display = 'none'
   })
-
   document.addEventListener('keydown', (e) => {
     if (lightbox.style.display === 'flex') {
       if (e.key === 'Escape') lightbox.style.display = 'none'
@@ -283,14 +294,13 @@ const initGallery = () => {
   })
 }
 
-// Code typing animation
+// ── Code typing animation ──
 const initTypingAnimation = () => {
-  const codeElement = document.getElementById('typing-code');
-  const terminalElement = document.getElementById('typing-terminal');
-  const lineNumbersElement = document.getElementById('line-numbers');
-  if (!codeElement) return;
-  
-  // PHP Code
+  const codeElement = document.getElementById('typing-code')
+  const terminalElement = document.getElementById('typing-terminal')
+  const lineNumbersElement = document.getElementById('line-numbers')
+  if (!codeElement) return
+
   const codeLines = [
     '<span class="keyword">&lt;?php</span>',
     '',
@@ -307,14 +317,12 @@ const initTypingAnimation = () => {
     '<span class="bracket">]</span>;',
     '',
     '<span class="keyword">echo</span> <span class="string">"Selamat Belajar!"</span>;',
-  ];
-  
-  // Generate line numbers
+  ]
+
   if (lineNumbersElement) {
-    lineNumbersElement.innerHTML = codeLines.map((_, i) => `<span>${i + 1}</span>`).join('\n');
+    lineNumbersElement.innerHTML = codeLines.map((_, i) => `<span>${i + 1}</span>`).join('\n')
   }
-  
-  // Terminal output
+
   const terminalLines = [
     '<span class="terminal-prompt">$</span> php -S localhost:80',
     '',
@@ -324,113 +332,94 @@ const initTypingAnimation = () => {
     'Press Ctrl+C to quit.',
     '',
     '<span class="terminal-output">[Thu Dec 18 10:30:05]</span> <span class="terminal-success">200</span> /index.php',
-  ];
-  
-  let codeFinished = false;
-  let terminalFinished = false;
-  
-  // Generic typing function
+  ]
+
+  let terminalFinished = false
+
   const typeContent = (element, lines, onComplete) => {
-    let lineIndex = 0;
-    let charIndex = 0;
-    let currentText = '';
-    
+    let lineIndex = 0
+    let charIndex = 0
+    let currentText = ''
+
     const type = () => {
       if (lineIndex < lines.length) {
-        const currentLine = lines[lineIndex];
-        
+        const currentLine = lines[lineIndex]
         if (charIndex < currentLine.length) {
           if (currentLine[charIndex] === '<') {
-            const tagEnd = currentLine.indexOf('>', charIndex);
+            const tagEnd = currentLine.indexOf('>', charIndex)
             if (tagEnd !== -1) {
-              currentText += currentLine.substring(charIndex, tagEnd + 1);
-              charIndex = tagEnd + 1;
+              currentText += currentLine.substring(charIndex, tagEnd + 1)
+              charIndex = tagEnd + 1
             }
           } else {
-            currentText += currentLine[charIndex];
-            charIndex++;
+            currentText += currentLine[charIndex]
+            charIndex++
           }
-          element.innerHTML = currentText + '<span class="typing-cursor"></span>';
-          setTimeout(type, 25);
+          element.innerHTML = currentText + '<span class="typing-cursor"></span>'
+          setTimeout(type, 25)
         } else {
-          currentText += '\n';
-          lineIndex++;
-          charIndex = 0;
-          setTimeout(type, 80);
+          currentText += '\n'
+          lineIndex++
+          charIndex = 0
+          setTimeout(type, 80)
         }
       } else {
-        element.innerHTML = currentText;
-        if (onComplete) onComplete();
+        element.innerHTML = currentText
+        if (onComplete) onComplete()
       }
-    };
-    
-    type();
-  };
-  
-  // Start code typing
+    }
+    type()
+  }
+
   setTimeout(() => {
-    typeContent(codeElement, codeLines, () => {
-      codeFinished = true;
-    });
-  }, 800);
-  
-  // Tab switching
-  const tabs = document.querySelectorAll('.code-tab');
-  const tabCode = document.getElementById('tab-code');
-  const tabTerminal = document.getElementById('tab-terminal');
-  
+    typeContent(codeElement, codeLines, () => {})
+  }, 800)
+
+  const tabs = document.querySelectorAll('.code-tab')
+  const tabCode = document.getElementById('tab-code')
+  const tabTerminal = document.getElementById('tab-terminal')
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      
-      const tabName = tab.dataset.tab;
+      tabs.forEach(t => t.classList.remove('active'))
+      tab.classList.add('active')
+      const tabName = tab.dataset.tab
       if (tabName === 'code') {
-        tabCode.style.display = 'block';
-        tabTerminal.style.display = 'none';
+        tabCode.style.display = 'block'
+        tabTerminal.style.display = 'none'
       } else {
-        tabCode.style.display = 'none';
-        tabTerminal.style.display = 'block';
-        
-        // Start terminal typing if not started
+        tabCode.style.display = 'none'
+        tabTerminal.style.display = 'block'
         if (!terminalFinished && terminalElement.innerHTML === '') {
-          typeContent(terminalElement, terminalLines, () => {
-            terminalFinished = true;
-          });
+          typeContent(terminalElement, terminalLines, () => { terminalFinished = true })
         }
       }
-    });
-  });
-};
+    })
+  })
+}
 
-initTypingAnimation();
-showcaseSection();
-initGallery();
+initTypingAnimation()
+showcaseSection()
+initGallery()
+setTimeout(() => AOS.refresh(), 500)
 
-// Refresh AOS setelah konten dinamis di-render
-setTimeout(() => AOS.refresh(), 500);
-
-// Lazy load tsParticles - skip entirely for better performance
+// ── Lazy load tsParticles ──
 const loadParticles = async () => {
-  // Skip particles for better performance (optional feature)
-  if (window.innerWidth < 1024 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  
-  // Only load after user interaction or idle
+  if (window.innerWidth < 1024 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
   if ('requestIdleCallback' in window) {
     requestIdleCallback(async () => {
       try {
-        const { tsParticles } = await import('@tsparticles/slim');
-        
+        const { tsParticles } = await import('@tsparticles/slim')
         await tsParticles.load("tsparticles", {
           particles: {
             number: { value: 20 },
             shape: { type: "circle" },
             size: { value: { min: 2, max: 4 } },
-            opacity: { value: 0.4 },
-            color: { value: "#0a0e27" },
+            opacity: { value: 0.35 },
+            color: { value: "#6366f1" },
             move: {
               enable: true,
-              speed: 0.5,
+              speed: 0.4,
               direction: "none",
               random: true,
               straight: false,
@@ -440,35 +429,27 @@ const loadParticles = async () => {
           background: { color: "transparent" },
           detectRetina: false,
           fpsLimit: 20
-        });
-      } catch (err) {
-        // Silently fail
-      }
-    }, { timeout: 3000 });
+        })
+      } catch (err) { /* silent */ }
+    }, { timeout: 3000 })
   }
-};
-
-// Load particles after page is fully loaded
-if (document.readyState === 'complete') {
-  setTimeout(loadParticles, 2000);
-} else {
-  window.addEventListener('load', () => setTimeout(loadParticles, 2000));
 }
 
-// Back to top button
-const backToTop = document.getElementById('back-to-top');
+if (document.readyState === 'complete') {
+  setTimeout(loadParticles, 2000)
+} else {
+  window.addEventListener('load', () => setTimeout(loadParticles, 2000))
+}
+
+// ── Back to top ──
+const backToTop = document.getElementById('back-to-top')
 if (backToTop) {
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
-  });
-  
+    backToTop.classList.toggle('visible', window.scrollY > 300)
+  })
   backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  })
 }
 
-testimonialSection();
+testimonialSection()

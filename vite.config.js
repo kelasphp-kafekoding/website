@@ -16,5 +16,8 @@ export default defineConfig({
       }
     }
   },
-  appType: 'mpa'
+  appType: 'mpa',
+  server: {
+    allowedHosts: true
+  }
 })
