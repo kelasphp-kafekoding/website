@@ -4,64 +4,145 @@
       "id": 1,
       "slug": "pengenalan-php",
       "title": "Pengenalan PHP",
-      "description": "Pelajari dasar-dasar PHP, instalasi, dan sintaks dasar untuk memulai perjalanan web development Anda.",
+      "description": "Membahas pengertian, sejarah, fungsi, kelebihan, dan kekurangan PHP.",
       "file": "contoh-materi.md",
-      "author": "M. Rifaldo Saputra",
-      "date": "2025-12-01"
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
     },
     {
       "id": 2,
       "slug": "setup-environment",
-      "title": "Setup Environment PHP",
-      "description": "Panduan lengkap instalasi dan konfigurasi environment PHP untuk development.",
+      "title": "Install Aplikasi Kode Editor dan Database",
+      "description": "Penggunaan kode editor (VS Code) dan database (XAMPP) serta langkah-langkah menyimpan file PHP.",
       "file": "setup-environment.md",
-      "author": "M. Rifaldo Saputra",
-      "date": "2025-12-01"
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
     },
     {
       "id": 3,
       "slug": "sintaks-dasar",
-      "title": "Sintaks Dasar PHP",
-      "description": "Pelajari sintaks dasar PHP termasuk variabel, tipe data, dan struktur kode.",
+      "title": "Pengenalan Sintaks Dasar, Tipe Data, dan Variabel pada PHP",
+      "description": "Pelajari sintaks dasar PHP termasuk variabel, tipe data, komentar, dan output.",
       "file": "sintaks-dasar.md",
-      "author": "M. Rifaldo Saputra",
-      "date": "2025-12-01"
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
     },
     {
       "id": 4,
       "slug": "operator-php",
-      "title": "Operator di PHP",
-      "description": "Memahami berbagai jenis operator dalam PHP untuk manipulasi data.",
+      "title": "Pengenalan Operator",
+      "description": "Memahami berbagai jenis operator dalam PHP: aritmatika, perbandingan, logika, dan lainnya.",
       "file": "operator-php.md",
-      "author": "M. Rifaldo Saputra",
-      "date": "2025-12-01"
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
     },
     {
       "id": 5,
       "slug": "control-flow",
-      "title": "Control Flow PHP",
-      "description": "Pelajari struktur kontrol seperti if-else, switch, dan perulangan di PHP.",
+      "title": "Control Flow — Pengkondisian",
+      "description": "Pelajari percabangan (if, else, elseif, switch) untuk mengambil keputusan dalam program.",
       "file": "control-flow.md",
-      "author": "M. Rifaldo Saputra",
-      "date": "2025-12-01"
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
     },
     {
       "id": 6,
-      "slug": "array-function",
-      "title": "Array dan Function",
-      "description": "Menguasai penggunaan array dan pembuatan function di PHP.",
-      "file": "array-function.md",
-      "author": "M. Rifaldo Saputra",
-      "date": "2025-12-01"
+      "slug": "control-flow-perulangan",
+      "title": "Control Flow — Perulangan (Looping)",
+      "description": "Menguasai perulangan for, while, do-while, foreach, break, continue, dan nested loop.",
+      "file": "control-flow-perulangan.md",
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
     },
     {
       "id": 7,
-      "slug": "form-bootstrap",
-      "title": "Form + Bootstrap",
-      "description": "Aplikasi pemesanan kantin sederhana menggunakan PHP dan Bootstrap.",
-      "file": "form-bootstrap.md",
-      "author": "M. Rifaldo Saputra",
-      "date": "2025-12-08"
+      "slug": "array-function",
+      "title": "Function dan Array",
+      "description": "Mengenal dan memahami function serta array pada PHP.",
+      "file": "array-function.md",
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 8,
+      "slug": "php-form",
+      "title": "PHP Form",
+      "description": "Membuat form sederhana dengan HTML, memproses data dengan $_POST dan $_GET, validasi, dan keamanan.",
+      "file": "php-form.md",
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 9,
+      "slug": "php-crud-pengenalan",
+      "title": "Pengenalan CRUD pada PHP",
+      "description": "Mengenal bentuk CRUD (Create, Read, Update, Delete) dan koneksi PHP ke database MySQL.",
+      "file": "php-crud-pengenalan.md",
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 10,
+      "slug": "crud-database",
+      "title": "Membuat Tabel Database",
+      "description": "Memahami tipe data MySQL, membuat tabel dengan constraint, relasi antar tabel, dan foreign key.",
+      "file": "crud-database.md",
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 11,
+      "slug": "crud-read",
+      "title": "Menampilkan Data dari Database",
+      "description": "Mengambil dan menampilkan data dari database menggunakan SELECT, WHERE, ORDER BY, JOIN.",
+      "file": "crud-read.md",
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 12,
+      "slug": "crud-update-delete",
+      "title": "Mengubah dan Menghapus Data",
+      "description": "Melakukan UPDATE dan DELETE data dari database, prepared statements, dan keamanan SQL.",
+      "file": "crud-update-delete.md",
+      "author": "Aulia Ahmad Zakki",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 13,
+      "slug": "mini-project",
+      "title": "Mini Project",
+      "description": "Membuat website sederhana dengan menggabungkan PHP, HTML, dan Bootstrap — Sistem Inventaris.",
+      "file": "mini-project.md",
+      "author": "Mentor Kelas PHP",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 14,
+      "slug": "mini-project",
+      "title": "Mini Project (Lanjutan)",
+      "description": "Melanjutkan mini project: form tambah, edit, hapus, detail, dan pencarian data.",
+      "file": "mini-project.md",
+      "author": "Mentor Kelas PHP",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 15,
+      "slug": "project-akhir",
+      "title": "Project Akhir",
+      "description": "Membuat project CRUD sendiri sesuai dengan materi yang sudah dipelajari.",
+      "file": "project-akhir.md",
+      "author": "Mentor Kelas PHP",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 16,
+      "slug": "project-akhir",
+      "title": "Project Akhir (Lanjutan)",
+      "description": "Menyelesaikan project CRUD mandiri, evaluasi, dan dokumentasi.",
+      "file": "project-akhir.md",
+      "author": "Mentor Kelas PHP",
+      "date": "2025-02-22"
     }
   ]
 }

@@ -75,7 +75,7 @@ const renderMateri = (materiList) => {
                   <span class="card-author">${materi.author}</span>
                   <span class="card-date">${formatDate(materi.date)}</span>
                 </div>
-                <button class="card-button" onclick="window.location.href='/materi-detail.html?m=${materi.slug}'">Baca Materi</button>
+                <button class="card-button" onclick="window.location.href='/materi-detail.html?m=${materi.id}'">Baca Materi</button>
               </div>
             </div>
           `).join('')}

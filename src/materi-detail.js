@@ -28,14 +28,19 @@ marked.setOptions({
   gfm: true
 })
 
-const loadMateriData = async (slug) => {
+const loadMateriData = async (slugOrId, data) => {
   try {
-    const response = await fetch('/materi-list.json')
-    if (!response.ok) throw new Error('Materi list not found')
-    const data = await response.json()
-    const materi = data.materi.find(m => m.slug === slug || m.id === parseInt(slug))
-    if (!materi) throw new Error('Materi not found')
-    return materi
+    if (!data) {
+      const response = await fetch('/materi-list.json')
+      if (!response.ok) throw new Error('Materi list not found')
+      data = await response.json()
+    }
+    // Try ID match first, then slug
+    const materiById = data.materi.find(m => m.id === parseInt(slugOrId))
+    if (materiById) return materiById
+    const materiBySlug = data.materi.find(m => m.slug === slugOrId)
+    if (materiBySlug) return materiBySlug
+    throw new Error('Materi not found')
   } catch (error) {
     console.error('Error loading materi data:', error)
     return null
@@ -54,9 +59,9 @@ const loadMarkdown = async (filename) => {
   }
 }
 
-const renderSidebar = (materiList, currentSlug) => {
+const renderSidebar = (materiList, currentId) => {
   return materiList.map(m => `
-    <a href="/materi-detail.html?m=${m.slug}" class="sidebar-item ${m.slug === currentSlug ? 'active' : ''}">
+    <a href="/materi-detail.html?m=${m.id}" class="sidebar-item ${m.id === currentId ? 'active' : ''}">
       <span class="sidebar-number">${m.id}</span>
       <span class="sidebar-title">${m.title}</span>
     </a>
@@ -70,7 +75,7 @@ const renderMateriDetail = async () => {
   const response = await fetch('/materi-list.json')
   const data = await response.json()
 
-  const materiData = await loadMateriData(slug)
+  const materiData = await loadMateriData(slug, data)
 
   if (!materiData) {
     window.location.href = '/404.html'
@@ -79,11 +84,11 @@ const renderMateriDetail = async () => {
 
   const content = await loadMarkdown(materiData.file)
 
-  const currentIndex = data.materi.findIndex(m => m.slug === materiData.slug)
+  const currentIndex = data.materi.findIndex(m => m.id === materiData.id)
   const previousMateri = currentIndex > 0 ? data.materi[currentIndex - 1] : null
   const nextMateri = currentIndex < data.materi.length - 1 ? data.materi[currentIndex + 1] : null
 
-  const term = `materi:${materiData.slug}`
+  const term = `materi:${materiData.id}`
 
   app.innerHTML = `
     ${renderNavbar()}
@@ -99,7 +104,7 @@ const renderMateriDetail = async () => {
             <i class="fa-solid fa-chevron-down sidebar-arrow"></i>
           </button>
           <nav class="sidebar-nav" id="sidebar-nav">
-            ${renderSidebar(data.materi, materiData.slug)}
+            ${renderSidebar(data.materi, materiData.id)}
           </nav>
         </aside>
 
@@ -110,13 +115,13 @@ const renderMateriDetail = async () => {
 
           <div class="materi-navigation">
             ${previousMateri ? `
-              <a href="/materi-detail.html?m=${previousMateri.slug}" class="nav-button nav-prev">
+              <a href="/materi-detail.html?m=${previousMateri.id}" class="nav-button nav-prev">
                 <i class="fa-solid fa-chevron-left"></i> ${previousMateri.title}
               </a>
             ` : `<div class="nav-button-placeholder"></div>`}
 
             ${nextMateri ? `
-              <a href="/materi-detail.html?m=${nextMateri.slug}" class="nav-button nav-next">
+              <a href="/materi-detail.html?m=${nextMateri.id}" class="nav-button nav-next">
                 ${nextMateri.title} <i class="fa-solid fa-chevron-right"></i>
               </a>
             ` : `<div class="nav-button-placeholder"></div>`}
