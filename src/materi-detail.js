@@ -89,18 +89,6 @@ const renderMateriDetail = async () => {
 
   const term = `materi:${materiData.id}`
 
-  // Check if quiz exists for this materi
-  let hasQuiz = false
-  try {
-    const quizResponse = await fetch('/quiz.json')
-    if (quizResponse.ok) {
-      const quizData = await quizResponse.json()
-      hasQuiz = !!quizData[materiData.id]
-    }
-  } catch (e) {
-    hasQuiz = false
-  }
-
   app.innerHTML = `
     ${renderNavbar()}
 
@@ -124,22 +112,6 @@ const renderMateriDetail = async () => {
             ${content}
           </article>
 
-          ${hasQuiz ? `
-          <div class="quiz-cta-section">
-            <div class="quiz-cta-content">
-              <div class="quiz-cta-icon">
-                <i class="fa-solid fa-clipboard-question"></i>
-              </div>
-              <div class="quiz-cta-text">
-                <h3>Uji Pemahamanmu</h3>
-                <p>Jawab kuis untuk menguji pemahaman materi ini. Kamu butuh minimal 75% untuk lulus.</p>
-              </div>
-              <a href="/kuis-terpisah.html?m=${materiData.id}" class="quiz-cta-button">
-                <i class="fa-solid fa-pen-to-square"></i> Kerjakan Kuis
-              </a>
-            </div>
-          </div>
-          ` : ''}
 
           <div class="materi-navigation">
             ${previousMateri ? `
