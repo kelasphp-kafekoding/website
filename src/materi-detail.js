@@ -28,21 +28,6 @@ marked.setOptions({
   gfm: true
 })
 
-// Load quiz data
-let quizData = {}
-
-const loadQuizData = async () => {
-  try {
-    const response = await fetch('/quiz.json')
-    if (response.ok) {
-      const data = await response.json()
-      quizData = data
-    }
-  } catch (error) {
-    console.warn('Quiz data not available:', error)
-  }
-}
-
 const loadMateriData = async (slugOrId, data) => {
   try {
     if (!data) {
@@ -82,103 +67,7 @@ const renderSidebar = (materiList, currentId) => {
   `).join('')
 }
 
-// Escape HTML entities to prevent XSS and rendering issues
-const escapeHtml = (str) => {
-  const div = document.createElement('div')
-  div.textContent = str
-  return div.innerHTML
-}
-
-const renderQuiz = (quiz) => {
-  if (!quiz || !quiz.questions) return ''
-
-  const safeTitle = escapeHtml(quiz.title)
-  let html = `
-    <div class="quiz-section" id="quiz-section">
-      <div class="quiz-header">
-        <h2><i class="fa-solid fa-clipboard-question"></i> Kuis: ${safeTitle}</h2>
-        <p class="quiz-desc">Jawab ${quiz.questions.length} pertanyaan berikut untuk menguji pemahamanmu.</p>
-      </div>
-  `
-
-  quiz.questions.forEach((q, i) => {
-    const safeQuestion = escapeHtml(q.question)
-    html += `
-      <div class="quiz-question" id="quiz-q${i}">
-        <p class="quiz-question-text"><strong>${i + 1}.</strong> ${safeQuestion}</p>
-        <div class="quiz-options">
-    `
-    q.options.forEach((opt, j) => {
-      const safeOption = escapeHtml(opt)
-      html += `
-        <label class="quiz-option">
-          <input type="radio" name="quiz${i}" value="${j}" onchange="checkQuizAnswer(${i}, ${j}, ${q.answer})">
-          <span>${String.fromCharCode(65 + j)}. ${safeOption}</span>
-        </label>
-      `
-    })
-    html += `
-          <div class="quiz-feedback" id="quiz-feedback-${i}"></div>
-        </div>
-      </div>
-    `
-  })
-
-  html += `
-      <button class="quiz-submit-btn" id="quiz-submit" onclick="showQuizResults()">
-        <i class="fa-solid fa-paper-plane"></i> Periksa Jawaban
-      </button>
-      <div class="quiz-result" id="quiz-result"></div>
-    </div>
-  `
-
-  return html
-}
-
-// Global quiz checker
-window.checkQuizAnswer = (qIndex, selected, correct) => {
-  const feedback = document.getElementById(`quiz-feedback-${qIndex}`)
-  if (feedback) {
-    if (selected === correct) {
-      feedback.innerHTML = '<i class="fa-solid fa-check-circle"></i> Benar!'
-      feedback.className = 'quiz-feedback quiz-correct'
-    } else {
-      feedback.innerHTML = '<i class="fa-solid fa-times-circle"></i> Salah, coba lagi.'
-      feedback.className = 'quiz-feedback quiz-wrong'
-    }
-  }
-}
-
-window.showQuizResults = () => {
-  const quiz = window.__currentQuiz
-  if (!quiz) return
-
-  let correct = 0
-  quiz.questions.forEach((q, i) => {
-    const selected = document.querySelector(`input[name="quiz${i}"]:checked`)
-    if (selected && parseInt(selected.value) === q.answer) {
-      correct++
-    }
-  })
-
-  const total = quiz.questions.length
-  const percentage = Math.round((correct / total) * 100)
-  const resultEl = document.getElementById('quiz-result')
-  const emoji = percentage >= 75 ? '🎉' : '💪'
-
-  resultEl.innerHTML = `
-    <div class="quiz-score ${percentage >= 75 ? 'quiz-pass' : 'quiz-fail'}">
-      <span class="quiz-score-emoji">${emoji}</span>
-      <span class="quiz-score-text">Skor: ${correct}/${total} (${percentage}%)</span>
-      ${percentage >= 75 ? '<span class="quiz-score-badge">Lulus!</span>' : '<span class="quiz-score-badge">Belum Lulus (min. 75%)</span>'}
-    </div>
-  `
-  resultEl.style.display = 'block'
-}
-
 const renderMateriDetail = async () => {
-  await loadQuizData()
-
   const urlParams = new URLSearchParams(window.location.search)
   const slug = urlParams.get('m') || urlParams.get('slug') || '1'
 
@@ -200,9 +89,17 @@ const renderMateriDetail = async () => {
 
   const term = `materi:${materiData.id}`
 
-  // Get quiz for this materi
-  const quiz = quizData[materiData.id] || null
-  window.__currentQuiz = quiz
+  // Check if quiz exists for this materi
+  let hasQuiz = false
+  try {
+    const quizResponse = await fetch('/quiz.json')
+    if (quizResponse.ok) {
+      const quizData = await quizResponse.json()
+      hasQuiz = !!quizData[materiData.id]
+    }
+  } catch (e) {
+    hasQuiz = false
+  }
 
   app.innerHTML = `
     ${renderNavbar()}
@@ -227,7 +124,22 @@ const renderMateriDetail = async () => {
             ${content}
           </article>
 
-          ${quiz ? renderQuiz(quiz) : ''}
+          ${hasQuiz ? `
+          <div class="quiz-cta-section">
+            <div class="quiz-cta-content">
+              <div class="quiz-cta-icon">
+                <i class="fa-solid fa-clipboard-question"></i>
+              </div>
+              <div class="quiz-cta-text">
+                <h3>Uji Pemahamanmu</h3>
+                <p>Jawab kuis untuk menguji pemahaman materi ini. Kamu butuh minimal 75% untuk lulus.</p>
+              </div>
+              <a href="/kuis-terpisah.html?m=${materiData.id}" class="quiz-cta-button">
+                <i class="fa-solid fa-pen-to-square"></i> Kerjakan Kuis
+              </a>
+            </div>
+          </div>
+          ` : ''}
 
           <div class="materi-navigation">
             ${previousMateri ? `
